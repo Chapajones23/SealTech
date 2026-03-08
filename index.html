@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta tags za msingi -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SealTech — Software Development & Technology Solutions" />
+  <title>SealTech — Build The Future</title>
+
+  <!-- Fonts za kipekee kutoka Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <!-- CSS kuu -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR — Urambazaji wa juu wa ukurasa
+  ============================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <!-- Logo ya SealTech upande wa kushoto -->
+      <a href="#" class="nav-logo">
+        <span class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="url(#logoGrad)"/>
+            <path d="M8 16C8 11.582 11.582 8 16 8s8 3.582 8 8-3.582 8-8 8" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="16" cy="16" r="3" fill="#fff"/>
+            <defs>
+              <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
+                <stop offset="0%" stop-color="#2563EB"/>
+                <stop offset="100%" stop-color="#06B6D4"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <span class="logo-text">SealTech</span>
+      </a>
+
+      <!-- Menyu ya kati ya urambazaji -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#developers">Developers</a></li>
+        <li><a href="#team">Company</a></li>
+      </ul>
+
+      <!-- Vitufe vya kulia: wasiliana na anza mradi -->
+      <div class="nav-actions">
+        <a href="#contact" class="btn-ghost">Contact</a>
+        <a href="#contact" class="btn-primary nav-cta">Start Project</a>
+      </div>
+
+      <!-- Kitufe cha menyu kwa simu ndogo -->
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO SECTION — Sehemu kuu ya kukaribisha wageni
+  ============================================================ -->
+  <section class="hero" id="hero">
+    <!-- Mipira inayoelea nyuma ya hero -->
+    <div class="hero-bg">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      <div class="grid-overlay"></div>
+    </div>
+
+    <div class="hero-container">
+      <!-- Upande wa kushoto: maandishi na vitufe -->
+      <div class="hero-content" data-animate="fade-up">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Available for new projects
+        </div>
+        <h1 class="hero-title">
+          We Build<br/>
+          <span class="gradient-text">Software That</span><br/>
+          Scales With You
+        </h1>
+        <p class="hero-desc">
+          SealTech crafts high-performance web apps, mobile solutions, and enterprise systems — built for teams that demand excellence.
+        </p>
+        <div class="hero-ctas">
+          <a href="#services" class="btn-primary btn-lg">
+            Explore Services
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#portfolio" class="btn-outline btn-lg">View Portfolio</a>
+        </div>
+
+        <!-- Takwimu ndogo za mafanikio -->
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num">120+</span>
+            <span class="stat-label">Projects</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">98%</span>
+            <span class="stat-label">Client Satisfaction</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">8+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upande wa kulia: picha ya dashibodi iliyoundwa kwa CSS -->
+      <div class="hero-visual" data-animate="fade-left">
+        <div class="dashboard-card">
+          <!-- Kichwa cha dashibodi -->
+          <div class="dash-header">
+            <div class="dash-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="dash-title">analytics.sealtech.io</span>
+          </div>
+
+          <!-- Grafu ya mstari wa kiubunifu -->
+          <div class="dash-chart">
+            <div class="chart-bars">
+              <div class="bar" style="--h:45%"><span>Jan</span></div>
+              <div class="bar" style="--h:65%"><span>Feb</span></div>
+              <div class="bar" style="--h:50%"><span>Mar</span></div>
+              <div class="bar" style="--h:80%"><span>Apr</span></div>
+              <div class="bar" style="--h:70%"><span>May</span></div>
+              <div class="bar active" style="--h:95%"><span>Jun</span></div>
+            </div>
+            <div class="chart-label">
+              <span class="chart-value">+47.2%</span>
+              <span class="chart-sub">vs last period</span>
+            </div>
+          </div>
+
+          <!-- Kadi ndogo za takwimu -->
+          <div class="dash-metrics">
+            <div class="metric-card">
+              <div class="metric-icon blue">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 12L6 8l3 3 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <div class="metric-val">2,847</div>
+                <div class="metric-name">Active Users</div>
+              </div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-icon cyan">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <div class="metric-val">99.9%</div>
+                <div class="metric-name">Uptime</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vitendo vya haraka -->
+          <div class="dash-actions">
+            <div class="action-item">
+              <div class="action-dot green-dot"></div>
+              <span>Deploy pipeline — succeeded</span>
+              <span class="action-time">2m ago</span>
+            </div>
+            <div class="action-item">
+              <div class="action-dot blue-dot"></div>
+              <span>New integration: Stripe API</span>
+              <span class="action-time">15m ago</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kadi inayoelea nje ya dashibodi -->
+        <div class="floating-badge float-1">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 2l2.39 4.84L18 7.64l-4 3.9.94 5.5L10 14.27l-4.94 2.77.94-5.5L2 7.64l5.61-.8L10 2z" fill="url(#starGrad)"/>
+          <defs><linearGradient id="starGrad" x1="2" y1="2" x2="18" y2="18"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#06B6D4"/></linearGradient></defs></svg>
+          <span>Top Rated</span>
+        </div>
+        <div class="floating-badge float-2">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#10B981" stroke-width="2" stroke-linecap="round"/></svg>
+          <span>ISO Certified</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TECH STACK — Teknolojia tunazotumia
+  ============================================================ -->
+  <section class="techstack" id="techstack">
+    <div class="container">
+      <p class="section-eyebrow">Trusted Technologies</p>
+      <div class="tech-track-wrapper">
+        <div class="tech-track" id="techTrack">
+          <!-- Nembo za teknolojia -->
+          <div class="tech-badge">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#FF2D20"/><path d="M8 22l4-12h8l4 12" stroke="#fff" stroke-width="1.5"/></svg>
+            Laravel
+          </div>
+          <div class="tech-badge">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#20232A"/><circle cx="16" cy="16" r="6" stroke="#61DAFB" stroke-width="2"/><circle cx="16" cy="16" r="2" fill="#61DAFB"/></svg>
+            React
+          </div>
+          <div class="tech-badge">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#0C4B33"/><path d="M10 22l6-12 6 12" stroke="#fff" stroke-width="1.5"/></svg>
+            Django
+          </div>
+          <div class="tech-badge">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#027DFD"/><rect x="9" y="9" width="6" height="6" rx="1" fill="#fff"/><rect x="17" y="9" width="6" height="6" rx="1" fill="rgba(255,255,255,0.5)"/><rect x="9" y="17" width="6" height="6" rx="1" fill="rgba(255,255,255,0.5)"/><rect x="17" y="17" width="6" height="6" rx="1" fill="#fff"/></svg>
+            Flutter
+          </div>
+          <div class="tech-badge">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#3C873A"/><circle cx="16" cy="16" r="6" stroke="#fff" stroke-width="1.5"/><circle cx="16" cy="16" r="2" fill="#fff"/></svg>
+            Node.js
+          </div>
+          <div class="tech-badge">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#2496ED"/><rect x="9" y="13" width="14" height="8" rx="2" stroke="#fff" stroke-width="1.5"/><path d="M12 13V11a4 4 0 018 0v2" stroke="#fff" stroke-width="1.5"/></svg>
+            Docker
+          </div>
+          <div class="tech-badge">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#FF9900"/><path d="M8 18s4-4 8-4 8 4 8 4" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><circle cx="16" cy="12" r="3" stroke="#fff" stroke-width="1.5"/></svg>
+            AWS
+          </div>
+          <div class="tech-badge">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#F05032"/><circle cx="16" cy="16" r="5" stroke="#fff" stroke-width="1.5"/><path d="M16 11V7M21 16h4M16 21v4M11 16H7" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Git
+          </div>
+          <!-- Rudia nembo kwa mzunguko usioisha -->
+          <div class="tech-badge">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#FF2D20"/><path d="M8 22l4-12h8l4 12" stroke="#fff" stroke-width="1.5"/></svg>
+            Laravel
+          </div>
+          <div class="tech-badge">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#20232A"/><circle cx="16" cy="16" r="6" stroke="#61DAFB" stroke-width="2"/><circle cx="16" cy="16" r="2" fill="#61DAFB"/></svg>
+            React
+          </div>
+          <div class="tech-badge">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#0C4B33"/><path d="M10 22l6-12 6 12" stroke="#fff" stroke-width="1.5"/></svg>
+            Django
+          </div>
+          <div class="tech-badge">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#027DFD"/><rect x="9" y="9" width="6" height="6" rx="1" fill="#fff"/><rect x="17" y="9" width="6" height="6" rx="1" fill="rgba(255,255,255,0.5)"/><rect x="9" y="17" width="6" height="6" rx="1" fill="rgba(255,255,255,0.5)"/><rect x="17" y="17" width="6" height="6" rx="1" fill="#fff"/></svg>
+            Flutter
+          </div>
+          <div class="tech-badge">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#3C873A"/><circle cx="16" cy="16" r="6" stroke="#fff" stroke-width="1.5"/><circle cx="16" cy="16" r="2" fill="#fff"/></svg>
+            Node.js
+          </div>
+          <div class="tech-badge">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#2496ED"/><rect x="9" y="13" width="14" height="8" rx="2" stroke="#fff" stroke-width="1.5"/><path d="M12 13V11a4 4 0 018 0v2" stroke="#fff" stroke-width="1.5"/></svg>
+            Docker
+          </div>
+          <div class="tech-badge">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#FF9900"/><path d="M8 18s4-4 8-4 8 4 8 4" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><circle cx="16" cy="12" r="3" stroke="#fff" stroke-width="1.5"/></svg>
+            AWS
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES — Huduma tunazotoa
+  ============================================================ -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <p class="section-eyebrow">What We Do</p>
+        <h2 class="section-title">End-to-end digital<br/><span class="gradient-text">engineering</span></h2>
+        <p class="section-desc">From concept to deployment — we cover the full stack of modern software development.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Kadi ya huduma 1: Maendeleo ya Wavuti -->
+        <div class="service-card" data-animate="fade-up" data-delay="0">
+          <div class="service-icon" style="--icon-color: #2563EB">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 8l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="service-title">Web Development</h3>
+          <p class="service-desc">High-performance web applications built with modern frameworks. From SPAs to complex enterprise portals.</p>
+          <a href="#" class="service-link">
+            Learn more
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+          <div class="service-card-glow"></div>
+        </div>
+
+        <!-- Kadi ya huduma 2: Mifumo Maalum -->
+        <div class="service-card" data-animate="fade-up" data-delay="100">
+          <div class="service-icon" style="--icon-color: #7C3AED">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="service-title">Custom Software Systems</h3>
+          <p class="service-desc">Bespoke ERP, CRM, and workflow automation systems designed around your unique business logic.</p>
+          <a href="#" class="service-link">
+            Learn more
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+          <div class="service-card-glow"></div>
+        </div>
+
+        <!-- Kadi ya huduma 3: Programu za Simu -->
+        <div class="service-card" data-animate="fade-up" data-delay="200">
+          <div class="service-icon" style="--icon-color: #06B6D4">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="18" r="1" fill="currentColor"/><path d="M9 6h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="service-title">Mobile Applications</h3>
+          <p class="service-desc">Cross-platform iOS and Android apps using Flutter — native performance, single codebase.</p>
+          <a href="#" class="service-link">
+            Learn more
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+          <div class="service-card-glow"></div>
+        </div>
+
+        <!-- Kadi ya huduma 4: Cloud na DevOps -->
+        <div class="service-card" data-animate="fade-up" data-delay="300">
+          <div class="service-icon" style="--icon-color: #10B981">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M17 18a5 5 0 000-10h-.5A7 7 0 105 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9 15l3-3 3 3M12 12v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="service-title">Cloud & DevOps</h3>
+          <p class="service-desc">Infrastructure as code, CI/CD pipelines, Docker orchestration, and AWS/GCP cloud architecture.</p>
+          <a href="#" class="service-link">
+            Learn more
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+          <div class="service-card-glow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PORTFOLIO — Miradi tuliyoikamilisha
+  ============================================================ -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <p class="section-eyebrow">Our Work</p>
+        <h2 class="section-title">Selected <span class="gradient-text">projects</span></h2>
+        <p class="section-desc">Real-world solutions that have transformed how businesses operate.</p>
+      </div>
+
+      <div class="portfolio-grid">
+        <!-- Mradi 1: Mfumo wa Shule -->
+        <div class="portfolio-card" data-animate="fade-up" data-delay="0">
+          <div class="portfolio-img" style="--accent: #2563EB">
+            <div class="portfolio-mockup school">
+              <div class="mock-bar"><div class="mock-dots"><span></span><span></span><span></span></div></div>
+              <div class="mock-content">
+                <div class="mock-sidebar"></div>
+                <div class="mock-main">
+                  <div class="mock-card-row">
+                    <div class="mock-mini-card blue"></div>
+                    <div class="mock-mini-card cyan"></div>
+                    <div class="mock-mini-card purple"></div>
+                  </div>
+                  <div class="mock-table-rows">
+                    <div class="mock-row"></div>
+                    <div class="mock-row"></div>
+                    <div class="mock-row short"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Overlay inayoonekana wakati wa hover -->
+            <div class="portfolio-overlay">
+              <a href="#" class="overlay-btn">View Case Study</a>
+            </div>
+          </div>
+          <div class="portfolio-meta">
+            <span class="portfolio-tag">Education</span>
+            <span class="portfolio-tag">Laravel</span>
+          </div>
+          <h3 class="portfolio-title">School Management Platform</h3>
+          <p class="portfolio-desc">Comprehensive system handling admissions, grading, fees, and parent communication for 40+ schools.</p>
+        </div>
+
+        <!-- Mradi 2: Soko la Biashara -->
+        <div class="portfolio-card featured" data-animate="fade-up" data-delay="100">
+          <div class="portfolio-img" style="--accent: #7C3AED">
+            <div class="portfolio-mockup ecommerce">
+              <div class="mock-bar"><div class="mock-dots"><span></span><span></span><span></span></div></div>
+              <div class="mock-content">
+                <div class="mock-hero-strip"></div>
+                <div class="mock-products">
+                  <div class="mock-product"></div>
+                  <div class="mock-product"></div>
+                  <div class="mock-product"></div>
+                  <div class="mock-product"></div>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-overlay">
+              <a href="#" class="overlay-btn">View Case Study</a>
+            </div>
+            <div class="featured-label">Featured</div>
+          </div>
+          <div class="portfolio-meta">
+            <span class="portfolio-tag">E-Commerce</span>
+            <span class="portfolio-tag">React + Node</span>
+          </div>
+          <h3 class="portfolio-title">Ecommerce Marketplace</h3>
+          <p class="portfolio-desc">Multi-vendor marketplace with real-time inventory, payment processing, and advanced analytics dashboard.</p>
+        </div>
+
+        <!-- Mradi 3: Otomatiki ya Biashara -->
+        <div class="portfolio-card" data-animate="fade-up" data-delay="200">
+          <div class="portfolio-img" style="--accent: #06B6D4">
+            <div class="portfolio-mockup automation">
+              <div class="mock-bar"><div class="mock-dots"><span></span><span></span><span></span></div></div>
+              <div class="mock-content">
+                <div class="mock-flow">
+                  <div class="flow-node start"></div>
+                  <div class="flow-arrow"></div>
+                  <div class="flow-node mid"></div>
+                  <div class="flow-arrow"></div>
+                  <div class="flow-node end"></div>
+                </div>
+                <div class="mock-stats-mini">
+                  <div class="stat-bar" style="--w:80%"></div>
+                  <div class="stat-bar" style="--w:55%"></div>
+                  <div class="stat-bar" style="--w:90%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-overlay">
+              <a href="#" class="overlay-btn">View Case Study</a>
+            </div>
+          </div>
+          <div class="portfolio-meta">
+            <span class="portfolio-tag">Enterprise</span>
+            <span class="portfolio-tag">Django + AWS</span>
+          </div>
+          <h3 class="portfolio-title">Business Automation System</h3>
+          <p class="portfolio-desc">End-to-end workflow automation reducing manual processing by 78% for a regional logistics company.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DEVELOPER SECTION — Sehemu ya wasanidi programu
+  ============================================================ -->
+  <section class="developers" id="developers">
+    <div class="container">
+      <div class="dev-grid">
+        <!-- Upande wa kushoto: mzunguko wa kuandika msimbo -->
+        <div class="dev-code" data-animate="fade-right">
+          <div class="code-window">
+            <div class="code-header">
+              <div class="code-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="code-filename">api/deploy.sh</span>
+              <div class="code-actions">
+                <span>bash</span>
+              </div>
+            </div>
+            <div class="code-body">
+              <pre id="codeTyper"></pre>
+              <span class="cursor-blink">|</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upande wa kulia: maelezo ya urafiki na wasanidi -->
+        <div class="dev-content" data-animate="fade-left">
+          <p class="section-eyebrow">Developer Experience</p>
+          <h2 class="section-title">Built by engineers,<br/><span class="gradient-text">for engineers</span></h2>
+          <p class="dev-desc">SealTech's internal developer platform gives your team clean APIs, automated CI/CD, and zero-config deployments. We believe great DX leads to great products.</p>
+
+          <div class="dev-features">
+            <div class="dev-feature">
+              <div class="dev-feature-icon">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 2l2.39 4.84L18 7.64l-4 3.9.94 5.5L10 14.27l-4.94 2.77.94-5.5L2 7.64l5.61-.8L10 2z" stroke="currentColor" stroke-width="1.5"/></svg>
+              </div>
+              <div>
+                <strong>One-click deploy</strong>
+                <p>Push to main, we handle the rest.</p>
+              </div>
+            </div>
+            <div class="dev-feature">
+              <div class="dev-feature-icon">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <strong>Type-safe APIs</strong>
+                <p>Full TypeScript support across all services.</p>
+              </div>
+            </div>
+            <div class="dev-feature">
+              <div class="dev-feature-icon">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <strong>Real-time monitoring</strong>
+                <p>Live logs, metrics, and alerts in your dashboard.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHY SEALTECH — Sababu za kuchagua SealTech
+  ============================================================ -->
+  <section class="why-section" id="why">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <p class="section-eyebrow">Why SealTech</p>
+        <h2 class="section-title">The standard others<br/><span class="gradient-text">measure against</span></h2>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card" data-animate="fade-up" data-delay="0">
+          <div class="why-num">01</div>
+          <h3>Experienced Engineers</h3>
+          <p>Senior engineers with 5–12 years across fintech, edtech, and logistics. We've seen what fails and build to avoid it.</p>
+        </div>
+        <div class="why-card" data-animate="fade-up" data-delay="100">
+          <div class="why-num">02</div>
+          <h3>Modern Technologies</h3>
+          <p>We don't chase trends — we adopt proven modern technologies that give your product a 5-year runway.</p>
+        </div>
+        <div class="why-card" data-animate="fade-up" data-delay="200">
+          <div class="why-num">03</div>
+          <h3>Scalable Architecture</h3>
+          <p>Microservices, event-driven design, and horizontal scaling built in from day one, not bolted on later.</p>
+        </div>
+        <div class="why-card" data-animate="fade-up" data-delay="300">
+          <div class="why-num">04</div>
+          <h3>Reliable Support</h3>
+          <p>24/7 monitoring, dedicated Slack channel, and SLA-backed response times. Your uptime is our uptime.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TEAM SECTION — Timu yetu ya wataalam
+  ============================================================ -->
+  <section class="team" id="team">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <p class="section-eyebrow">The Team</p>
+        <h2 class="section-title">Brilliant minds,<br/><span class="gradient-text">one mission</span></h2>
+      </div>
+
+      <div class="team-grid">
+        <!-- Mwanachama wa kwanza wa timu -->
+        <div class="team-card" data-animate="fade-up" data-delay="0">
+          <div class="team-photo">
+            <div class="team-avatar" style="--av-color: #2563EB">
+              <span>MJ</span>
+            </div>
+            <div class="team-socials">
+              <a href="https://www.chapatech.co.tz" aria-label="LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M6 9v5M6 7v.5M10 14v-3a2 2 0 014 0v3M10 9v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </a>
+              <a href="https://github.com/Chapajones23" aria-label="GitHub">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2a8 8 0 00-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07a2.12 2.12 0 00-.89-1.17c-.73-.5.06-.49.06-.49a1.68 1.68 0 011.23.82 1.7 1.7 0 002.33.66 1.7 1.7 0 01.51-1.07c-1.78-.2-3.64-.89-3.64-3.95a3.09 3.09 0 01.82-2.15 2.86 2.86 0 01.08-2.12s.67-.21 2.2.82a7.58 7.58 0 014 0c1.53-1.03 2.2-.82 2.2-.82a2.86 2.86 0 01.08 2.12 3.09 3.09 0 01.82 2.15c0 3.07-1.87 3.75-3.65 3.95a1.9 1.9 0 01.54 1.48v2.2c0 .21.14.46.55.38A8 8 0 0010 2z" stroke="currentColor" stroke-width="1.2"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="team-name">Michael Chapa</h3>
+          <p class="team-role">CEO & Full-Stack Developer</p>
+          <p class="team-bio">5+ years in software development. Former development lead at Better Life Academy.</p>
+        </div>
+
+        <!-- Mwanachama wa pili wa timu -->
+        <div class="team-card" data-animate="fade-up" data-delay="150">
+          <div class="team-photo">
+            <div class="team-avatar" style="--av-color: #7C3AED">
+              <span>LJ</span>
+            </div>
+            <div class="team-socials">
+              <a href="#" aria-label="LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M6 9v5M6 7v.5M10 14v-3a2 2 0 014 0v3M10 9v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </a>
+              <a href="#" aria-label="GitHub">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2a8 8 0 00-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07a2.12 2.12 0 00-.89-1.17c-.73-.5.06-.49.06-.49a1.68 1.68 0 011.23.82 1.7 1.7 0 002.33.66 1.7 1.7 0 01.51-1.07c-1.78-.2-3.64-.89-3.64-3.95a3.09 3.09 0 01.82-2.15 2.86 2.86 0 01.08-2.12s.67-.21 2.2.82a7.58 7.58 0 014 0c1.53-1.03 2.2-.82 2.2-.82a2.86 2.86 0 01.08 2.12 3.09 3.09 0 01.82 2.15c0 3.07-1.87 3.75-3.65 3.95a1.9 1.9 0 01.54 1.48v2.2c0 .21.14.46.55.38A8 8 0 0010 2z" stroke="currentColor" stroke-width="1.2"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="team-name">Lusajo JOB</h3>
+          <p class="team-role">CFO & Payment Integration Engineer</p>
+          <p class="team-bio">3+ years of experience in payment processing, financial integration and API integration.</p>
+        </div>
+
+        <!-- Mwanachama wa tatu wa timu -->
+        <div class="team-card" data-animate="fade-up" data-delay="300">
+          <div class="team-photo">
+            <div class="team-avatar" style="--av-color: #06B6D4">
+              <span>AK</span>
+            </div>
+            <div class="team-socials">
+              <a href="#" aria-label="LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M6 9v5M6 7v.5M10 14v-3a2 2 0 014 0v3M10 9v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </a>
+              <a href="#" aria-label="GitHub">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2a8 8 0 00-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07a2.12 2.12 0 00-.89-1.17c-.73-.5.06-.49.06-.49a1.68 1.68 0 011.23.82 1.7 1.7 0 002.33.66 1.7 1.7 0 01.51-1.07c-1.78-.2-3.64-.89-3.64-3.95a3.09 3.09 0 01.82-2.15 2.86 2.86 0 01.08-2.12s.67-.21 2.2.82a7.58 7.58 0 014 0c1.53-1.03 2.2-.82 2.2-.82a2.86 2.86 0 01.08 2.12 3.09 3.09 0 01.82 2.15c0 3.07-1.87 3.75-3.65 3.95a1.9 1.9 0 01.54 1.48v2.2c0 .21.14.46.55.38A8 8 0 0010 2z" stroke="currentColor" stroke-width="1.2"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="team-name">Alfred Kalinga</h3>
+          <p class="team-role">COO & Cloud Engineer</p>
+          <p class="team-bio">4+ years of experience in cloud infrastructure and DevOps practices.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA SECTION — Wito wa kuchukua hatua
+  ============================================================ -->
+  <section class="cta-section" id="contact">
+    <div class="cta-bg">
+      <div class="cta-blob cta-blob-1"></div>
+      <div class="cta-blob cta-blob-2"></div>
+    </div>
+    <div class="container">
+      <div class="cta-content" data-animate="fade-up">
+        <div class="cta-badge">🚀 Ready to launch?</div>
+        <h2 class="cta-title">Let's build something<br/>extraordinary together</h2>
+        <p class="cta-desc">Join 120+ companies who trusted SealTech to bring their most ambitious ideas to life.</p>
+        <div class="cta-buttons">
+          <a href="#" class="btn-white">Start a Project</a>
+          <a href="#" class="btn-outline-white">Schedule a Call</a>
+        </div>
+        <p class="cta-note">No commitment. Free consultation. Response within 24h.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER — Sehemu ya chini ya ukurasa
+  ============================================================ -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-top">
+        <!-- Safu ya kwanza: kuhusu SealTech -->
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <span class="logo-icon">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                <rect width="32" height="32" rx="8" fill="url(#fLogoGrad)"/>
+                <path d="M8 16C8 11.582 11.582 8 16 8s8 3.582 8 8-3.582 8-8 8" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="16" cy="16" r="3" fill="#fff"/>
+                <defs>
+                  <linearGradient id="fLogoGrad" x1="0" y1="0" x2="32" y2="32">
+                    <stop offset="0%" stop-color="#2563EB"/>
+                    <stop offset="100%" stop-color="#06B6D4"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </span>
+            <span class="logo-text">SealTech</span>
+          </a>
+          <p class="footer-tagline">Engineering excellence<br/>for Africa's digital future.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Twitter">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M18 3.5a8.38 8.38 0 01-2.4.66 4.19 4.19 0 001.84-2.31c-.81.48-1.71.83-2.66 1.02A4.18 4.18 0 009.32 8.5a11.86 11.86 0 01-8.6-4.36 4.18 4.18 0 001.3 5.58 4.16 4.16 0 01-1.89-.52v.05a4.18 4.18 0 003.35 4.1 4.2 4.2 0 01-1.89.07 4.18 4.18 0 003.9 2.9A8.38 8.38 0 012 17.54a11.82 11.82 0 006.4 1.87c7.68 0 11.88-6.36 11.88-11.88l-.01-.54A8.5 8.5 0 0018 3.5z" stroke="currentColor" stroke-width="1.2"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M6 9v5M6 7v.5M10 14v-3a2 2 0 014 0v3M10 9v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </a>
+            <a href="#" aria-label="GitHub">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 2a8 8 0 00-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07a2.12 2.12 0 00-.89-1.17c-.73-.5.06-.49.06-.49a1.68 1.68 0 011.23.82 1.7 1.7 0 002.33.66 1.7 1.7 0 01.51-1.07c-1.78-.2-3.64-.89-3.64-3.95a3.09 3.09 0 01.82-2.15 2.86 2.86 0 01.08-2.12s.67-.21 2.2.82a7.58 7.58 0 014 0c1.53-1.03 2.2-.82 2.2-.82a2.86 2.86 0 01.08 2.12 3.09 3.09 0 01.82 2.15c0 3.07-1.87 3.75-3.65 3.95a1.9 1.9 0 01.54 1.48v2.2c0 .21.14.46.55.38A8 8 0 0010 2z" stroke="currentColor" stroke-width="1.2"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Safu ya pili: Huduma -->
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Custom Software</a></li>
+            <li><a href="#">Mobile Apps</a></li>
+            <li><a href="#">Cloud & DevOps</a></li>
+            <li><a href="#">UI/UX Design</a></li>
+          </ul>
+        </div>
+
+        <!-- Safu ya tatu: Wasanidi -->
+        <div class="footer-col">
+          <h4>Developers</h4>
+          <ul>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">API Reference</a></li>
+            <li><a href="#">Open Source</a></li>
+            <li><a href="#">Status Page</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+
+        <!-- Safu ya nne: Kampuni -->
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Safu ya tano: Rasilimali -->
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Security</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Mstari wa chini wa footer -->
+      <div class="footer-bottom">
+        <p class="footer-copy">© SealTech 2026. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS kuu ya uhuishaji -->
+  <script src="script.js"></script>
+</body>
+</html>
