@@ -1211,3 +1211,180 @@
     height: 220px;
   }
 }
+
+/* ================================================================
+   PAGINATION — Mfumo wa kurasa za blogu
+   Maelezo: Vitufe vya kusogea kati ya kurasa za makala.
+            Vinatengenezwa kwa nguvu na blog.js → renderPagination()
+================================================================ */
+
+/* ── Container ya pagination ────────────────────────────────────── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: var(--space-2xl) 0 var(--space-lg);
+  flex-wrap: wrap;
+}
+
+/* ── Kitufe cha msingi ── */
+.pgn-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 12px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition:
+    background    var(--transition),
+    border-color  var(--transition),
+    color         var(--transition),
+    transform     var(--transition),
+    box-shadow    var(--transition);
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Hover ── */
+.pgn-btn:not(.pgn-btn--active):not(.pgn-btn--disabled):hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(37, 99, 235, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}
+
+/* ── Focus (kibodi) ── */
+.pgn-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ── Ukurasa uliopigiwa — Active ── */
+.pgn-btn--active {
+  background: linear-gradient(135deg, #2563EB 0%, #06B6D4 100%);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+  cursor: default;
+  transform: translateY(-1px);
+}
+
+.pgn-btn--active:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+}
+
+/* ── Imezimwa — Disabled ── */
+.pgn-btn--disabled,
+.pgn-btn[disabled] {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── Alama ya mkato "…" ── */
+.pgn-dots {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: 36px;
+  height: 40px;
+  padding: 0 4px 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  cursor: default;
+  user-select: none;
+}
+
+/* ── Prev / Next — upana zaidi ── */
+.pgn-prev,
+.pgn-next {
+  min-width: 90px;
+  padding: 0 16px;
+  gap: 7px;
+}
+
+.pgn-prev:not(.pgn-btn--disabled):hover svg {
+  transform: translateX(-3px);
+}
+
+.pgn-next:not(.pgn-btn--disabled):hover svg {
+  transform: translateX(3px);
+}
+
+.pgn-prev svg,
+.pgn-next svg {
+  transition: transform var(--transition);
+  flex-shrink: 0;
+}
+
+/* ── Uhuishaji wa kuingia ── */
+.pagination .pgn-btn,
+.pagination .pgn-dots {
+  animation: pgnFadeIn 0.3s ease both;
+}
+
+@keyframes pgnFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.pagination .pgn-btn--disabled {
+  animation: pgnFadeInFlat 0.3s ease both;
+}
+
+@keyframes pgnFadeInFlat {
+  from { opacity: 0; }
+  to   { opacity: 0.35; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .pagination {
+    gap: 4px;
+    padding: var(--space-xl) 0 var(--space-md);
+  }
+
+  .pgn-btn {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    font-size: 0.82rem;
+    border-radius: 8px;
+  }
+
+  /* Ficha maandishi ya Prev/Next — ikoni tu */
+  .pgn-prev span,
+  .pgn-next span {
+    display: none;
+  }
+
+  .pgn-prev,
+  .pgn-next {
+    min-width: 36px;
+    padding: 0 10px;
+  }
+
+  .pgn-dots {
+    min-width: 24px;
+    font-size: 0.85rem;
+  }
+}

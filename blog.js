@@ -595,60 +595,316 @@ function renderLatestInsights() {
 }
 
 // ================================================================
-// BLOG PAGE RENDERER — Tekeleza blog.html
+// BLOG PAGE RENDERER — Tekeleza blog.html (na Pagination)
 // ================================================================
 
 /**
- * Tekeleza ukurasa wa blogu (blog.html)
- * Inaonyesha makala zote na udhibiti wa kupanga
+ * Tekeleza ukurasa kamili wa blogu:
+ *   • Upangaji wa makala (newest / oldest)
+ *   • Ukurasa 6 kwa kurasa moja (POSTS_PER_PAGE)
+ *   • Ujenzi wa pagination UI kwa nguvu
+ *   • Uhuishaji laini wa gridi na pagination
  */
 function renderBlogPage() {
-  const grid = document.getElementById('blogGrid');
-  const sortSelect = document.getElementById('sortSelect');
-  const postCount = document.getElementById('postCount');
+
+  // ── Vipengele vya DOM ────────────────────────────────────────────
+  const grid        = document.getElementById('blogGrid');
+  const paginationEl= document.getElementById('pagination');
+  const sortSelect  = document.getElementById('sortSelect');
+  const postCount   = document.getElementById('postCount');
+
+  // Ikiwa gridi haipo, acha — ukurasa huu si blog.html
   if (!grid) return;
 
-  // Hali ya sasa ya mpangilio — "newest" kwa chaguo-msingi
-  let currentSort = 'newest';
+  // ── Mipangilio ya pagination ─────────────────────────────────────
+  const POSTS_PER_PAGE = 6;   // Idadi ya makala kwa kila ukurasa
+  let currentPage  = 1;       // Ukurasa wa sasa — huanza na 1
+  let currentSort  = 'newest';// Mpangilio wa chaguo-msingi
+  let sortedPosts  = [];      // Orodha iliyopangwa — inasasishwa kila wakati
 
+  // ── HESABU — Idadi ya kurasa zinazohitajika ──────────────────────
   /**
-   * Chora upya gridi ya makala
-   * Inaitwa wakati wowote mpangilio unabadilika
+   * Rudisha idadi ya kurasa zote kulingana na makala zilizopo
+   * @returns {number} Idadi ya kurasa
    */
-  function renderGrid() {
-    const sorted = sortPosts(BLOG_POSTS, currentSort);
+  function totalPages() {
+    return Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
+  }
 
-    // Onyesha idadi ya makala
+  // ── PATA MAKALA ZA UKURASA HUU ───────────────────────────────────
+  /**
+   * Chagua makala tu za ukurasa wa sasa
+   * Mfano: ukurasa 2, makala 7–12 (index 6–11)
+   * @param {number} page - Nambari ya ukurasa (inaanza na 1)
+   * @returns {Array} Makala za ukurasa huo
+   */
+  function getPagePosts(page) {
+    const start = (page - 1) * POSTS_PER_PAGE;  // Index ya kwanza
+    const end   = start + POSTS_PER_PAGE;        // Index ya mwisho (si ya kujumuisha)
+    return sortedPosts.slice(start, end);
+  }
+
+  // ── CHORA GRIDI ──────────────────────────────────────────────────
+  /**
+   * Chora makala za ukurasa wa sasa ndani ya gridi
+   * Inaonyesha uhuishaji wa kutoweka → kuonekana
+   * @param {boolean} animate - Fanya uhuishaji au la (chaguo-msingi: true)
+   */
+  function renderGrid(animate = true) {
+    const pagePosts = getPagePosts(currentPage);
+
+    // Sasisha kaunti ya makala kwenye toolbar
     if (postCount) {
-      postCount.textContent = `${sorted.length} article${sorted.length !== 1 ? 's' : ''}`;
+      const total = sortedPosts.length;
+      const start = (currentPage - 1) * POSTS_PER_PAGE + 1;
+      const end   = Math.min(currentPage * POSTS_PER_PAGE, total);
+      // Onyesha: "Showing 1–6 of 6 articles"
+      postCount.textContent = total > POSTS_PER_PAGE
+        ? `Showing ${start}–${end} of ${total} articles`
+        : `${total} article${total !== 1 ? 's' : ''}`;
     }
 
-    // Panga uhuishaji wa kutoweka kabla ya kubadilisha
-    grid.style.opacity = '0';
-    grid.style.transform = 'translateY(12px)';
-    grid.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+    if (animate) {
+      // Hatua 1: Ficha gridi ya sasa
+      grid.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
+      grid.style.opacity    = '0';
+      grid.style.transform  = 'translateY(14px)';
 
-    setTimeout(() => {
-      // Weka HTML mpya baada ya kutoweka
-      grid.innerHTML = sorted.map(post => buildBlogCard(post)).join('');
+      setTimeout(() => {
+        // Hatua 2: Jaza maudhui mapya
+        grid.innerHTML = pagePosts.map(post => buildBlogCard(post)).join('');
+        // Hatua 3: Onyesha tena
+        grid.style.opacity   = '1';
+        grid.style.transform = 'translateY(0)';
+      }, 220);
 
-      // Onyesha tena kwa uhuishaji
-      grid.style.opacity = '1';
+    } else {
+      // Chora mara moja bila uhuishaji (mara ya kwanza)
+      grid.innerHTML = pagePosts.map(post => buildBlogCard(post)).join('');
+      grid.style.opacity   = '1';
       grid.style.transform = 'translateY(0)';
-    }, 220);
+    }
   }
 
-  // Sikiliza mabadiliko ya dropdown ya mpangilio
-  if (sortSelect) {
-    sortSelect.addEventListener('change', (e) => {
-      currentSort = e.target.value;
-      renderGrid();
+  // ── JENGA PAGINATION ─────────────────────────────────────────────
+  /**
+   * Jenga na onyesha vitufe vya pagination chini ya gridi
+   * Inaunda vitufe: « Prev  1  2  3 ...  Next »
+   *
+   * Mantiki ya nambari za kurasa:
+   *   • Daima onyesha ukurasa wa kwanza na wa mwisho
+   *   • Onyesha ukurasa wa sasa + 1 kila upande
+   *   • Onyesha "…" pale penye pengo la kurasa
+   */
+  function renderPagination() {
+    if (!paginationEl) return;
+
+    const total   = totalPages();
+    const current = currentPage;
+
+    // Ikiwa kurasa moja tu — ficha pagination kabisa
+    if (total <= 1) {
+      paginationEl.innerHTML = '';
+      paginationEl.style.display = 'none';
+      return;
+    }
+
+    paginationEl.style.display = 'flex';
+
+    // ── Hesabu ni kurasa zipi zinaonekana kama nambari ──────────────
+    // Algorithm: onyesha window ya nambari 5 karibu na ukurasa wa sasa
+    const pageNumbers = buildPageNumbers(current, total);
+
+    // ── Jenga HTML ya vitufe vyote ──────────────────────────────────
+    let html = '';
+
+    // Kitufe cha PREVIOUS
+    html += `
+      <button
+        class="pgn-btn pgn-prev ${current === 1 ? 'pgn-btn--disabled' : ''}"
+        data-action="prev"
+        aria-label="Previous page"
+        ${current === 1 ? 'disabled aria-disabled="true"' : ''}
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Prev</span>
+      </button>`;
+
+    // Nambari za kurasa na dots
+    pageNumbers.forEach(item => {
+      if (item === '…') {
+        // Alama ya mkato — haitabonyezwa
+        html += `<span class="pgn-dots" aria-hidden="true">…</span>`;
+      } else {
+        const isActive = item === current;
+        html += `
+          <button
+            class="pgn-btn pgn-page ${isActive ? 'pgn-btn--active' : ''}"
+            data-action="page"
+            data-page="${item}"
+            aria-label="Go to page ${item}"
+            aria-current="${isActive ? 'page' : 'false'}"
+          >${item}</button>`;
+      }
     });
+
+    // Kitufe cha NEXT
+    html += `
+      <button
+        class="pgn-btn pgn-next ${current === total ? 'pgn-btn--disabled' : ''}"
+        data-action="next"
+        aria-label="Next page"
+        ${current === total ? 'disabled aria-disabled="true"' : ''}
+      >
+        <span>Next</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>`;
+
+    // Weka HTML iliyoundwa ndani ya container
+    paginationEl.innerHTML = html;
+
+    // ── Weka wasikilizaji wa click kwa vitufe vyote ─────────────────
+    paginationEl.querySelectorAll('.pgn-btn:not([disabled])').forEach(btn => {
+      btn.addEventListener('click', handlePaginationClick);
+    });
+
+    // ── Weka kuchelewa kwa uhuishaji kwa kila kitufe ─────────────────
+    // Kila kitufe kinaonekana baada ya kingine (stagger effect)
+    paginationEl.querySelectorAll('.pgn-btn, .pgn-dots').forEach((el, i) => {
+      el.style.animationDelay = `${i * 40}ms`;
+    });
+  } // ── Mwisho wa renderPagination ──
+
+  // ── SIMAMIA KUBONYEZA KITUFE ─────────────────────────────────────
+  /**
+   * Simamia kubonyeza kitufe chochote cha pagination
+   * Inabadilisha currentPage na kuchora upya gridi + pagination
+   * @param {MouseEvent} e - Tukio la kubonyeza
+   */
+  function handlePaginationClick(e) {
+    const btn    = e.currentTarget;
+    const action = btn.getAttribute('data-action');
+    const total  = totalPages();
+
+    let newPage = currentPage;
+
+    if (action === 'prev' && currentPage > 1) {
+      newPage = currentPage - 1;
+    } else if (action === 'next' && currentPage < total) {
+      newPage = currentPage + 1;
+    } else if (action === 'page') {
+      newPage = parseInt(btn.getAttribute('data-page'), 10);
+    }
+
+    // Ikiwa ukurasa haujabadilika, usifanye kitu
+    if (newPage === currentPage) return;
+
+    // Badilisha ukurasa wa sasa
+    currentPage = newPage;
+
+    // Sogeza juu hadi gridi (bila usogezaji mzito wa ukurasa wote)
+    scrollToGrid();
+
+    // Chora upya gridi na pagination
+    renderGrid(true);
+    renderPagination();
   }
 
-  // Chora mara ya kwanza ukipakia ukurasa
-  renderGrid();
+  // ── JENGA ORODHA YA NAMBARI ZA KURASA ───────────────────────────
+  /**
+   * Tengeneza orodha ya vitu vya kuonyeshwa katika pagination
+   * Inajumuisha nambari za kurasa na "…" ambapo kuna pengo
+   *
+   * Mifano:
+   *   total=5, current=3  →  [1, 2, 3, 4, 5]
+   *   total=10, current=1 →  [1, 2, 3, '…', 10]
+   *   total=10, current=5 →  [1, '…', 4, 5, 6, '…', 10]
+   *   total=10, current=9 →  [1, '…', 8, 9, 10]
+   *
+   * @param {number} current - Ukurasa wa sasa
+   * @param {number} total   - Jumla ya kurasa
+   * @returns {Array} Orodha ya nambari au '…'
+   */
+  function buildPageNumbers(current, total) {
+    // Ikiwa kurasa 7 au chini — onyesha zote bila mkato
+    if (total <= 7) {
+      return Array.from({ length: total }, (_, i) => i + 1);
+    }
+
+    const pages = [];
+
+    // Ukurasa wa kwanza daima unaonekana
+    pages.push(1);
+
+    // Hesabu kiwango cha mwanzo na mwisho karibu na sasa
+    const rangeStart = Math.max(2, current - 1);
+    const rangeEnd   = Math.min(total - 1, current + 1);
+
+    // Onyesha "…" kati ya 1 na mwanzo wa kiwango
+    if (rangeStart > 2) pages.push('…');
+
+    // Ongeza kurasa ndani ya kiwango
+    for (let p = rangeStart; p <= rangeEnd; p++) {
+      pages.push(p);
+    }
+
+    // Onyesha "…" kati ya mwisho wa kiwango na ukurasa wa mwisho
+    if (rangeEnd < total - 1) pages.push('…');
+
+    // Ukurasa wa mwisho daima unaonekana
+    pages.push(total);
+
+    return pages;
+  }
+
+  // ── SOGEZA JUU HADI GRIDI ────────────────────────────────────────
+  /**
+   * Sogeza ukurasa juu hadi sehemu ya gridi ya makala
+   * Inazingatia urefu wa navbar iliyonaswa
+   */
+  function scrollToGrid() {
+    const toolbar = document.querySelector('.blog-toolbar');
+    const target  = toolbar || grid;
+    const offset  = 80; // Nafasi ya ziada chini ya navbar
+
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  }
+
+  // ── UPANGAJI UPYA — Sort dropdown ────────────────────────────────
+  /**
+   * Sikiliza mabadiliko ya dropdown ya mpangilio
+   * Inapanga makala upya na kurudia ukurasa wa kwanza
+   */
+  function applySort(order) {
+    currentSort = order;
+    currentPage = 1; // Rudia mwanzo baada ya kubadilisha mpangilio
+    sortedPosts = sortPosts(BLOG_POSTS, currentSort);
+    renderGrid(true);
+    renderPagination();
+  }
+
+  if (sortSelect) {
+    sortSelect.addEventListener('change', (e) => applySort(e.target.value));
+  }
+
+  // ── ANZISHA — Pakia ukurasa wa kwanza ────────────────────────────
+  // Panga makala kwa mara ya kwanza (newest kwanza)
+  sortedPosts = sortPosts(BLOG_POSTS, currentSort);
+
+  // Chora gridi bila uhuishaji (mara ya kwanza ya kupakia)
+  renderGrid(false);
+
+  // Chora pagination
+  renderPagination();
 }
+
 
 // ================================================================
 // POST PAGE RENDERER — Tekeleza post.html
