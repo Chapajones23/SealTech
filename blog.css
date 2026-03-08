@@ -1,0 +1,1213 @@
+/* ================================================================
+   SEALTECH — BLOG.CSS
+   Maelezo  : Muundo maalum wa mfumo wa blogu.
+              Inategemea vigeuzi vilivyoainishwa katika styles.css.
+   Lugha    : Maoni yote kwa Kiswahili
+================================================================ */
+
+/* ----------------------------------------------------------------
+   KIUNGO CHA NAVBAR CHA BLOG — "active" state
+---------------------------------------------------------------- */
+/* Onyesha kiungo cha "Blog" kama kilichochaguliwa kwenye menyu */
+.nav-link-active {
+  color: var(--primary) !important;
+  font-weight: 600;
+}
+
+.nav-link-active::after {
+  transform: translateX(-50%) scaleX(1) !important;
+}
+
+/* ----------------------------------------------------------------
+   BLOG CARD — Kadi kuu ya makala
+   Inatumika kwenye kurasa zote (landing, blog, post)
+---------------------------------------------------------------- */
+.blog-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: var(--transition-slow);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Kadi inainuka juu na kivuli kikubwa wakati wa hover */
+.blog-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(37, 99, 235, 0.2);
+}
+
+/* ----------------------------------------------------------------
+   PICHA YA KADI — Mandharinyuma ya gradient na ikoni
+---------------------------------------------------------------- */
+.blog-card-image {
+  position: relative;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Athari ya kuongezeka kwa ukubwa wa picha wakati wa hover */
+.blog-card:hover .blog-card-image-icon {
+  transform: scale(1.1) translateY(-4px);
+}
+
+.blog-card-image-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.blog-card-image-link .blog-card-image {
+  transition: var(--transition-slow);
+}
+
+.blog-card-image-icon {
+  transition: var(--transition-slow);
+  opacity: 0.9;
+}
+
+/* Lebo ya jamii (category tag) juu ya picha */
+.blog-card-category-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 4px 12px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ----------------------------------------------------------------
+   MWILI WA KADI — Maudhui chini ya picha
+---------------------------------------------------------------- */
+.blog-card-body {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+}
+
+/* Meta: mwandishi, tarehe, muda wa kusoma */
+.blog-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Avatar ya mwandishi — duara lenye herufi za kwanza */
+.author-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.blog-card-meta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1;
+  min-width: 0;
+}
+
+.blog-card-author {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Tarehe na ikoni yake ndogo */
+.blog-card-date {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* Muda wa kusoma upande wa kulia */
+.blog-card-read-time {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding: 3px 8px;
+  background: var(--bg);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+}
+
+/* Kichwa cha makala — kinabadilika rangi wakati wa hover */
+.blog-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.blog-card-title a {
+  color: inherit;
+  transition: var(--transition);
+}
+
+.blog-card-title a:hover {
+  color: var(--primary);
+}
+
+/* Muhtasari mfupi wa makala */
+.blog-card-excerpt {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  line-height: 1.65;
+  flex: 1;
+  /* Punguza maandishi kwa mistari 3 */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Sehemu ya chini ya kadi: tags na kiungo cha kusoma zaidi */
+.blog-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+/* Tags ndogo za mada */
+.blog-card-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.blog-tag {
+  padding: 3px 9px;
+  background: rgba(37, 99, 235, 0.06);
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+/* Kiungo cha "Read more" chenye mshale unaosogea */
+.blog-card-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--primary);
+  white-space: nowrap;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.blog-card-read-more svg {
+  transition: var(--transition);
+}
+
+.blog-card-read-more:hover svg {
+  transform: translateX(4px);
+}
+
+/* ----------------------------------------------------------------
+   GRIDI YA MAKALA — Blog grid layouts
+---------------------------------------------------------------- */
+
+/* Gridi ya kawaida: safu 3 kwenye skrini kubwa */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+/* Gridi ya landing page: kadi sawa 3 */
+.blog-grid--landing {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Gridi ya makala zinazohusiana: safu 3 ndogo */
+.blog-grid--related {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* ----------------------------------------------------------------
+   LATEST INSIGHTS — Sehemu ya blogu kwenye landing page
+---------------------------------------------------------------- */
+.latest-insights {
+  padding: var(--space-3xl) 0;
+  background: linear-gradient(180deg, var(--bg) 0%, #EFF6FF 50%, var(--bg) 100%);
+}
+
+/* Kitufe cha "View All" kati ya ukurasa */
+.blog-view-all {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-2xl);
+}
+
+/* ----------------------------------------------------------------
+   BLOG HERO — Kichwa cha ukurasa wa blogu (blog.html)
+---------------------------------------------------------------- */
+.blog-hero {
+  padding-top: 120px;
+  padding-bottom: var(--space-2xl);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #EFF6FF 0%, var(--bg) 100%);
+}
+
+.blog-hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Maudhui ya hero ya blogu */
+.blog-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+}
+
+.blog-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(37, 99, 235, 0.06);
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: var(--space-md);
+}
+
+.blog-hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text-dark);
+  margin-bottom: var(--space-md);
+}
+
+.blog-hero-desc {
+  font-size: 1.05rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+  max-width: 560px;
+}
+
+/* Takwimu ndogo za blogu */
+.blog-hero-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.blog-stat-num {
+  display: block;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.02em;
+}
+
+.blog-stat-label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* Njia ya urambazaji (breadcrumb) */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: var(--space-md);
+  font-size: 0.82rem;
+}
+
+.breadcrumb a {
+  color: var(--text-light);
+  transition: var(--transition);
+}
+
+.breadcrumb a:hover { color: var(--primary); }
+
+.breadcrumb span {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+/* ----------------------------------------------------------------
+   BLOG TOOLBAR — Zana ya kupanga makala
+---------------------------------------------------------------- */
+.blog-toolbar {
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+  position: sticky;
+  top: 68px;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.blog-toolbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+/* Idadi ya makala upande wa kushoto */
+.blog-post-count {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-mid);
+}
+
+/* Udhibiti wa kupanga upande wa kulia */
+.blog-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sort-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+/* Wrapper ya select ili kuongeza ikoni ya mshale */
+.sort-select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.sort-select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 7px 36px 7px 14px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: var(--transition);
+  outline: none;
+}
+
+.sort-select:hover,
+.sort-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Mshale wa dropdown */
+.sort-chevron {
+  position: absolute;
+  right: 12px;
+  pointer-events: none;
+  color: var(--text-muted);
+}
+
+/* ----------------------------------------------------------------
+   BLOG MAIN — Eneo kuu la makala (blog.html)
+---------------------------------------------------------------- */
+.blog-main {
+  padding: var(--space-2xl) 0 var(--space-3xl);
+}
+
+/* Hali ya kupakia — kionyesho cha mzunguko */
+.blog-loading {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3xl) 0;
+  color: var(--text-muted);
+  gap: var(--space-md);
+}
+
+/* Mzunguko wa kupakia */
+.blog-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: var(--radius-full);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ----------------------------------------------------------------
+   NEWSLETTER SECTION — Sehemu ya kujisajili (blog.html)
+---------------------------------------------------------------- */
+.blog-newsletter {
+  padding: var(--space-2xl) 0;
+  background: #EFF6FF;
+  border-top: 1px solid var(--border);
+}
+
+/* Kadi ya newsletter yenye mwonekano mzuri */
+.newsletter-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl) var(--space-2xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  box-shadow: var(--shadow);
+}
+
+/* Ikoni ya barua pepe */
+.newsletter-icon {
+  width: 64px;
+  height: 64px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.newsletter-text {
+  flex: 1;
+}
+
+.newsletter-text h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.newsletter-text p {
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+/* Fomu ya newsletter */
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Input ya barua pepe — inatumika katika newsletter zote */
+.newsletter-input {
+  padding: 10px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--text-dark);
+  background: var(--bg);
+  outline: none;
+  transition: var(--transition);
+  min-width: 220px;
+}
+
+.newsletter-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.newsletter-input--sm {
+  min-width: unset;
+  width: 100%;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+}
+
+.newsletter-btn {
+  white-space: nowrap;
+}
+
+/* ----------------------------------------------------------------
+   POST PAGE — Ukurasa wa makala moja (post.html)
+---------------------------------------------------------------- */
+
+/* Muundo wa ukurasa: maudhui + sidebar */
+.post-page {
+  padding-top: 100px;
+  padding-bottom: var(--space-3xl);
+  background: var(--bg);
+}
+
+.post-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+/* ----------------------------------------------------------------
+   MAUDHUI YA MAKALA — Post content area
+---------------------------------------------------------------- */
+.post-content-wrapper {
+  min-width: 0; /* Kuzuia overflow kwenye grid */
+}
+
+/* Kichwa cha makala */
+.post-header {
+  margin-bottom: var(--space-xl);
+}
+
+/* Njia ya kurudi */
+.post-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: var(--space-md);
+  font-size: 0.82rem;
+  flex-wrap: wrap;
+}
+
+.post-breadcrumb a {
+  color: var(--text-light);
+  transition: var(--transition);
+}
+
+.post-breadcrumb a:hover { color: var(--primary); }
+
+.post-breadcrumb span {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+/* Beji ya jamii ya makala */
+.post-category-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-md);
+}
+
+/* Kichwa kikuu cha makala */
+.post-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text-dark);
+  margin-bottom: var(--space-md);
+}
+
+/* Muhtasari wa makala */
+.post-excerpt {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+  border-left: 3px solid var(--primary);
+  padding-left: var(--space-md);
+}
+
+/* Mstari wa taarifa: mwandishi + tarehe + muda wa kusoma */
+.post-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.post-author-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.post-author-info .author-avatar {
+  width: 44px;
+  height: 44px;
+  font-size: 0.85rem;
+}
+
+.post-author-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.post-author-role {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.post-meta-details {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.post-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--text-light);
+}
+
+/* Picha kuu kubwa ya makala */
+.post-featured-image {
+  height: 380px;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-xl);
+  overflow: hidden;
+  position: relative;
+}
+
+.post-featured-image-icon {
+  opacity: 0.7;
+}
+
+/* ----------------------------------------------------------------
+   MAUDHUI YA MAKALA — Post body typography
+   Hii inafanya makala ionekane kama gazeti la hali ya juu
+---------------------------------------------------------------- */
+.post-body {
+  max-width: 720px;
+}
+
+.post-content-inner {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-mid);
+}
+
+/* Aya za kawaida */
+.post-content-inner p {
+  margin-bottom: 1.5em;
+}
+
+/* Vichwa ndani ya makala */
+.post-content-inner h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-top: 2.5em;
+  margin-bottom: 0.75em;
+  letter-spacing: -0.02em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-content-inner h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+/* Msimbo ndani ya makala */
+.post-content-inner pre {
+  background: #0D1117;
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  overflow-x: auto;
+  margin: 1.5em 0;
+  border: 1px solid #30363D;
+}
+
+.post-content-inner code {
+  font-family: 'DM Mono', 'Fira Code', monospace;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: #C9D1D9;
+}
+
+/* Msimbo wa inline (ndani ya sentensi) */
+.post-content-inner p code {
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.88em;
+  color: var(--primary);
+}
+
+/* Orodha ya nukta */
+.post-content-inner ul,
+.post-content-inner ol {
+  margin: 1em 0 1.5em 1.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.post-content-inner li {
+  line-height: 1.7;
+}
+
+/* Nukuu maalum */
+.post-content-inner blockquote {
+  margin: 2em 0;
+  padding: var(--space-md) var(--space-lg);
+  background: rgba(37, 99, 235, 0.04);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-style: italic;
+  color: var(--text-mid);
+}
+
+/* ----------------------------------------------------------------
+   TAGS NA KUSHIRIKI — Chini ya maudhui ya makala
+---------------------------------------------------------------- */
+.post-tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border);
+}
+
+.post-tags-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Sehemu ya kushiriki makala */
+.post-share {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.post-share > span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  white-space: nowrap;
+}
+
+.post-share-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Vitufe vya kushiriki */
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.share-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(37, 99, 235, 0.04);
+}
+
+/* ----------------------------------------------------------------
+   SKELETON LOADER — Picha ya kupakia kabla ya makala kuonekana
+---------------------------------------------------------------- */
+/* Uhuishaji wa kung'aa wa skeleton */
+@keyframes shimmer {
+  0% { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
+}
+
+.post-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 20px;
+}
+
+/* Msingi wa skeleton shape */
+.skeleton-breadcrumb,
+.skeleton-badge,
+.skeleton-title,
+.skeleton-meta,
+.skeleton-image,
+.skeleton-text {
+  border-radius: var(--radius);
+  background: linear-gradient(
+    90deg,
+    var(--border) 25%,
+    rgba(226,232,240,0.5) 50%,
+    var(--border) 75%
+  );
+  background-size: 600px 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.skeleton-breadcrumb { height: 14px; width: 200px; border-radius: var(--radius-full); }
+.skeleton-badge { height: 28px; width: 140px; border-radius: var(--radius-full); }
+.skeleton-title { height: 48px; width: 100%; }
+.skeleton-title--short { width: 65%; }
+.skeleton-meta { height: 64px; width: 100%; border-radius: var(--radius-lg); }
+.skeleton-image { height: 340px; width: 100%; border-radius: var(--radius-xl); }
+.skeleton-text { height: 16px; width: 100%; border-radius: var(--radius-full); }
+.skeleton-text--short { width: 80%; }
+
+/* ----------------------------------------------------------------
+   SIDEBAR YA MAKALA — Pembeni wa post.html
+---------------------------------------------------------------- */
+.post-sidebar {
+  position: sticky;
+  top: 100px; /* Chini ya navbar */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Widget ya sidebar */
+.sidebar-widget {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+}
+
+.sidebar-widget-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+/* Jedwali la maudhui */
+.toc-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.toc-link {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-light);
+  padding: 5px 8px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  line-height: 1.4;
+  border-left: 2px solid transparent;
+}
+
+.toc-link:hover {
+  color: var(--primary);
+  background: rgba(37, 99, 235, 0.05);
+}
+
+/* Kiungo kinachoonekana skrini sasa hivi */
+.toc-link--active {
+  color: var(--primary);
+  font-weight: 600;
+  border-left-color: var(--primary);
+  background: rgba(37, 99, 235, 0.06);
+}
+
+/* Kiungo cha kurudi kwenye blogu */
+.sidebar-back-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  transition: var(--transition);
+}
+
+.sidebar-back-link:hover {
+  color: var(--primary);
+}
+
+.sidebar-back-link:hover svg {
+  transform: translateX(-3px);
+}
+
+.sidebar-back-link svg {
+  transition: var(--transition);
+}
+
+/* Newsletter ndogo ya sidebar */
+.sidebar-newsletter {
+  background: linear-gradient(135deg, #EFF6FF, #E0F2FE);
+  border-color: rgba(37, 99, 235, 0.15);
+}
+
+.sidebar-newsletter-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.sidebar-newsletter h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.sidebar-newsletter p {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+
+/* ----------------------------------------------------------------
+   RELATED POSTS — Sehemu ya makala zinazohusiana
+---------------------------------------------------------------- */
+.related-section {
+  padding: var(--space-3xl) 0;
+  background: linear-gradient(180deg, var(--bg) 0%, #EFF6FF 100%);
+  border-top: 1px solid var(--border);
+}
+
+/* ----------------------------------------------------------------
+   MSTARI WA MAENDELEO YA KUSOMA — Reading progress bar
+---------------------------------------------------------------- */
+.reading-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  z-index: 9999;
+  transition: width 0.1s linear;
+  border-radius: 0 var(--radius-full) var(--radius-full) 0;
+  width: 0%;
+  /* Kivuli kidogo cha mstari */
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.4);
+}
+
+/* ----------------------------------------------------------------
+   TOAST NOTIFICATION — Arifa ndogo ya mwisho wa skrini
+---------------------------------------------------------------- */
+.toast-notification {
+  position: fixed;
+  bottom: var(--space-lg);
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--text-dark);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 500;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Hali ya kuonekana */
+.toast-notification.toast-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ----------------------------------------------------------------
+   KOSA — Hali ya makala isiyopatikana
+---------------------------------------------------------------- */
+.post-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-3xl) 0;
+  gap: var(--space-md);
+}
+
+.post-error h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.post-error p {
+  color: var(--text-light);
+  margin-bottom: var(--space-md);
+}
+
+/* ----------------------------------------------------------------
+   JIBU — Responsive design
+---------------------------------------------------------------- */
+
+/* Kompyuta za kati */
+@media (max-width: 1100px) {
+  .post-page-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Ficha sidebar kwenye skrini ndogo */
+  .post-sidebar {
+    display: none;
+  }
+}
+
+/* Kompyuta ndogo / tablet */
+@media (max-width: 900px) {
+  .blog-grid,
+  .blog-grid--landing,
+  .blog-grid--related {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .newsletter-card {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--space-xl);
+  }
+
+  .newsletter-form {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .newsletter-input {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .blog-toolbar {
+    top: 60px;
+  }
+}
+
+/* Simu ndogo */
+@media (max-width: 640px) {
+  .blog-grid,
+  .blog-grid--landing,
+  .blog-grid--related {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-hero-stats {
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  .blog-toolbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .post-meta-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .post-share {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .post-featured-image {
+    height: 220px;
+  }
+}

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta tags za msingi — JavaScript itabadilisha kichwa baadaye -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SealTech Insights — Engineering article" />
+  <title>Loading… — SealTech Insights</title>
+
+  <!-- Fonts sawa na mfumo mzima -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <!-- CSS kuu na ya blogu -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<!-- data-page="post" — blog.js inasoma hii na kutekeleza renderPostPage() -->
+<body data-page="post">
+
+  <!-- ============================================================
+       NAVBAR — Urambazaji wa juu
+  ============================================================ -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="url(#pLogoGrad)"/>
+            <path d="M8 16C8 11.582 11.582 8 16 8s8 3.582 8 8-3.582 8-8 8" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="16" cy="16" r="3" fill="#fff"/>
+            <defs>
+              <linearGradient id="pLogoGrad" x1="0" y1="0" x2="32" y2="32">
+                <stop offset="0%" stop-color="#2563EB"/>
+                <stop offset="100%" stop-color="#06B6D4"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <span class="logo-text">SealTech</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#portfolio">Portfolio</a></li>
+        <li><a href="index.html#developers">Developers</a></li>
+        <li><a href="blog.html" class="nav-link-active">Blog</a></li>
+        <li><a href="index.html#team">Company</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="index.html#contact" class="btn-ghost">Contact</a>
+        <a href="index.html#contact" class="btn-primary nav-cta">Start Project</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       MAKALA KUU — JavaScript inajaza hapa yote
+       blog.js → renderPostPage() inasoma slug kutoka URL
+       na kujenga HTML nzima ya makala
+  ============================================================ -->
+  <main class="post-page">
+    <div class="post-page-container">
+
+      <!-- Eneo la maudhui ya makala — JavaScript inajaza hapa -->
+      <div id="postContent" class="post-content-wrapper">
+        <!-- Kionyesho cha kupakia kabla ya makala kuonekana -->
+        <div class="post-skeleton">
+          <div class="skeleton-breadcrumb"></div>
+          <div class="skeleton-badge"></div>
+          <div class="skeleton-title"></div>
+          <div class="skeleton-title skeleton-title--short"></div>
+          <div class="skeleton-meta"></div>
+          <div class="skeleton-image"></div>
+          <div class="skeleton-text"></div>
+          <div class="skeleton-text"></div>
+          <div class="skeleton-text skeleton-text--short"></div>
+        </div>
+      </div>
+
+      <!-- Upau wa habari pembeni (sidebar) — inaonekana kwenye skrini kubwa -->
+      <aside class="post-sidebar" id="postSidebar">
+        <!-- Jedwali la maudhui — linaendelezwa na JavaScript -->
+        <div class="sidebar-widget" id="tocWidget">
+          <h4 class="sidebar-widget-title">In this article</h4>
+          <nav id="tableOfContents" class="toc-nav">
+            <!-- JavaScript itajaza hapa -->
+          </nav>
+        </div>
+
+        <!-- Kiungo cha kurudi kwenye blogu -->
+        <div class="sidebar-widget">
+          <a href="blog.html" class="sidebar-back-link">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back to Blog
+          </a>
+        </div>
+
+        <!-- Newsletter ndogo pembeni -->
+        <div class="sidebar-widget sidebar-newsletter">
+          <div class="sidebar-newsletter-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 8l10 6 10-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h4>Enjoy this article?</h4>
+          <p>Get more like it in your inbox.</p>
+          <input type="email" placeholder="your@email.com" class="newsletter-input newsletter-input--sm" />
+          <button class="btn-primary" style="width:100%;justify-content:center;margin-top:8px;font-size:0.85rem">Subscribe</button>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- ============================================================
+       RELATED POSTS — Makala zinazohusiana
+       JavaScript (renderRelatedPosts) inajaza hapa
+  ============================================================ -->
+  <section class="related-section" id="relatedSection">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Keep Reading</p>
+        <h2 class="section-title">Related <span class="gradient-text">Articles</span></h2>
+      </div>
+
+      <!-- Gridi ya makala zinazohusiana — JavaScript inajaza -->
+      <div class="blog-grid blog-grid--related" id="relatedPostsGrid">
+        <!-- JavaScript itajaza hapa -->
+      </div>
+
+      <!-- Kitufe cha kuona makala zote -->
+      <div class="blog-view-all" style="margin-top:3rem">
+        <a href="blog.html" class="btn-outline btn-lg">
+          View All Articles
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <span class="logo-icon">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                <rect width="32" height="32" rx="8" fill="url(#pfLogoGrad)"/>
+                <path d="M8 16C8 11.582 11.582 8 16 8s8 3.582 8 8-3.582 8-8 8" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="16" cy="16" r="3" fill="#fff"/>
+                <defs>
+                  <linearGradient id="pfLogoGrad" x1="0" y1="0" x2="32" y2="32">
+                    <stop offset="0%" stop-color="#2563EB"/>
+                    <stop offset="100%" stop-color="#06B6D4"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </span>
+            <span class="logo-text">SealTech</span>
+          </a>
+          <p class="footer-tagline">Engineering excellence<br/>for Africa's digital future.</p>
+        </div>
+        <div class="footer-col"><h4>Services</h4><ul><li><a href="index.html#services">Web Development</a></li><li><a href="index.html#services">Custom Software</a></li><li><a href="index.html#services">Mobile Apps</a></li></ul></div>
+        <div class="footer-col"><h4>Blog</h4><ul><li><a href="blog.html">All Articles</a></li><li><a href="#">Engineering</a></li><li><a href="#">DevOps</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul><li><a href="#">About Us</a></li><li><a href="#">Careers</a></li><li><a href="index.html#contact">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© SealTech 2026. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script src="blog.js"></script>
+
+  <!-- Script ya ndani ya ukurasa: Jedwali la maudhui (Table of Contents) -->
+  <script>
+    /**
+     * Jenga jedwali la maudhui mara baada ya makala kupakia
+     * Inasoma vichwa (h2) kutoka maudhui ya makala
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+      // Subiri blog.js iandike maudhui kwanza (timeout ndogo)
+      setTimeout(() => {
+        const tocNav = document.getElementById('tableOfContents');
+        const postBody = document.querySelector('.post-content-inner');
+
+        if (!tocNav || !postBody) return;
+
+        // Pata vichwa vyote vya aina h2
+        const headings = postBody.querySelectorAll('h2');
+
+        if (headings.length === 0) {
+          // Ikiwa hakuna vichwa, ficha sidebar widget ya TOC
+          const tocWidget = document.getElementById('tocWidget');
+          if (tocWidget) tocWidget.style.display = 'none';
+          return;
+        }
+
+        // Tengeneza orodha ya viungo kwa kila kichwa
+        headings.forEach((heading, index) => {
+          // Weka ID kwenye kichwa ili tuweze kuruka kwake
+          heading.id = `heading-${index}`;
+
+          const link = document.createElement('a');
+          link.href = `#heading-${index}`;
+          link.textContent = heading.textContent;
+          link.className = 'toc-link';
+
+          // Bonyeza kiungo → sogea kwenye kichwa husika
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+
+          tocNav.appendChild(link);
+        });
+
+        // Angazia kiungo cha TOC kinachoonekana skrini wakati wa kusogeza
+        const tocObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.id;
+              tocNav.querySelectorAll('.toc-link').forEach(link => {
+                link.classList.toggle('toc-link--active', link.getAttribute('href') === `#${id}`);
+              });
+            }
+          });
+        }, { threshold: 0.6, rootMargin: '-80px 0px -60% 0px' });
+
+        headings.forEach(h => tocObserver.observe(h));
+
+      }, 300); // Subiri ms 300 ili renderPostPage ikamilike
+    });
+  </script>
+</body>
+</html>
