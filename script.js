@@ -493,7 +493,7 @@ function createFloatingShapes() {
 createFloatingShapes();
 
 // ================================================================
-// CONSOLE MESSAGE — Ujumbe kwa wasanidi wanaokagua console
+// CONSOLE MESSAGE — Ujumbe kwa wasanidi wanaokagua console.
 // ================================================================
 console.log('%c 🦭 SealTech ', 'background: linear-gradient(135deg, #2563EB, #06B6D4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: bold;');
 console.log('%c Built with passion by the SealTech engineering team ', 'color: #2563EB; font-size: 12px;');
