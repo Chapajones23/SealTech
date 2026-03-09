@@ -1051,6 +1051,3 @@ function initCharCounter() {
     }
   });
 }
-
-
-
