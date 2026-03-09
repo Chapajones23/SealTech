@@ -8,12 +8,14 @@
   <script>
     (() => {
       try {
-        const key = 'sealtech-theme';
+        const key = 'sealtech-theme-mode';
         const saved = localStorage.getItem(key);
-        const theme = (saved === 'light' || saved === 'dark')
-          ? saved
-          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        const mode = (saved === 'light' || saved === 'dark' || saved === 'system') ? saved : 'system';
+        const theme = mode === 'system'
+          ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+          : mode;
         document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.setAttribute('data-theme-mode', mode);
       } catch (_error) {}
     })();
   </script>
@@ -69,8 +71,14 @@
         <a href="index.html#contact" class="btn-primary nav-cta">Start Project</a>
       </div>
 
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme" aria-pressed="false">
-        <span class="theme-toggle-thumb" aria-hidden="true"></span>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Theme mode: System. Click to switch mode." data-mode="system">
+        <span class="theme-toggle-icon" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none">
+            <rect x="3" y="4" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M7 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="theme-toggle-label">System</span>
       </button>
 
       <!-- Hamburger kwa simu ndogo -->

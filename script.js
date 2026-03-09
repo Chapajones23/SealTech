@@ -20,46 +20,89 @@ document.addEventListener('DOMContentLoaded', () => {
 // ================================================================
 // THEME TOGGLE — Badilisha Light/Dark mode na kuhifadhi chaguo
 // ================================================================
-const THEME_STORAGE_KEY = 'sealtech-theme';
+const THEME_STORAGE_KEY = 'sealtech-theme-mode';
+const THEME_MODES = ['system', 'light', 'dark'];
 
-function getPreferredTheme() {
+function getPreferredThemeMode() {
   try {
-    const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-    if (storedTheme === 'light' || storedTheme === 'dark') {
-      return storedTheme;
-    }
+    const storedMode = localStorage.getItem(THEME_STORAGE_KEY);
+    if (THEME_MODES.includes(storedMode)) return storedMode;
   } catch (_error) {
-    // Endelea kutumia mfumo wa kifaa ikiwa localStorage imezuiwa
+    // Endelea na "system" ikiwa localStorage imezuiwa
   }
+  return 'system';
+}
+
+function resolveTheme(mode) {
+  if (mode === 'light' || mode === 'dark') return mode;
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
-function applyTheme(theme) {
-  const resolvedTheme = theme === 'dark' ? 'dark' : 'light';
-  document.documentElement.setAttribute('data-theme', resolvedTheme);
-
-  const toggle = document.getElementById('themeToggle');
-  if (toggle) {
-    const isDark = resolvedTheme === 'dark';
-    toggle.setAttribute('aria-pressed', String(isDark));
-    toggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
-  }
+function getNextThemeMode(currentMode) {
+  const currentIndex = THEME_MODES.indexOf(currentMode);
+  const safeIndex = currentIndex >= 0 ? currentIndex : 0;
+  return THEME_MODES[(safeIndex + 1) % THEME_MODES.length];
 }
 
-function initThemeToggle() {
-  applyTheme(getPreferredTheme());
+function applyThemeMode(mode) {
+  const safeMode = THEME_MODES.includes(mode) ? mode : 'system';
+  const resolvedTheme = resolveTheme(safeMode);
+
+  document.documentElement.setAttribute('data-theme', resolvedTheme);
+  document.documentElement.setAttribute('data-theme-mode', safeMode);
 
   const toggle = document.getElementById('themeToggle');
   if (!toggle) return;
 
+  const modeLabels = {
+    system: 'System',
+    light: 'Light',
+    dark: 'Dark'
+  };
+  const modeIcons = {
+    system: '<svg viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M7 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+    light: '<svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3.5" stroke="currentColor" stroke-width="1.6"/><path d="M10 2.5v2.1M10 15.4v2.1M17.5 10h-2.1M4.6 10H2.5M15.3 4.7l-1.5 1.5M6.2 13.8l-1.5 1.5M15.3 15.3l-1.5-1.5M6.2 6.2L4.7 4.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+    dark: '<svg viewBox="0 0 20 20" fill="none"><path d="M12.8 2.8a7.2 7.2 0 1 0 4.4 10.6A6.1 6.1 0 0 1 12.8 2.8z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+  };
+  const label = toggle.querySelector('.theme-toggle-label');
+  if (label) label.textContent = modeLabels[safeMode];
+  const icon = toggle.querySelector('.theme-toggle-icon');
+  if (icon) icon.innerHTML = modeIcons[safeMode];
+
+  toggle.setAttribute('data-mode', safeMode);
+  toggle.setAttribute('aria-label', `Theme mode: ${modeLabels[safeMode]}. Click to switch mode.`);
+}
+
+function initThemeToggle() {
+  applyThemeMode(getPreferredThemeMode());
+
+  const toggle = document.getElementById('themeToggle');
+  if (!toggle) return;
+
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  const syncWithSystem = () => {
+    if (document.documentElement.getAttribute('data-theme-mode') === 'system') {
+      applyThemeMode('system');
+    }
+  };
+  if (typeof mediaQuery.addEventListener === 'function') {
+    mediaQuery.addEventListener('change', syncWithSystem);
+  } else if (typeof mediaQuery.addListener === 'function') {
+    mediaQuery.addListener(syncWithSystem);
+  }
+
   toggle.addEventListener('click', () => {
-    const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-    const next = current === 'dark' ? 'light' : 'dark';
-    applyTheme(next);
+    const currentMode = document.documentElement.getAttribute('data-theme-mode') || 'system';
+    const nextMode = getNextThemeMode(currentMode);
+    applyThemeMode(nextMode);
     try {
-      localStorage.setItem(THEME_STORAGE_KEY, next);
+      if (nextMode === 'system') {
+        localStorage.removeItem(THEME_STORAGE_KEY);
+      } else {
+        localStorage.setItem(THEME_STORAGE_KEY, nextMode);
+      }
     } catch (_error) {
-      // Ukishindwa kuhifadhi, bado theme ibadilike kwenye session hii
+      // Ukishindwa kuhifadhi, bado mode ibadilike kwenye session hii
     }
   });
 }
