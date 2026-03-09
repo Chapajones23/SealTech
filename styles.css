@@ -42,6 +42,12 @@
   /* Gradients ndogo */
   --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
   --gradient-hero: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(37,99,235,0.15) 0%, transparent 70%);
+  --surface-soft: #EFF6FF;
+  --surface-soft-alt: #E0F2FE;
+  --surface-accent: rgba(37,99,235,0.06);
+  --focus-ring: 0 0 0 3px rgba(37,99,235,0.1);
+  --nav-scrolled-bg: rgba(248, 250, 252, 0.85);
+  --nav-scrolled-border: rgba(226, 232, 240, 0.8);
 
   /* Nafasi */
   --space-xs: 0.5rem;
@@ -62,6 +68,31 @@
   /* Muda wa uhuishaji */
   --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root[data-theme="dark"] {
+  --text-dark: #E2E8F0;
+  --text-mid: #CBD5E1;
+  --text-light: #94A3B8;
+  --text-muted: #64748B;
+
+  --bg: #020617;
+  --bg-card: #0B1220;
+  --border: #1E293B;
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow: 0 8px 24px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3);
+  --shadow-lg: 0 24px 60px rgba(0,0,0,0.55), 0 10px 28px rgba(0,0,0,0.35);
+  --shadow-xl: 0 40px 100px rgba(0,0,0,0.6);
+  --shadow-blue: 0 8px 32px rgba(37,99,235,0.35);
+
+  --gradient-hero: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(37,99,235,0.22) 0%, transparent 72%);
+  --surface-soft: #0F172A;
+  --surface-soft-alt: #0B2236;
+  --surface-accent: rgba(37,99,235,0.14);
+  --focus-ring: 0 0 0 3px rgba(59,130,246,0.25);
+  --nav-scrolled-bg: rgba(2, 6, 23, 0.82);
+  --nav-scrolled-border: rgba(51, 65, 85, 0.75);
 }
 
 /* ----------------------------------------------------------------
@@ -213,7 +244,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .btn-outline:hover {
   border-color: var(--primary);
   color: var(--primary);
-  background: rgba(37,99,235,0.04);
+  background: var(--surface-accent);
   transform: translateY(-2px);
 }
 
@@ -233,7 +264,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transition: var(--transition);
 }
 
-.btn-ghost:hover { color: var(--primary); background: rgba(37,99,235,0.05); }
+.btn-ghost:hover { color: var(--primary); background: var(--surface-accent); }
 
 .btn-white {
   display: inline-flex;
@@ -290,10 +321,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* Hali ya glasi baada ya kusogeza */
 .navbar.scrolled {
-  background: rgba(248, 250, 252, 0.85);
+  background: var(--nav-scrolled-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  border-bottom: 1px solid var(--nav-scrolled-border);
   padding: 0.7rem 0;
   box-shadow: 0 4px 24px rgba(0,0,0,0.05);
 }
@@ -364,6 +395,42 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .nav-cta { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
+
+.theme-toggle {
+  width: 48px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-toggle:hover {
+  border-color: var(--primary);
+}
+
+.theme-toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.theme-toggle-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  transform: translateX(0);
+  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 2px 8px rgba(37,99,235,0.35);
+}
+
+:root[data-theme="dark"] .theme-toggle-thumb {
+  transform: translateX(20px);
+}
 
 /* Kitufe cha hamburger kwa simu ndogo */
 .hamburger {
@@ -1632,6 +1699,15 @@ pre#codeTyper {
 
   .nav-links, .nav-actions { display: none; }
   .hamburger { display: flex; }
+
+  .theme-toggle {
+    margin-left: auto;
+    margin-right: 8px;
+  }
+
+  .hamburger {
+    margin-left: 0;
+  }
 
   /* Menyu ya simu inayofunguka */
   .nav-links.mobile-open {

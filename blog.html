@@ -5,6 +5,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="SealTech Insights — Engineering guides, technical deep-dives, and product thinking from the SealTech team." />
+  <script>
+    (() => {
+      try {
+        const key = 'sealtech-theme';
+        const saved = localStorage.getItem(key);
+        const theme = (saved === 'light' || saved === 'dark')
+          ? saved
+          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (_error) {}
+    })();
+  </script>
   <title>SealTech Insights — Blog</title>
 
   <!-- Fonts sawa na landing page -->
@@ -56,6 +68,10 @@
         <a href="index.html#contact" class="btn-ghost">Contact</a>
         <a href="index.html#contact" class="btn-primary nav-cta">Start Project</a>
       </div>
+
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme" aria-pressed="false">
+        <span class="theme-toggle-thumb" aria-hidden="true"></span>
+      </button>
 
       <!-- Hamburger kwa simu ndogo -->
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">

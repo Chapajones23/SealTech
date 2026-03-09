@@ -5,6 +5,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="SealTech — Software Development & Technology Solutions" />
+  <script>
+    (() => {
+      try {
+        const key = 'sealtech-theme';
+        const saved = localStorage.getItem(key);
+        const theme = (saved === 'light' || saved === 'dark')
+          ? saved
+          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (_error) {}
+    })();
+  </script>
   <title>SealTech — Build The Future</title>
 
   <!-- Fonts za kipekee kutoka Google Fonts -->
@@ -57,6 +69,10 @@
         <a href="#contact" class="btn-ghost">Contact</a>
         <a href="#contact" class="btn-primary nav-cta">Start Project</a>
       </div>
+
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme" aria-pressed="false">
+        <span class="theme-toggle-thumb" aria-hidden="true"></span>
+      </button>
 
       <!-- Kitufe cha menyu kwa simu ndogo -->
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">

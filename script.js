@@ -9,12 +9,60 @@
 // ================================================================
 document.addEventListener('DOMContentLoaded', () => {
   // Anzisha kazi zote kuu
+  initThemeToggle();
   initNavbar();
   initScrollAnimations();
   initCodeTyper();
   initCounters();
   initHamburger();
 });
+
+// ================================================================
+// THEME TOGGLE — Badilisha Light/Dark mode na kuhifadhi chaguo
+// ================================================================
+const THEME_STORAGE_KEY = 'sealtech-theme';
+
+function getPreferredTheme() {
+  try {
+    const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+    if (storedTheme === 'light' || storedTheme === 'dark') {
+      return storedTheme;
+    }
+  } catch (_error) {
+    // Endelea kutumia mfumo wa kifaa ikiwa localStorage imezuiwa
+  }
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function applyTheme(theme) {
+  const resolvedTheme = theme === 'dark' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', resolvedTheme);
+
+  const toggle = document.getElementById('themeToggle');
+  if (toggle) {
+    const isDark = resolvedTheme === 'dark';
+    toggle.setAttribute('aria-pressed', String(isDark));
+    toggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+  }
+}
+
+function initThemeToggle() {
+  applyTheme(getPreferredTheme());
+
+  const toggle = document.getElementById('themeToggle');
+  if (!toggle) return;
+
+  toggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, next);
+    } catch (_error) {
+      // Ukishindwa kuhifadhi, bado theme ibadilike kwenye session hii
+    }
+  });
+}
 
 // ================================================================
 // NAVBAR — Uhuishaji wa navbar wakati wa kusogeza ukurasa
