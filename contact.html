@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact SealTech — Get in touch to start your project or schedule a free consultation." />
+  <title>Contact Us — SealTech</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="favicon.jpg" />
+  <link rel="apple-touch-icon" href="favicon.jpg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <!-- Leaflet.js — Ramani huru, hakuna API key -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="contact.css" />
+</head>
+<body data-page="contact">
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.svg" alt="SealTech" class="nav-logo-img" onerror="this.src='logo.jpg'" />
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#portfolio">Portfolio</a></li>
+        <li><a href="index.html#developers">Developers</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="about.html">Company</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="contact.html" class="btn-ghost nav-link-active">Contact</a>
+        <a href="contact.html" class="btn-primary nav-cta">Start Project</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- CONTACT HERO -->
+  <header class="contact-hero">
+    <div class="contact-hero-bg">
+      <div class="blob blob-1" style="opacity:0.3"></div>
+      <div class="blob blob-2" style="opacity:0.2"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M5 8h6M9 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span aria-current="page">Contact</span>
+      </nav>
+
+      <div class="contact-hero-content" data-animate="fade-up">
+        <p class="section-eyebrow">Get In Touch</p>
+        <h1 class="contact-hero-title">
+          Let's build something<br/>
+          <span class="gradient-text">great together</span>
+        </h1>
+        <p class="contact-hero-desc">
+          Tell us about your project. We'll respond within 24 hours with an honest assessment,
+          a rough timeline, and what it will take to make it real.
+        </p>
+        <div class="contact-trust-row">
+          <div class="contact-trust-item">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2l2.39 4.84L18 7.64l-4 3.9.94 5.5L10 14.27l-4.94 2.77.94-5.5L2 7.64l5.61-.8L10 2z" fill="currentColor"/></svg>
+            <span>Free consultation</span>
+          </div>
+          <div class="contact-trust-item">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Reply within 24h</span>
+          </div>
+          <div class="contact-trust-item">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span>No commitment required</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTACT: Form + Info + Map -->
+  <section class="contact-main">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- LEFT: Contact Form -->
+        <div class="contact-form-col" data-animate="fade-right">
+          <div class="contact-form-card">
+            <div class="contact-form-header">
+              <h2>Send us a message</h2>
+              <p>Fill in the form and we'll get back to you within one business day.</p>
+            </div>
+
+            <form class="contact-form" id="contactForm" novalidate>
+
+              <!-- Full Name -->
+              <div class="form-group">
+                <label for="fullName" class="form-label">Full Name <span class="form-required">*</span></label>
+                <input type="text" id="fullName" name="fullName" class="form-input"
+                  placeholder="John Doe" autocomplete="name" required />
+                <span class="form-error" id="fullNameError" role="alert"></span>
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label for="email" class="form-label">Email Address <span class="form-required">*</span></label>
+                <input type="email" id="email" name="email" class="form-input"
+                  placeholder="you@company.com" autocomplete="email" required />
+                <span class="form-error" id="emailError" role="alert"></span>
+              </div>
+
+              <!-- Company + Phone (two columns) -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="company" class="form-label">Company / Organization</label>
+                  <input type="text" id="company" name="company" class="form-input"
+                    placeholder="SealTech Ltd" autocomplete="organization" />
+                </div>
+                <div class="form-group">
+                  <label for="phone" class="form-label">Phone Number</label>
+                  <input type="tel" id="phone" name="phone" class="form-input"
+                    placeholder="+255 7XX XXX XXX" autocomplete="tel" />
+                </div>
+              </div>
+
+              <!-- Project Type -->
+              <div class="form-group">
+                <label for="projectType" class="form-label">Project Type <span class="form-required">*</span></label>
+                <div class="form-select-wrapper">
+                  <select id="projectType" name="projectType" class="form-select" required>
+                    <option value="" disabled selected>Select a service…</option>
+                    <option value="web">Web Development</option>
+                    <option value="mobile">Mobile Application</option>
+                    <option value="custom">Custom Software System</option>
+                    <option value="cloud">Cloud &amp; DevOps</option>
+                    <option value="design">UI/UX Design</option>
+                    <option value="other">Other / Not Sure Yet</option>
+                  </select>
+                  <svg class="form-select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <span class="form-error" id="projectTypeError" role="alert"></span>
+              </div>
+
+              <!-- Budget -->
+              <div class="form-group">
+                <label class="form-label">Estimated Budget</label>
+                <div class="budget-options">
+                  <label class="budget-option"><input type="radio" name="budget" value="under-5k" /><span>Under $5K</span></label>
+                  <label class="budget-option"><input type="radio" name="budget" value="5k-15k" /><span>$5K – $15K</span></label>
+                  <label class="budget-option"><input type="radio" name="budget" value="15k-50k" /><span>$15K – $50K</span></label>
+                  <label class="budget-option"><input type="radio" name="budget" value="50k-plus" /><span>$50K+</span></label>
+                </div>
+              </div>
+
+              <!-- Message -->
+              <div class="form-group">
+                <label for="message" class="form-label">Tell us about your project <span class="form-required">*</span></label>
+                <textarea id="message" name="message" class="form-textarea"
+                  placeholder="Describe what you're building, the problems you're solving, and any deadlines or requirements…"
+                  rows="5" required></textarea>
+                <div class="form-char-count"><span id="charCount">0</span> / 1000</div>
+                <span class="form-error" id="messageError" role="alert"></span>
+              </div>
+
+              <!-- Submit -->
+              <button type="submit" class="btn-primary form-submit" id="submitBtn">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                  <path d="M18 2L2 9l7 2.5L11 18l7-16z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Send Message
+              </button>
+
+              <!-- Success message (hidden by default) -->
+              <div class="form-success" id="formSuccess" style="display:none" role="status" aria-live="polite">
+                <div class="form-success-icon">
+                  <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                    <circle cx="16" cy="16" r="14" fill="rgba(16,185,129,0.12)" stroke="#10B981" stroke-width="1.5"/>
+                    <path d="M10 16l4 4 8-8" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <h4>Message sent successfully!</h4>
+                <p>We'll review your project details and get back to you within 24 hours.</p>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+        <!-- RIGHT: Info + Map -->
+        <div class="contact-info-col" data-animate="fade-left">
+
+          <!-- Contact Info Card -->
+          <div class="contact-info-card">
+            <h3>Contact Information</h3>
+
+            <div class="contact-info-items">
+              <!-- Address -->
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div>
+                  <span class="contact-info-label">Office Address</span>
+                  <!-- HARIRI: Weka anuani yako kamili hapa -->
+                  <span class="contact-info-value">Kinondoni, Dar es Salaam<br/>Tanzania</span>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="contact-info-item">
+                <div class="contact-info-icon" style="background:rgba(6,182,212,0.1);color:#0891B2">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M2 8l10 6 10-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="contact-info-label">Email Us</span>
+                  <!-- HARIRI: Weka barua pepe yako hapa -->
+                  <a href="mailto:hello@sealtech.co.tz" class="contact-info-value contact-info-link">hello@sealtech.co.tz</a>
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="contact-info-item">
+                <div class="contact-info-icon" style="background:rgba(16,185,129,0.1);color:#059669">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.9 10.72a19.79 19.79 0 01-3.07-8.67A2 2 0 012.82 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l.97-.97a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <span class="contact-info-label">Call / WhatsApp</span>
+                  <!-- HARIRI: Weka nambari yako hapa -->
+                  <a href="tel:+255700000000" class="contact-info-value contact-info-link">+255 700 000 000</a>
+                </div>
+              </div>
+
+              <!-- Hours -->
+              <div class="contact-info-item">
+                <div class="contact-info-icon" style="background:rgba(124,58,237,0.1);color:#7C3AED">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <span class="contact-info-label">Business Hours</span>
+                  <span class="contact-info-value">Mon – Fri: 8:00 AM – 6:00 PM (EAT)<br/>Sat: 9:00 AM – 1:00 PM</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social links -->
+            <div class="contact-socials">
+              <span class="contact-socials-label">Find us on</span>
+              <div class="contact-socials-links">
+                <a href="#" class="contact-social-btn" aria-label="Twitter">
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M18 3.5a8.38 8.38 0 01-2.4.66 4.19 4.19 0 001.84-2.31c-.81.48-1.71.83-2.66 1.02A4.18 4.18 0 009.32 8.5a11.86 11.86 0 01-8.6-4.36 4.18 4.18 0 001.3 5.58 4.16 4.16 0 01-1.89-.52v.05a4.18 4.18 0 003.35 4.1 4.2 4.2 0 01-1.89.07 4.18 4.18 0 003.9 2.9A8.38 8.38 0 012 17.54a11.82 11.82 0 006.4 1.87c7.68 0 11.88-6.36 11.88-11.88l-.01-.54A8.5 8.5 0 0018 3.5z" stroke="currentColor" stroke-width="1.2"/></svg>
+                  Twitter
+                </a>
+                <a href="#" class="contact-social-btn" aria-label="LinkedIn">
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M6 9v5M6 7v.5M10 14v-3a2 2 0 014 0v3M10 9v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  LinkedIn
+                </a>
+                <a href="https://github.com/Chapajones23" class="contact-social-btn" aria-label="GitHub" target="_blank" rel="noopener">
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 2a8 8 0 00-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07a2.12 2.12 0 00-.89-1.17c-.73-.5.06-.49.06-.49a1.68 1.68 0 011.23.82 1.7 1.7 0 002.33.66 1.7 1.7 0 01.51-1.07c-1.78-.2-3.64-.89-3.64-3.95a3.09 3.09 0 01.82-2.15 2.86 2.86 0 01.08-2.12s.67-.21 2.2.82a7.58 7.58 0 014 0c1.53-1.03 2.2-.82 2.2-.82a2.86 2.86 0 01.08 2.12 3.09 3.09 0 01.82 2.15c0 3.07-1.87 3.75-3.65 3.95a1.9 1.9 0 01.54 1.48v2.2c0 .21.14.46.55.38A8 8 0 0010 2z" stroke="currentColor" stroke-width="1.2"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map Card -->
+          <div class="contact-map-card">
+            <div class="contact-map-header">
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                <path d="M10 2C6.686 2 4 4.686 4 8c0 5 6 10 6 10s6-5 6-10c0-3.314-2.686-6-6-6z" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="10" cy="8" r="2" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              <span>Our Location — Dar es Salaam, Tanzania</span>
+            </div>
+            <!-- Leaflet.js inajaza div hii na ramani -->
+            <div id="contactMap" class="contact-map" role="application" aria-label="Office location map"></div>
+            <div class="contact-map-footer">
+              <!-- HARIRI: Badilisha jina la mtaa hapa -->
+              <span>Kinondoni District, Dar es Salaam</span>
+              <a href="#" class="contact-map-directions" id="mapDirectionsLink"
+                target="_blank" rel="noopener" aria-label="Get directions on Google Maps">
+                Get Directions
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="contact-faq">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <p class="section-eyebrow">Before You Reach Out</p>
+        <h2 class="section-title">Common <span class="gradient-text">Questions</span></h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item" data-animate="fade-up" data-delay="0">
+          <h4>How quickly do you respond?</h4>
+          <p>We aim to respond to every inquiry within 24 business hours. For urgent matters, WhatsApp is the fastest channel.</p>
+        </div>
+        <div class="faq-item" data-animate="fade-up" data-delay="100">
+          <h4>Do you work with international clients?</h4>
+          <p>Yes. We work with clients across East Africa, Europe, and North America. Time zones are no obstacle — we agree on overlap hours up front.</p>
+        </div>
+        <div class="faq-item" data-animate="fade-up" data-delay="200">
+          <h4>What information should I prepare?</h4>
+          <p>A rough description of what you want to build, your target users, any existing systems, and your ideal launch timeline. The rest we'll figure out together.</p>
+        </div>
+        <div class="faq-item" data-animate="fade-up" data-delay="300">
+          <h4>Do you sign NDAs?</h4>
+          <p>Absolutely. Confidentiality is standard practice. We're happy to sign your NDA or provide our own before any detailed discussion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <img src="logo.svg" alt="SealTech" class="nav-logo-img" onerror="this.src='logo.jpg'" />
+          </a>
+          <p class="footer-tagline">Engineering excellence<br/>for Africa's digital future.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Twitter"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M18 3.5a8.38 8.38 0 01-2.4.66 4.19 4.19 0 001.84-2.31c-.81.48-1.71.83-2.66 1.02A4.18 4.18 0 009.32 8.5a11.86 11.86 0 01-8.6-4.36 4.18 4.18 0 001.3 5.58 4.16 4.16 0 01-1.89-.52v.05a4.18 4.18 0 003.35 4.1 4.2 4.2 0 01-1.89.07 4.18 4.18 0 003.9 2.9A8.38 8.38 0 012 17.54a11.82 11.82 0 006.4 1.87c7.68 0 11.88-6.36 11.88-11.88l-.01-.54A8.5 8.5 0 0018 3.5z" stroke="currentColor" stroke-width="1.2"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M6 9v5M6 7v.5M10 14v-3a2 2 0 014 0v3M10 9v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+            <a href="https://github.com/Chapajones23" aria-label="GitHub" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 2a8 8 0 00-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07a2.12 2.12 0 00-.89-1.17c-.73-.5.06-.49.06-.49a1.68 1.68 0 011.23.82 1.7 1.7 0 002.33.66 1.7 1.7 0 01.51-1.07c-1.78-.2-3.64-.89-3.64-3.95a3.09 3.09 0 01.82-2.15 2.86 2.86 0 01.08-2.12s.67-.21 2.2.82a7.58 7.58 0 014 0c1.53-1.03 2.2-.82 2.2-.82a2.86 2.86 0 01.08 2.12 3.09 3.09 0 01.82 2.15c0 3.07-1.87 3.75-3.65 3.95a1.9 1.9 0 01.54 1.48v2.2c0 .21.14.46.55.38A8 8 0 0010 2z" stroke="currentColor" stroke-width="1.2"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col"><h4>Services</h4><ul><li><a href="index.html#services">Web Development</a></li><li><a href="index.html#services">Custom Software</a></li><li><a href="index.html#services">Mobile Apps</a></li><li><a href="index.html#services">Cloud &amp; DevOps</a></li></ul></div>
+        <div class="footer-col"><h4>Blog</h4><ul><li><a href="blog.html">All Articles</a></li><li><a href="blog.html">Engineering</a></li><li><a href="blog.html">DevOps</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="#">Careers</a></li></ul></div>
+        <div class="footer-col"><h4>Resources</h4><ul><li><a href="index.html#portfolio">Case Studies</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; SealTech 2026. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script src="blog.js"></script>
+  <script src="contact.js"></script>
+
+</body>
+</html>

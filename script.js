@@ -681,3 +681,375 @@ createFloatingShapes();
 console.log('%c 🦭 SealTech ', 'background: linear-gradient(135deg, #2563EB, #06B6D4); color: white; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: bold;');
 console.log('%c Built with passion by the SealTech engineering team ', 'color: #2563EB; font-size: 12px;');
 console.log('%c Interested in working with us? hello@sealtech.io ', 'color: #64748B; font-size: 11px;');
+
+
+
+/**
+ * ================================================================
+ * CONTACT.JS — SealTech Contact Page JavaScript
+ * ================================================================
+ *
+ * Inashughulikia:
+ *   1. Ramani ya Leaflet.js (Dar es Salaam — OpenStreetMap)
+ *   2. Validation ya fomu na uhuishaji wa mafanikio
+ *   3. Kihesabu cha herufi za textarea
+ *
+ * Kutekelezwa: Baada ya DOM kupakia (DOMContentLoaded)
+ * ================================================================
+ */
+
+'use strict';
+
+// ================================================================
+// USANIDI WA RAMANI — Badilisha hapa kwa koordineti zako
+// ================================================================
+/**
+ * ⚠️  HARIRI: Badilisha nambari hizi na koordineti sahihi za ofisi yako.
+ *
+ *   Jinsi ya kupata koordineti:
+ *   1. Fungua maps.google.com
+ *   2. Bonyeza-kulia kwenye eneo lako
+ *   3. Chagua "What's here?" — koordineti zitaonekana
+ *
+ *   Mifano ya Dar es Salaam:
+ *     CBD (Kivukoni):   lat = -6.8161, lng = 39.2894
+ *     Kinondoni:        lat = -6.7924, lng = 39.2083
+ *     Msasani / Slipway: lat = -6.7630, lng = 39.2760
+ *     Mikocheni:        lat = -6.7710, lng = 39.2370
+ */
+const MAP_CONFIG = {
+  lat:   -6.7924,    // ← HARIRI: Latitudo yako (kaskazini/kusini)
+  lng:   39.2083,    // ← HARIRI: Longitudo yako (mashariki/magharibi)
+  zoom:  15,         // ← Zoom level (10=mbali, 18=karibu sana)
+  label: 'SealTech HQ — Dar es Salaam, Tanzania'  // ← HARIRI: Jina linaloonekana kwenye popup
+};
+
+
+// ================================================================
+// KUANZA — Pakia kila kitu baada ya DOM kuwa tayari
+// ================================================================
+document.addEventListener('DOMContentLoaded', () => {
+  initMap();
+  initContactForm();
+  initCharCounter();
+});
+
+
+// ================================================================
+// 1. RAMANI YA DAR ES SALAAM — Leaflet.js + OpenStreetMap
+// ================================================================
+/**
+ * Anzisha ramani ya mwingiliano kwenye div#contactMap
+ * Inatumia Leaflet.js na tiles za bure za OpenStreetMap.
+ * Hakuna API key inayohitajika.
+ */
+function initMap() {
+  const mapEl = document.getElementById('contactMap');
+
+  // Ikiwa kipengele hakipo au Leaflet haijapakiwa, acha
+  if (!mapEl || typeof L === 'undefined') {
+    console.warn('Contact map: mapEl or Leaflet not found');
+    return;
+  }
+
+  // ── Unda ramani ──────────────────────────────────────────────
+  const map = L.map('contactMap', {
+    center:          [MAP_CONFIG.lat, MAP_CONFIG.lng],
+    zoom:            MAP_CONFIG.zoom,
+    scrollWheelZoom: false,    // Zuia kusogeza kwa gurudumu — vizuri kwa mobile
+    zoomControl:     true,
+    attributionControl: true,
+  });
+
+  // ── Ongeza tiles za OpenStreetMap ────────────────────────────
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors',
+    maxZoom: 19,
+  }).addTo(map);
+
+  // ── Unda alama ya mahali (custom marker ya SealTech) ──────────
+  // Inatumia divIcon badala ya picha ili iwe rahisi kubadilisha
+  const markerIcon = L.divIcon({
+    className: '', // Ondoa class za chaguo-msingi za Leaflet
+    html: `
+      <div style="
+        position: relative;
+        width: 44px;
+        height: 44px;
+      ">
+        <!-- Mwili wa alama (teardrop shape) -->
+        <div style="
+          width: 44px;
+          height: 44px;
+          background: linear-gradient(135deg, #2563EB 0%, #06B6D4 100%);
+          border-radius: 50% 50% 50% 0;
+          transform: rotate(-45deg);
+          border: 3px solid #ffffff;
+          box-shadow: 0 4px 20px rgba(37, 99, 235, 0.5);
+          position: absolute;
+          top: 0; left: 0;
+        "></div>
+        <!-- Doa nyeupe ndogo katikati -->
+        <div style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -60%);
+          width: 10px;
+          height: 10px;
+          background: #ffffff;
+          border-radius: 50%;
+        "></div>
+      </div>`,
+    iconSize:    [44, 44],    // Ukubwa wa ikoni
+    iconAnchor:  [22, 44],    // Sehemu ya ikoni inayoonyesha mahali halisi
+    popupAnchor: [0, -50],    // Wapi popup inaonekana
+  });
+
+  // ── Weka alama kwenye ramani ──────────────────────────────────
+  const marker = L.marker([MAP_CONFIG.lat, MAP_CONFIG.lng], { icon: markerIcon })
+    .addTo(map);
+
+  // ── Popup inaonekana ukibonyeza alama ────────────────────────
+  marker.bindPopup(`
+    <div style="
+      font-family: 'Syne', sans-serif;
+      padding: 8px 4px;
+      min-width: 200px;
+    ">
+      <strong style="
+        display: block;
+        font-size: 0.9rem;
+        color: #0F172A;
+        margin-bottom: 4px;
+      ">${MAP_CONFIG.label}</strong>
+      <span style="
+        font-size: 0.78rem;
+        color: #64748B;
+        font-family: 'DM Sans', sans-serif;
+      ">Click for directions →</span>
+    </div>
+  `, {
+    maxWidth: 240,
+    className: 'sealtech-popup',
+  });
+
+  // Fungua popup mara ya kwanza moja kwa moja
+  marker.openPopup();
+
+  // ── Sasisisha kiungo cha "Get Directions" ─────────────────────
+  // Inabadilisha URL ya Google Maps na koordineti sahihi
+  const dirLink = document.getElementById('mapDirectionsLink');
+  if (dirLink) {
+    dirLink.href = `https://www.google.com/maps/search/?api=1&query=${MAP_CONFIG.lat},${MAP_CONFIG.lng}`;
+  }
+
+  // ── Rekebisha ukubwa baada ya ms 600 ─────────────────────────
+  // Inahitajika kwa sababu ramani inaweza kupakia kabla ya
+  // kontena kuwa na ukubwa sahihi (lazy render issue)
+  setTimeout(() => map.invalidateSize(), 600);
+
+  // Pia rekebisha ukubwa ukubwa ukubwa wakati dirisha linapobadilika
+  window.addEventListener('resize', () => {
+    clearTimeout(window._mapResizeTimer);
+    window._mapResizeTimer = setTimeout(() => map.invalidateSize(), 300);
+  });
+}
+
+
+// ================================================================
+// 2. VALIDATION YA FOMU — Angalia mashamba kabla ya kutuma
+// ================================================================
+/**
+ * Anzisha mfumo wa validation kwa fomu ya mawasiliano.
+ *
+ * Inashughulikia:
+ *   - Mashamba yaliyoachwa wazi (required fields)
+ *   - Muundo sahihi wa barua pepe
+ *   - Urefu wa chini wa ujumbe (herufi 20)
+ *   - Spinner ya kupakia baada ya kutuma
+ *   - Kuonyesha ujumbe wa mafanikio
+ *   - Kuondoa makosa wakati mtumiaji anaandika
+ */
+function initContactForm() {
+  const form      = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const successEl = document.getElementById('formSuccess');
+
+  // Ikiwa fomu haipo, acha (si kurasa hii)
+  if (!form) return;
+
+  // ── Sikiliza kutumwa kwa fomu ─────────────────────────────────
+  form.addEventListener('submit', handleFormSubmit);
+
+  // ── Ondoa makosa mtumiaji anapoandika ────────────────────────
+  form.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(el => {
+    el.addEventListener('input',  () => clearFieldError(el));
+    el.addEventListener('change', () => clearFieldError(el));
+  });
+
+  /**
+   * Simamia kutumwa kwa fomu
+   * @param {SubmitEvent} e
+   */
+  function handleFormSubmit(e) {
+    e.preventDefault();
+
+    // Futa makosa yote ya zamani kabla ya kuangalia upya
+    clearAllErrors();
+
+    // Pata vipengele vya mashamba
+    const nameEl    = document.getElementById('fullName');
+    const emailEl   = document.getElementById('email');
+    const projectEl = document.getElementById('projectType');
+    const msgEl     = document.getElementById('message');
+
+    let isValid = true;
+
+    // ── Angalia jina ──────────────────────────────────────────
+    if (!nameEl.value.trim()) {
+      showFieldError(nameEl, 'fullNameError', 'Please enter your full name.');
+      isValid = false;
+    }
+
+    // ── Angalia barua pepe ────────────────────────────────────
+    if (!emailEl.value.trim()) {
+      showFieldError(emailEl, 'emailError', 'Please enter your email address.');
+      isValid = false;
+    } else if (!isValidEmail(emailEl.value.trim())) {
+      showFieldError(emailEl, 'emailError', 'Please enter a valid email address (e.g. you@example.com).');
+      isValid = false;
+    }
+
+    // ── Angalia aina ya mradi ─────────────────────────────────
+    if (!projectEl.value) {
+      showFieldError(projectEl, 'projectTypeError', 'Please select a project type.');
+      isValid = false;
+    }
+
+    // ── Angalia ujumbe ────────────────────────────────────────
+    if (!msgEl.value.trim()) {
+      showFieldError(msgEl, 'messageError', 'Please tell us about your project.');
+      isValid = false;
+    } else if (msgEl.value.trim().length < 20) {
+      showFieldError(msgEl, 'messageError', 'Please provide at least 20 characters.');
+      isValid = false;
+    }
+
+    // Ikiwa kuna makosa, simama hapa — sogeza juu ya kosa la kwanza
+    if (!isValid) {
+      const firstError = form.querySelector('.form-input.is-error, .form-select.is-error, .form-textarea.is-error');
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstError.focus();
+      }
+      return;
+    }
+
+    // ── Onyesha spinner ya kupakia ────────────────────────────
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="animation:spin 0.8s linear infinite;flex-shrink:0">
+        <circle cx="12" cy="12" r="9" stroke="rgba(255,255,255,0.3)" stroke-width="2.5"/>
+        <path d="M12 3a9 9 0 019 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      Sending…`;
+
+    // ── Iga kutuma (2 sekunde) ─────────────────────────────────
+    // TODO: Badilisha na fetch() kwa backend yako halisi:
+    //   fetch('/api/contact', { method: 'POST', body: new FormData(form) })
+    //   .then(r => r.json()).then(showSuccess).catch(showNetworkError);
+    setTimeout(() => {
+      form.style.opacity = '0';
+      form.style.transform = 'translateY(-10px)';
+      form.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+      setTimeout(() => {
+        form.style.display = 'none';
+        successEl.style.display = 'block';
+        successEl.style.animation = 'pgnFadeIn 0.4s ease both';
+      }, 300);
+    }, 2000);
+  }
+}
+
+/**
+ * Onyesha kosa chini ya shamba maalum
+ * @param {HTMLElement} input   - Kipengele cha fomu kilichokosea
+ * @param {string}      errorId - ID ya span ya kosa
+ * @param {string}      message - Ujumbe wa kosa kwa mtumiaji
+ */
+function showFieldError(input, errorId, message) {
+  input.classList.add('is-error');
+  const errorEl = document.getElementById(errorId);
+  if (errorEl) errorEl.textContent = message;
+}
+
+/**
+ * Ondoa hali ya kosa kutoka kipengele kimoja
+ * @param {HTMLElement} input - Kipengele cha fomu
+ */
+function clearFieldError(input) {
+  input.classList.remove('is-error');
+}
+
+/**
+ * Futa makosa yote kwenye fomu
+ */
+function clearAllErrors() {
+  document.querySelectorAll('.form-input.is-error, .form-select.is-error, .form-textarea.is-error').forEach(el => {
+    el.classList.remove('is-error');
+  });
+  document.querySelectorAll('.form-error').forEach(el => {
+    el.textContent = '';
+  });
+}
+
+/**
+ * Angalia muundo sahihi wa barua pepe
+ * @param {string} email - Barua pepe kuangalia
+ * @returns {boolean} true ikiwa ni sahihi
+ */
+function isValidEmail(email) {
+  // Regex rahisi lakini inayofanya kazi vizuri
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+}
+
+
+// ================================================================
+// 3. KIHESABU CHA HERUFI — Onyesha herufi zilizoandikwa
+// ================================================================
+/**
+ * Hesabu na onyesha idadi ya herufi kwenye textarea ya ujumbe.
+ * Rangi inabadilika kulingana na ukaribu wa kikomo:
+ *   0–70%  → muted (kawaida)
+ *   70–90% → orange (onyo)
+ *   90%+   → red (kikomo karibu)
+ */
+function initCharCounter() {
+  const textarea  = document.getElementById('message');
+  const counterEl = document.getElementById('charCount');
+  const MAX_CHARS = 1000;
+
+  if (!textarea || !counterEl) return;
+
+  // Weka ukomo wa juu wa herufi
+  textarea.setAttribute('maxlength', MAX_CHARS);
+
+  textarea.addEventListener('input', () => {
+    const len = textarea.value.length;
+    counterEl.textContent = len;
+
+    // Badilisha rangi kulingana na uwiano wa herufi
+    if (len > MAX_CHARS * 0.9) {
+      counterEl.style.color = '#EF4444';      // Nyekundu — karibu sana na kikomo
+    } else if (len > MAX_CHARS * 0.7) {
+      counterEl.style.color = '#F59E0B';      // Orange — karibu
+    } else {
+      counterEl.style.color = 'var(--text-muted)'; // Kawaida
+    }
+  });
+}
+
+
+
