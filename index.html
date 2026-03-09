@@ -69,7 +69,7 @@
       <!-- Vitufe vya kulia: wasiliana na anza mradi -->
       <div class="nav-actions">
         <a href="#contact" class="btn-ghost">Contact</a>
-        <a href="#contact" class="btn-primary nav-cta">Start Project</a>
+        <a href="#contact" class="btn-primary nav-cta" data-open-project-form="true">Start Project</a>
       </div>
 
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Theme mode: System. Click to switch mode." data-mode="system">
@@ -668,13 +668,101 @@
         <h2 class="cta-title">Let's build something<br/>extraordinary together</h2>
         <p class="cta-desc">Join 120+ companies who trusted SealTech to bring their most ambitious ideas to life.</p>
         <div class="cta-buttons">
-          <a href="#" class="btn-white">Start a Project</a>
-          <a href="#" class="btn-outline-white">Schedule a Call</a>
+          <a href="#" class="btn-white" data-open-project-form="true">Start a Project</a>
+          <a href="#" class="btn-outline-white" data-open-call-form="true">Schedule a Call</a>
         </div>
         <p class="cta-note">No commitment. Free consultation. Response within 24h.</p>
       </div>
     </div>
   </section>
+
+  <div class="project-modal" id="projectModal" aria-hidden="true">
+    <div class="project-modal-backdrop" data-modal-close="true"></div>
+    <div class="project-modal-card" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+      <button class="project-modal-close" id="projectModalClose" type="button" aria-label="Close start project form">
+        <span aria-hidden="true">×</span>
+      </button>
+      <p class="project-modal-eyebrow">New Project</p>
+      <h3 class="project-modal-title" id="projectModalTitle">Start Your Project</h3>
+      <p class="project-modal-copy">Fill this form and the SealTech team will contact you within 24 hours.</p>
+      <form class="project-modal-form" id="projectModalForm">
+        <div class="project-modal-field">
+          <label for="modalFullName">Full Name</label>
+          <input id="modalFullName" name="fullName" type="text" required />
+        </div>
+        <div class="project-modal-field">
+          <label for="modalEmail">Email</label>
+          <input id="modalEmail" name="email" type="email" required />
+        </div>
+        <div class="project-modal-field">
+          <label for="modalProjectType">Project Type</label>
+          <select id="modalProjectType" name="projectType" required>
+            <option value="">Select type</option>
+            <option value="web-app">Web App</option>
+            <option value="mobile-app">Mobile App</option>
+            <option value="website">Business Website</option>
+            <option value="custom-software">Custom Software</option>
+          </select>
+        </div>
+        <div class="project-modal-field">
+          <label for="modalBudget">Budget</label>
+          <select id="modalBudget" name="budget" required>
+            <option value="">Select budget</option>
+            <option value="1000-5000">$1,000 - $5,000</option>
+            <option value="5000-15000">$5,000 - $15,000</option>
+            <option value="15000-50000">$15,000 - $50,000</option>
+            <option value="50000+">$50,000+</option>
+          </select>
+        </div>
+        <div class="project-modal-field project-modal-field-full">
+          <label for="modalDetails">Project Details</label>
+          <textarea id="modalDetails" name="details" rows="4" placeholder="Tell us what you want to build..." required></textarea>
+        </div>
+        <div class="project-modal-actions">
+          <button type="submit" class="btn-primary">Submit Project</button>
+          <p class="project-modal-message" id="projectModalMessage" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="project-modal call-modal" id="callModal" aria-hidden="true">
+    <div class="project-modal-backdrop" data-modal-close="true"></div>
+    <div class="project-modal-card" role="dialog" aria-modal="true" aria-labelledby="callModalTitle">
+      <button class="project-modal-close" id="callModalClose" type="button" aria-label="Close schedule call form">
+        <span aria-hidden="true">×</span>
+      </button>
+      <p class="project-modal-eyebrow">Consultation</p>
+      <h3 class="project-modal-title" id="callModalTitle">Schedule a Call</h3>
+      <p class="project-modal-copy">Choose your preferred time and we will confirm the meeting quickly.</p>
+      <form class="project-modal-form" id="callModalForm">
+        <div class="project-modal-field">
+          <label for="callFullName">Full Name</label>
+          <input id="callFullName" name="fullName" type="text" required />
+        </div>
+        <div class="project-modal-field">
+          <label for="callEmail">Email</label>
+          <input id="callEmail" name="email" type="email" required />
+        </div>
+        <div class="project-modal-field">
+          <label for="callPhone">Phone Number</label>
+          <input id="callPhone" name="phone" type="tel" required />
+        </div>
+        <div class="project-modal-field">
+          <label for="callDate">Preferred Date</label>
+          <input id="callDate" name="date" type="date" required />
+        </div>
+        <div class="project-modal-field project-modal-field-full">
+          <label for="callNotes">Notes</label>
+          <textarea id="callNotes" name="notes" rows="4" placeholder="Share agenda or questions..."></textarea>
+        </div>
+        <div class="project-modal-actions">
+          <button type="submit" class="btn-primary">Schedule Call</button>
+          <p class="project-modal-message" id="callModalMessage" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- ============================================================
        FOOTER — Sehemu ya chini ya ukurasa
@@ -742,7 +830,7 @@
         <div class="footer-col">
           <h4>Company</h4>
           <ul>
-            <li><a href="#">About Us</a></li>
+            <li><a href="about.html">About Us</a></li>
             <li><a href="blog.html">Blog</a></li>
             <li><a href="#">Careers</a></li>
             <li><a href="#">Press</a></li>

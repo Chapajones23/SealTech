@@ -1616,6 +1616,137 @@ pre#codeTyper {
 }
 
 /* ----------------------------------------------------------------
+   START PROJECT MODAL — Kadi inayoelea yenye fomu
+---------------------------------------------------------------- */
+.project-modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  z-index: 1200;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.project-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.project-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.58);
+  backdrop-filter: blur(4px);
+}
+
+.project-modal-card {
+  position: relative;
+  width: min(640px, 100%);
+  max-height: min(90vh, 760px);
+  overflow: auto;
+  border-radius: 18px;
+  padding: 1.4rem;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(37, 99, 235, 0.1), transparent 35%),
+    radial-gradient(circle at 0% 100%, rgba(6, 182, 212, 0.09), transparent 40%),
+    var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-xl);
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-card);
+  color: var(--text);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.project-modal-eyebrow {
+  font-size: 0.74rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 6px;
+}
+
+.project-modal-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
+  margin-bottom: 6px;
+}
+
+.project-modal-copy {
+  color: var(--text-light);
+  font-size: 0.92rem;
+  margin-bottom: 1rem;
+}
+
+.project-modal-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.project-modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.project-modal-field label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.project-modal-field input,
+.project-modal-field select,
+.project-modal-field textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  background: var(--bg-card);
+  color: var(--text-dark);
+  font: inherit;
+}
+
+.project-modal-field-full {
+  grid-column: 1 / -1;
+}
+
+.project-modal-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.project-modal-message {
+  min-height: 1.3em;
+  font-size: 0.86rem;
+  color: #0f766e;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+/* ----------------------------------------------------------------
    FOOTER — Sehemu ya chini
 ---------------------------------------------------------------- */
 .footer {
@@ -1794,5 +1925,14 @@ pre#codeTyper {
 
   .theme-toggle-label {
     display: none;
+  }
+
+  .project-modal-card {
+    padding: 1.1rem;
+    border-radius: 14px;
+  }
+
+  .project-modal-form {
+    grid-template-columns: 1fr;
   }
 }

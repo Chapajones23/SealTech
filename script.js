@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCodeTyper();
   initCounters();
   initHamburger();
+  initStartProjectModal();
 });
 
 // ================================================================
@@ -158,6 +159,97 @@ function initHamburger() {
       navLinks.classList.remove('mobile-open');
       hamburger.classList.remove('open');
     });
+  });
+}
+
+// ================================================================
+// START PROJECT MODAL — Fungua/funga fomu inayoelea
+// ================================================================
+function initStartProjectModal() {
+  const allModals = document.querySelectorAll('.project-modal');
+  if (!allModals.length) return;
+
+  const syncBodyLock = () => {
+    const hasOpenModal = Array.from(allModals).some(modal => modal.classList.contains('is-open'));
+    document.body.classList.toggle('modal-open', hasOpenModal);
+  };
+
+  const closeOthers = (currentModal) => {
+    allModals.forEach(modal => {
+      if (modal !== currentModal) {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    });
+  };
+
+  const bindModal = ({ modalId, closeId, formId, messageId, triggerSelector, firstInputId, successBuilder }) => {
+    const modal = document.getElementById(modalId);
+    const closeBtn = document.getElementById(closeId);
+    const form = document.getElementById(formId);
+    const message = document.getElementById(messageId);
+    const triggers = document.querySelectorAll(triggerSelector);
+    const firstInput = document.getElementById(firstInputId);
+
+    if (!modal || !closeBtn || !form || !message || !triggers.length) return;
+
+    const setOpen = (open) => {
+      if (open) closeOthers(modal);
+      modal.classList.toggle('is-open', open);
+      modal.setAttribute('aria-hidden', String(!open));
+      if (open && firstInput) {
+        setTimeout(() => firstInput.focus(), 30);
+      }
+      syncBodyLock();
+    };
+
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', (event) => {
+        event.preventDefault();
+        setOpen(true);
+      });
+    });
+
+    closeBtn.addEventListener('click', () => setOpen(false));
+
+    modal.addEventListener('click', (event) => {
+      if (event.target instanceof HTMLElement && event.target.dataset.modalClose === 'true') {
+        setOpen(false);
+      }
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = firstInput?.value?.trim() || 'there';
+      message.textContent = successBuilder(name);
+      form.reset();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+        setOpen(false);
+      }
+    });
+  };
+
+  bindModal({
+    modalId: 'projectModal',
+    closeId: 'projectModalClose',
+    formId: 'projectModalForm',
+    messageId: 'projectModalMessage',
+    triggerSelector: '[data-open-project-form="true"]',
+    firstInputId: 'modalFullName',
+    successBuilder: (name) => `Thanks ${name}. Your project request was submitted.`
+  });
+
+  bindModal({
+    modalId: 'callModal',
+    closeId: 'callModalClose',
+    formId: 'callModalForm',
+    messageId: 'callModalMessage',
+    triggerSelector: '[data-open-call-form="true"]',
+    firstInputId: 'callFullName',
+    successBuilder: (name) => `Thanks ${name}. Your call request was submitted.`
   });
 }
 
