@@ -716,10 +716,11 @@ console.log('%c Interested in working with us? hello@sealtech.io ', 'color: #647
  *     Kinondoni:        lat = -6.7924, lng = 39.2083
  *     Msasani / Slipway: lat = -6.7630, lng = 39.2760
  *     Mikocheni:        lat = -6.7710, lng = 39.2370
+ *     Kijitonyama:      lat = -6.778713193401908, lng = 39.239894083063476
  */
 const MAP_CONFIG = {
-  lat:   -6.7924,    // ← HARIRI: Latitudo yako (kaskazini/kusini)
-  lng:   39.2083,    // ← HARIRI: Longitudo yako (mashariki/magharibi)
+  lat:   -6.778713193401908,    // ← HARIRI: Latitudo yako (kaskazini/kusini)
+  lng:   39.239894083063476,    // ← HARIRI: Longitudo yako (mashariki/magharibi)
   zoom:  15,         // ← Zoom level (10=mbali, 18=karibu sana)
   label: 'SealTech HQ — Dar es Salaam, Tanzania'  // ← HARIRI: Jina linaloonekana kwenye popup
 };
