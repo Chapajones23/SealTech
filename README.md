@@ -1,75 +1,156 @@
-# SealTech Blog Pagination System
+# SealTech Website
 
-A modern, lightweight pagination system built with **Vanilla JavaScript** for the SealTech blog.
+> Engineering excellence for Africa's digital future.
 
-This system dynamically paginates blog posts stored inside a JavaScript array and displays them in a clean, professional layout.
-
----
-
-# Features
-
-- Sorts blog posts by **publish date (newest first)**
-- Displays **6 posts per page**
-- Dynamic **page number navigation**
-- **Previous / Next buttons**
-- **Active page highlighting**
-- **Smooth re-render when switching pages**
-- Lightweight **Vanilla JavaScript implementation**
-- Easy integration with existing blog systems
+Modern, production-ready website for **SealTech** — a software development & technology solutions company based in Dar es Salaam, Tanzania.
 
 ---
 
-# Project Structure
+## Project Structure
 
+```
+SealTech/
+│
+├── public/                         # Static assets served directly by browser
+│   ├── images/                     # Compressed images (WebP preferred)
+│   ├── icons/                      # Small icons & favicons
+│   │   └── favicon.jpg
+│   ├── logos/                      # Company logos
+│   │   ├── logo.svg                # Primary logo (vector)
+│   │   └── logo.jpg                # Logo fallback (raster)
+│   └── illustrations/              # Graphics & decorative SVGs
+│
+├── src/                            # Source code
+│   ├── pages/                      # Main HTML pages
+│   │   ├── index.html              # Landing/home page
+│   │   ├── about.html              # About Us
+│   │   ├── blog.html               # Blog listing (paginated)
+│   │   ├── post.html               # Individual blog post
+│   │   └── contact.html            # Contact page + Leaflet map
+│   │   ├── about.css               # About page styles
+│   │   ├── blog.css                # Blog page styles
+│   │   └── contact.css             # Contact page styles
+│   │
+│   ├── layouts/                    # Page layout templates
+│   │   ├── main-layout.html        # Base layout (navbar + footer)
+│   │   └── blog-layout.html        # Blog layout (+ pagination scripts)
+│   │
+│   ├── components/                 # Reusable UI components
+│   │   ├── navbar/
+│   │   │   ├── navbar.html         # Navigation markup
+│   │   │   └── navbar.css          # Navigation styles
+│   │   ├── footer/
+│   │   │   ├── footer.html         # Footer markup
+│   │   │   └── footer.css          # Footer styles
+│   │   ├── cards/
+│   │   │   ├── service-card.html   # Service card template
+│   │   │   ├── blog-card.html      # Blog card template
+│   │   │   └── project-card.html   # Portfolio card template
+│   │   └── buttons/
+│   │       └── button.css          # All button variants
+│   │
+│   ├── sections/                   # Landing page sections
+│   │   ├── hero/
+│   │   │   ├── hero.html
+│   │   │   └── hero.css
+│   │   ├── services/
+│   │   │   ├── services.html
+│   │   │   ├── techstack.html
+│   │   │   └── services.css
+│   │   ├── portfolio/
+│   │   │   └── portfolio.html
+│   │   ├── developers/
+│   │   │   ├── developers.html
+│   │   │   └── why-sealtech.html
+│   │   ├── blog-preview/           # (rendered dynamically by blog.js)
+│   │   └── team/
+│   │       ├── team.html
+│   │       └── cta.html
+│   │
+│   ├── styles/                     # Global CSS modules
+│   │   ├── main.css                # Master import file (@import all below)
+│   │   ├── variables.css           # CSS custom properties (colors, spacing, etc.)
+│   │   ├── reset.css               # CSS reset + base element styles
+│   │   ├── layout.css              # Container, grid, section helpers
+│   │   └── animations.css          # Scroll animations + responsive breakpoints
+│   │
+│   ├── scripts/                    # JavaScript modules
+│   │   ├── main.js                 # Entry point: init + code typer + counters
+│   │   ├── navigation.js           # Navbar scroll + hamburger + active links
+│   │   ├── animations.js           # Scroll animations + parallax + floating shapes
+│   │   ├── pagination.js           # Blog pagination logic
+│   │   ├── blog.js                 # Blog renderer (renderLatestInsights, renderBlogPage, renderPostPage)
+│   │   ├── contact.js              # Leaflet map + form validation + char counter
+│   │   └── utils.js                # animateCounter and shared helpers
+│   │
+│   ├── data/                       # Static data files
+│   │   ├── blog-posts.js           # BLOG_POSTS array (6 posts)
+│   │   └── team.json               # Team member data
+│   │
+│   ├── config/                     # Site configuration
+│   │   └── site-config.js          # URLs, contact info, SEO defaults, map coords
+│   │
+│   └── seo/                        # SEO files
+│       ├── sitemap.xml             # XML sitemap (all pages + blog posts)
+│       ├── robots.txt              # Crawler rules
+│       ├── meta/
+│       │   ├── home-meta.html      # Home page OG + Twitter meta tags
+│       │   ├── about-meta.html     # About page meta tags
+│       │   └── services-meta.html  # Services page meta tags
+│       └── structured-data/
+│           ├── organization.json   # Schema.org Organization
+│           ├── breadcrumbs.json    # Schema.org BreadcrumbList
+│           └── faq.json            # Schema.org FAQPage
+│
+├── dist/                           # Production build output
+│
+├── README.md
+└── package.json
+```
 
 ---
 
-# Blog Post Structure
+## Tech Stack
 
-Each post must follow this structure:
+| Layer | Technology |
+|-------|-----------|
+| HTML | Semantic HTML5 |
+| CSS | Custom Properties, CSS Modules |
+| JS | Vanilla ES6+ (no framework) |
+| Fonts | Syne (headings) + DM Sans (body) via Google Fonts |
+| Maps | Leaflet.js + OpenStreetMap (no API key) |
+| Icons | Inline SVG |
 
-```javascript
-{
-  id: 1,
-  title: "Post Title",
-  slug: "post-slug",
-  author: "Author Name",
-  publishDate: "2026-06-15",
-  category: "Engineering",
-  readTime: "8 min read",
-  excerpt: "Short description...",
-  imageGradient: "...",
-  imageIcon: "...",
-}
+---
 
-Future Improvements
+## Design Tokens (`src/styles/variables.css`)
 
-Blog search functionality
+| Token | Value | Use |
+|-------|-------|-----|
+| `--primary` | `#2563EB` | Buttons, links, highlights |
+| `--accent` | `#06B6D4` | Gradient accents |
+| `--bg` | `#F8FAFC` | Page background |
+| `--text-dark` | `#0F172A` | Headings |
+| `--radius` | `12px` | Cards, inputs |
 
-Category filtering
+---
 
-SEO optimized blog pages
+## Location
 
-Dynamic routing for individual posts
+**NaiZuri Haute Couture, Kijitonyama, Dar es Salaam**  
+Plus Code: `66CQ+FW5`  
+Coordinates: `-6.778872, 39.239753`
 
-Infinite scroll option
+---
 
-About SealTech
+## Team
 
-SealTech is a modern technology company focused on building scalable digital solutions including:
+| Name | Role |
+|------|------|
+| Michael Chapa | CEO & Full-Stack Developer |
+| Lusajo JOB | CFO & Payment Integration Engineer |
+| Alfred Kalinga | COO & Cloud Engineer |
 
-Web Applications
+---
 
-Mobile Applications
-
-Cloud Systems
-
-API Platforms
-
-DevOps Infrastructure
-
-License
-
-MIT License
-
-Built with ❤️ by the SealTech Engineering Team
+*Kazi hii ilifanywa kwa moyo wa Afrika. 🌍*
