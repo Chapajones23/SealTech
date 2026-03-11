@@ -657,7 +657,7 @@ function createFloatingShapes() {
     heroBg.appendChild(dot);
   });
 
-  // Ongeza CSS kwa maumbo yanayoelea
+  // Ongeza CSS kwa maumbo yanayoelea,.
   if (!document.getElementById('shapeStyle')) {
     const style = document.createElement('style');
     style.id = 'shapeStyle';
