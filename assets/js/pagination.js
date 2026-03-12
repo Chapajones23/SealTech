@@ -824,3 +824,62 @@ function renderBlogImage(post, variant = "card") {
     </div>
   `;
 }
+
+
+function extractMinutes(readTime) {
+  if (!readTime) return 0;
+  const match = String(readTime).match(/\d+/);
+  return match ? parseInt(match[0], 10) : 0;
+}
+
+function updateBlogStats(posts) {
+  const articlesEl = document.getElementById("stats-articles");
+  const authorsEl = document.getElementById("stats-authors");
+  const readTimeEl = document.getElementById("stats-readtime");
+
+  if (!articlesEl || !authorsEl || !readTimeEl || !Array.isArray(posts)) return;
+
+  const totalArticles = posts.length;
+
+  const uniqueAuthors = new Set(
+    posts
+      .map(post => (post.author || "").trim())
+      .filter(Boolean)
+  ).size;
+
+  const totalReadMinutes = posts.reduce((sum, post) => {
+    return sum + extractMinutes(post.readTime);
+  }, 0);
+
+  const averageReadTime =
+    totalArticles > 0 ? Math.round(totalReadMinutes / totalArticles) : 0;
+
+  articlesEl.textContent = totalArticles;
+  authorsEl.textContent = uniqueAuthors;
+  readTimeEl.textContent = `${averageReadTime} min`;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  fetch("data/blog-posts.json")
+    .then(response => response.json())
+    .then(posts => {
+
+      updateBlogStats(posts);
+
+      // kama una pagination
+      if (typeof setupPagination === "function") {
+        setupPagination(posts);
+      }
+
+      // kama una render function
+      if (typeof renderBlogPosts === "function") {
+        renderBlogPosts(posts);
+      }
+
+    })
+    .catch(error => {
+      console.error("Failed to load blog posts:", error);
+    });
+
+});
