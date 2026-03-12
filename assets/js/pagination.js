@@ -792,3 +792,35 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('Failed to initialise blog data:', error);
   }
 });
+
+function renderBlogImage(post, variant = "card") {
+  const wrapperClass =
+    variant === "featured"
+      ? "blog-featured-media"
+      : variant === "post"
+      ? "post-hero-media"
+      : "blog-card-media";
+
+  if (post.image) {
+    return `
+      <div class="${wrapperClass}">
+        <img
+          src="${post.image}"
+          alt="${post.imageAlt || post.title}"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    `;
+  }
+
+  return `
+    <div class="${wrapperClass}">
+      <div class="blog-media-fallback" style="background: ${post.imageGradient || 'linear-gradient(135deg, #1E3A8A 0%, #2563EB 50%, #0E7490 100%)'};">
+        <div class="blog-media-icon">
+          ${post.imageIcon || ""}
+        </div>
+      </div>
+    </div>
+  `;
+}
