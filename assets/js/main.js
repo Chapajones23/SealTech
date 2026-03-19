@@ -253,6 +253,7 @@ function initStartProjectModal() {
   });
 }
 
+
 // ================================================================
 // SCROLL ANIMATIONS — Vitu vinavyoonekana polepole wakati wa kusogeza
 // ================================================================
@@ -1051,4 +1052,3 @@ function initCharCounter() {
     }
   });
 }
-

@@ -116,7 +116,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.7rem;
   font-weight: 800;
   color: #fff;
@@ -163,7 +163,7 @@
 
 /* Kichwa cha makala — kinabadilika rangi wakati wa hover */
 .blog-card-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.35;
@@ -318,7 +318,7 @@
 }
 
 .blog-hero-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2.5rem, 5vw, 3.75rem);
   font-weight: 800;
   line-height: 1.1;
@@ -344,7 +344,7 @@
 
 .blog-stat-num {
   display: block;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--text-dark);
@@ -531,7 +531,7 @@
 }
 
 .newsletter-text h3 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-dark);
@@ -652,7 +652,7 @@
 
 /* Kichwa kikuu cha makala */
 .post-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(1.75rem, 4vw, 2.75rem);
   font-weight: 800;
   line-height: 1.15;
@@ -697,7 +697,7 @@
 }
 
 .post-author-name {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--text-dark);
@@ -759,7 +759,7 @@
 
 /* Vichwa ndani ya makala */
 .post-content-inner h2 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--text-dark);
@@ -771,7 +771,7 @@
 }
 
 .post-content-inner h3 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--text-dark);
@@ -961,7 +961,7 @@
 }
 
 .sidebar-widget-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -1043,7 +1043,7 @@
 }
 
 .sidebar-newsletter h4 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
   color: var(--text-dark);
@@ -1138,7 +1138,7 @@
 }
 
 .post-error h2 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.75rem;
   font-weight: 800;
   color: var(--text-dark);
@@ -1275,7 +1275,7 @@
   background: var(--bg-card);
   border: 1.5px solid var(--border);
   border-radius: 10px;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--text-mid);
