@@ -148,13 +148,46 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--primary);
-  margin-bottom: var(--space-sm);
+
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: var(--space-sm);
+
+  /* Shape */
+  padding: 6px 16px;
+  border-radius: 999px;
+
+  /* Liquid glass base */
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  /* Glass blur */
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+
+  /* Glow + depth */
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+
+  /* Smooth transitions */
+  transition: all 0.3s ease;
 }
 
-/* Section labels */
+.section-eyebrow:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+
+  box-shadow:
+    0 8px 30px rgba(37, 99, 235, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+
+  transform: translateY(-1px);
+}
+
+
+
 
 .section-title {
   font-family: 'Space Grotesk', 'DM Sans', sans-serif;
