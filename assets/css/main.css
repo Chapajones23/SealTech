@@ -2980,9 +2980,11 @@ body.modal-open {
 /* Kontena ya ramani — Leaflet inajaza hapa */
 .contact-map {
   width: 100%;
-  height: 280px;
-  background: #e8f0fe;
-  display: block;
+  height: 320px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 /* Kijachini cha kadi ya ramani */

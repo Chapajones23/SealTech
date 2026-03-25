@@ -33,11 +33,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- CSS kuu -->
-    <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/navbar.css" />
   <link rel="stylesheet" href="assets/css/components.css" />
   <!-- CSS ya mfumo wa blogu -->
-    <link rel="stylesheet" href="assets/css/pages.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
+
   </head>
   <!-- data-page="home" husaidia blog.js kujua ni ukurasa gani huu -->
   <body data-page="home">
@@ -328,22 +329,24 @@
             <!-- Map Card -->
             <div class="contact-map-card">
               <div class="contact-map-header">
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 2C6.686 2 4 4.686 4 8c0 5 6 10 6 10s6-5 6-10c0-3.314-2.686-6-6-6z" stroke="currentColor" stroke-width="1.5"/>
-                  <circle cx="10" cy="8" r="2" stroke="currentColor" stroke-width="1.5"/>
-                </svg>
                 <span>Our Location — Kijitonyama, Dar es Salaam</span>
               </div>
-              <!-- Leaflet.js inajaza div hii na ramani -->
-              <div id="contactMap" class="contact-map" role="application" aria-label="Office location map"></div>
+
+              <!-- MAP -->
+              <div class="contact-map" role="application" aria-label="Office location map">
+                <iframe
+                  id="contactMapFrame"
+                  src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d7923.848718220347!2d39.233379571699174!3d-6.779060575749272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwNDYnNDMuNCJTIDM5wrAxNCcyMy42IkU!5e0!3m2!1sen!2sza!4v1774422402516!5m2!1sen!2sza"
+                  style="border:0;width:100%;height:100%;"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+
               <div class="contact-map-footer">
-                <!-- HARIRI: Badilisha jina la mtaa hapa -->
                 <span>Kijitonyama, Dar es Salaam</span>
-                <a href="#" class="contact-map-directions" id="mapDirectionsLink"
-                  target="_blank" rel="noopener" aria-label="Get directions on Google Maps">
-                  Get Directions
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                </a>
+                <a href="#" id="mapDirectionsLink" target="_blank">Get Directions</a>
               </div>
             </div>
 
@@ -481,7 +484,7 @@
 
     <!-- JS kuu ya uhuishaji -->
     <script src="assets/js/navigation.js" defer></script>
-  <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js"></script>
     <!-- JS ya mfumo wa blogu -->
     <script src="assets/js/pagination.js"></script>
   </body>

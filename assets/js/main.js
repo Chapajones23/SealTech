@@ -746,116 +746,11 @@ document.addEventListener('DOMContentLoaded', () => {
  * Hakuna API key inayohitajika.
  */
 function initMap() {
-  const mapEl = document.getElementById('contactMap');
-
-  // Ikiwa kipengele hakipo au Leaflet haijapakiwa, acha
-  if (!mapEl || typeof L === 'undefined') {
-    console.warn('Contact map: mapEl or Leaflet not found');
-    return;
-  }
-
-  // ── Unda ramani ──────────────────────────────────────────────
-  const map = L.map('contactMap', {
-    center:          [MAP_CONFIG.lat, MAP_CONFIG.lng],
-    zoom:            MAP_CONFIG.zoom,
-    scrollWheelZoom: false,    // Zuia kusogeza kwa gurudumu — vizuri kwa mobile
-    zoomControl:     true,
-    attributionControl: true,
-  });
-
-  // ── Ongeza tiles za OpenStreetMap ────────────────────────────
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors',
-    maxZoom: 19,
-  }).addTo(map);
-
-  // ── Unda alama ya mahali (custom marker ya SealTech) ──────────
-  // Inatumia divIcon badala ya picha ili iwe rahisi kubadilisha
-  const markerIcon = L.divIcon({
-    className: '', // Ondoa class za chaguo-msingi za Leaflet
-    html: `
-      <div style="
-        position: relative;
-        width: 44px;
-        height: 44px;
-      ">
-        <!-- Mwili wa alama (teardrop shape) -->
-        <div style="
-          width: 44px;
-          height: 44px;
-          background: linear-gradient(135deg, #2563EB 0%, #06B6D4 100%);
-          border-radius: 50% 50% 50% 0;
-          transform: rotate(-45deg);
-          border: 3px solid #ffffff;
-          box-shadow: 0 4px 20px rgba(37, 99, 235, 0.5);
-          position: absolute;
-          top: 0; left: 0;
-        "></div>
-        <!-- Doa nyeupe ndogo katikati -->
-        <div style="
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -60%);
-          width: 10px;
-          height: 10px;
-          background: #ffffff;
-          border-radius: 50%;
-        "></div>
-      </div>`,
-    iconSize:    [44, 44],    // Ukubwa wa ikoni
-    iconAnchor:  [22, 44],    // Sehemu ya ikoni inayoonyesha mahali halisi
-    popupAnchor: [0, -50],    // Wapi popup inaonekana
-  });
-
-  // ── Weka alama kwenye ramani ──────────────────────────────────
-  const marker = L.marker([MAP_CONFIG.lat, MAP_CONFIG.lng], { icon: markerIcon })
-    .addTo(map);
-
-  // ── Popup inaonekana ukibonyeza alama ────────────────────────
-  marker.bindPopup(`
-    <div style="
-      font-family: 'Syne', sans-serif;
-      padding: 8px 4px;
-      min-width: 200px;
-    ">
-      <strong style="
-        display: block;
-        font-size: 0.9rem;
-        color: #0F172A;
-        margin-bottom: 4px;
-      ">${MAP_CONFIG.label}</strong>
-      <span style="
-        font-size: 0.78rem;
-        color: #64748B;
-        font-family: 'DM Sans', sans-serif;
-      ">Click for directions →</span>
-    </div>
-  `, {
-    maxWidth: 240,
-    className: 'sealtech-popup',
-  });
-
-  // Fungua popup mara ya kwanza moja kwa moja
-  marker.openPopup();
-
-  // ── Sasisisha kiungo cha "Get Directions" ─────────────────────
-  // Inabadilisha URL ya Google Maps na koordineti sahihi
+  // Tunatumia Google Maps iframe sasa; kazi hii inabaki kuhuisha kiungo cha Directions pekee.
   const dirLink = document.getElementById('mapDirectionsLink');
   if (dirLink) {
-    dirLink.href = `https://www.google.com/maps/search/?api=1&query=${MAP_CONFIG.lat},${MAP_CONFIG.lng}`;
+    dirLink.href = `https://www.google.com/maps?q=${MAP_CONFIG.lat},${MAP_CONFIG.lng}`;
   }
-
-  // ── Rekebisha ukubwa baada ya ms 600 ─────────────────────────
-  // Inahitajika kwa sababu ramani inaweza kupakia kabla ya
-  // kontena kuwa na ukubwa sahihi (lazy render issue)
-  setTimeout(() => map.invalidateSize(), 600);
-
-  // Pia rekebisha ukubwa ukubwa ukubwa wakati dirisha linapobadilika
-  window.addEventListener('resize', () => {
-    clearTimeout(window._mapResizeTimer);
-    window._mapResizeTimer = setTimeout(() => map.invalidateSize(), 300);
-  });
 }
 
 
