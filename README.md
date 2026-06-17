@@ -1,182 +1,188 @@
 # SealTech Website
 
-Tovuti kamili ya kampuni ya SealTech — iliyojengwa upya kutoka mwanzo.  
-Lightweight, fast, SEO-optimized, na dark mode kamili.
+Corporate website for **SealTech** — a software engineering company based in Dar es Salaam, Tanzania.  
+Built with React 19 + Vite 7. No CSS framework, no router library, no build complexity.
 
 ---
 
-## Muundo wa Mradi (File Structure)
+## Tech Stack
+
+| | |
+|---|---|
+| **Framework** | React 19 |
+| **Build tool** | Vite 7 |
+| **Styling** | Vanilla CSS (CSS variables, dark mode) |
+| **Routing** | Custom SPA routing via `useRoute` hook |
+| **Map** | Leaflet.js (contact page only) |
+| **Data** | JSON file (`src/data/blog-posts.json`) |
+
+No jQuery · No Bootstrap · No React Router · No npm build complexity
+
+---
+
+## Project Structure
 
 ```
-sealtech/
-├── index.html              # Ukurasa mkuu (Homepage)
-├── about.html              # Kuhusu SealTech
-├── blog.html               # Orodha ya makala
-├── post.html               # Ukurasa wa makala moja
-├── contact.html            # Mawasiliano + ramani
-├── robots.txt              # Mwongozo kwa search engines
-├── sitemap.xml             # Sitemap ya SEO
-├── favicon.ico             # Ikoni ya kivinjari
-├── favicon.jpg             # Ikoni mbadala
+SealTech/
+├── index.html
+├── vite.config.js
+├── package.json
 │
-├── assets/
-│   ├── css/
-│   │   └── main.css        # Stylesheet moja (42KB) — pagesall zote
-│   ├── js/
-│   │   ├── theme.js        # Dark/light mode controller
-│   │   ├── main.js         # Navbar, counters, form, Leaflet map
-│   │   ├── navigation.js   # Active section tracking (homepage)
-│   │   └── pagination.js   # Blog data, filtering, pagination
-│   ├── icons/
-│   │   ├── favicon-32.png
-│   │   └── favicon-180.png
-│   └── logo/
-│       ├── logo.svg        # Logo (SVG — bora zaidi)
-│       └── logo.jpg        # Logo mbadala (JPG)
+├── public/
+│   ├── favicon.ico / favicon.jpg
+│   ├── data/
+│   │   └── blog-posts.json
+│   └── assets/
+│       ├── css/          # Legacy static CSS (unused by React app)
+│       ├── js/           # Legacy static JS (unused by React app)
+│       └── images/
+│           ├── team/
+│           └── blog/
 │
-└── data/
-    └── blog-posts.json     # Makala 6 za blog (data)
+└── src/
+    ├── main.jsx          # React entry point
+    ├── App.jsx           # Root component + routing
+    ├── styles.css        # Global reset/base
+    │
+    ├── pages/
+    │   ├── HomePage.jsx
+    │   ├── AboutPage.jsx
+    │   ├── CareersPage.jsx
+    │   ├── PressPage.jsx
+    │   ├── SecurityPage.jsx
+    │   ├── TermsPage.jsx
+    │   ├── PrivacyPage.jsx
+    │   ├── BlogPage.jsx
+    │   ├── PostPage.jsx
+    │   ├── ContactPage.jsx
+    │   └── Modals.jsx        # ProjectModal, CallModal
+    │
+    ├── components/
+    │   ├── Navbar.jsx
+    │   ├── Footer.jsx
+    │   ├── HomeComponents.jsx  # TechStack, Services, Portfolio, Team, Why
+    │   ├── Blog.jsx            # BlogCard, ContactForm, LatestInsights
+    │   ├── Shared.jsx          # SectionHeader, Loading, ErrorState, Field
+    │   └── Link.jsx            # SPA-aware <Link> + <Logo>
+    │
+    ├── hooks/
+    │   ├── useRoute.js         # SPA routing (hash + pathname)
+    │   ├── usePosts.js         # Blog post fetching + state
+    │   ├── useTheme.js         # Dark/light/system theme
+    │   └── useInteractions.js  # IntersectionObserver animations
+    │
+    ├── services/
+    │   └── api.js              # Blog data fetching
+    │
+    ├── utils/
+    │   └── navigation.js       # sortPosts, formatDate helpers
+    │
+    ├── constants/
+    │   └── index.js            # SERVICES, PROJECTS, TEAM, THEME_MODES
+    │
+    ├── data/
+    │   └── blog-posts.json     # 6 blog posts
+    │
+    └── styles/
+        ├── main.css            # Core styles, dark mode, variables
+        ├── pages.css           # Page-specific styles
+        ├── navbar.css          # Navbar styles
+        └── components.css      # Shared component styles
 ```
 
 ---
 
-## Kurasa na Ukubwa
+## Pages
 
-| Faili | Ukubwa |
-|-------|--------|
-| `index.html` | 31 KB |
-| `about.html` | 15 KB |
-| `blog.html` | 8 KB |
-| `contact.html` | 18 KB |
-| `post.html` | 13 KB |
-| `assets/css/main.css` | 42 KB |
-| `assets/js/` (jumla) | ~24 KB |
-| **Jumla yote** | **~222 KB** |
+| Route | Page |
+|---|---|
+| `/` | Homepage — hero, services, portfolio, team, blog preview |
+| `/about` | About — mission, values, team |
+| `/careers` | Careers — open positions, perks |
+| `/press` | Press — media coverage, press kit |
+| `/security` | Security — practices, vulnerability disclosure |
+| `/terms` | Terms of Service |
+| `/privacy` | Privacy Policy |
+| `/blog` | Blog listing — filter by category, pagination |
+| `/post?slug=...` | Individual blog post |
+| `/contact` | Contact form + Leaflet map |
 
----
-
-## Vipengele Vikuu (Key Features)
-
-### 🌗 Dark Mode
-- Inafanya kazi mara moja bila "flash" (FOUC-free)
-- Inahifadhiwa kwa `localStorage` — inakumbuka chaguo lako
-- Inagundua mipangilio ya mfumo (OS preference) kiotomatiki
-- Kitufe cha kubadilisha kiko kwenye navbar kila ukurasa
-
-### ⚡ Utendaji (Performance)
-- CSS moja tu — hakuna CSS nyingi wala preprocessor
-- JavaScript rahisi — hakuna jQuery, hakuna framework nzito
-- Picha zinapakia kwa `loading="lazy"` isipokuwa logo ya juu
-- Leaflet map inapakiwa kwenye `contact.html` tu
-- CSS `IntersectionObserver` kwa animations — hakuna scroll listeners
-
-### 🔍 SEO
-Kila ukurasa una:
-- `<title>` wa kipekee
-- `<meta description>` iliyoandikwa vizuri
-- `<link rel="canonical">` sahihi
-- Open Graph tags (Facebook, LinkedIn)
-- Twitter Card meta
-- JSON-LD Structured Data:
-  - `index.html` → `Organization` + `WebSite`
-  - `about.html` → `AboutPage` + microdata ya timu (`itemscope`)
-  - `blog.html` → `Blog`
-  - `contact.html` → `LocalBusiness` + `FAQPage`
-- `robots.txt` na `sitemap.xml`
-
-### 📱 Responsive Design
-- Inafanya kazi vizuri kwenye simu, kompyuta kibao, na kompyuta
-- Mobile navigation menu iliyojengwa ndani
-- Grid inabadilika kiotomatiki kwa skrini ndogo
+All routes also work with `.html` suffix (e.g. `/about.html`).
 
 ---
 
-## Jinsi ya Kutumia (Quick Start)
+## Getting Started
 
-### Kuendesha Locally
-Hakuna installation inayohitajika. Fungua tu:
+### Prerequisites
+
+- [Node.js](https://nodejs.org) v18 or later
+- npm (comes with Node.js)
+
+### Install & Run
 
 ```bash
-# Tumia Python server rahisi
-cd sealtech/
-python3 -m http.server 8080
+# 1. Clone the repo
+git clone https://github.com/your-org/sealtech.git
+cd sealtech
 
-# Kisha fungua kivinjari
-open http://localhost:8080
+# 2. Install dependencies
+npm install
+
+# 3. Start development server
+npm run dev
 ```
 
-Au tumia Live Server ya VS Code.
+The app will be available at `http://localhost:5173` (or the next available port).  
+The dev server is also exposed on your local network (`--host 0.0.0.0`).
 
-> ⚠️ **Muhimu:** Usifungue `index.html` moja kwa moja kwa `file://` — blog posts haitapakia vizuri. Tumia server ya ndani (localhost).
+### Build for Production
 
-### Kupeleka Mtandaoni (Deployment)
-Mradi huu ni static — unaweza kupeleka moja kwa moja kwenye:
-- **Netlify** — drag & drop folda
-- **Vercel** — `vercel deploy`
-- **GitHub Pages** — push to `gh-pages` branch
-- **VPS/cPanel** — upload faili zote via FTP
+```bash
+npm run build
+```
+
+Output goes to `dist/`. Preview the production build locally:
+
+```bash
+npm run preview
+```
 
 ---
 
-## Kubadilisha Maudhui (Customization)
+## Deployment
 
-### Maelezo ya Kampuni
-Badilisha maelezo katika `index.html`:
-- **Hero tagline:** Tafuta `"We build software"` 
-- **Stats:** Tafuta `data-count` attributes
-- **Services:** Badilisha kadi za huduma kwenye `#services`
-- **Portfolio:** Badilisha kadi kwenye `#portfolio`
+The build output in `dist/` is a static site — deploy anywhere:
 
-### Timu (About Page)
-Fungua `about.html` na ubadilishe:
-- Majina ya wanachama wa timu
-- Vyeo (job titles)
-- Biodata
-- Viungo vya mitandao ya kijamii
+| Platform | How |
+|---|---|
+| **Netlify** | Drag & drop `dist/` or connect repo (build command: `npm run build`) |
+| **Vercel** | `vercel deploy` — auto-detects Vite |
+| **GitHub Pages** | Push `dist/` to `gh-pages` branch |
+| **VPS / cPanel** | Upload contents of `dist/` via FTP |
 
-### Mawasiliano
-Fungua `contact.html` na ubadilishe placeholder zifuatazo:
-```html
-<!-- Anwani ya barua pepe -->
-hello@sealtech.co.tz  →  barua-pepe-yako@kampuni.co.tz
+> For SPA routing to work on static hosts, configure the server to redirect all paths to `index.html`.  
+> On Netlify add a `public/_redirects` file: `/* /index.html 200`
 
-<!-- Nambari ya simu -->
-+255 700 000 000  →  +255 7XX XXX XXX
+---
 
-<!-- Ramani: coordinates za Dar es Salaam -->
-lat: -6.778872, lng: 39.239753  →  coordinates zako
-```
+## Customisation
 
-### Rangi za Kivuli (Colors)
-Rangi zote ziko kwenye `assets/css/main.css` chini ya `:root {}`:
+### Company info
+- **Services / Projects / Team** — edit `src/constants/index.js`
+- **Contact details** — edit `src/pages/ContactPage.jsx`
+- **Map coordinates** — update Leaflet lat/lng in `ContactPage.jsx`
 
-```css
-:root {
-  --blue:   #2563EB;   /* Rangi kuu */
-  --cyan:   #0891B2;   /* Rangi ya pili */
-  --purple: #7C3AED;   /* Rangi ya tatu */
-  --green:  #059669;   /* Rangi ya mafanikio */
-}
-```
-
-### Fonti
-Tovuti inatumia **DM Sans** — rahisi kubadilisha:
-1. Nenda [fonts.google.com](https://fonts.google.com)
-2. Chagua fonti yako
-3. Badilisha kiungo cha Google Fonts kwenye kila `<head>`
-4. Badilisha `--font` kwenye `main.css`
-
-### Blog Posts
-Badilisha makala kwenye `data/blog-posts.json`. Muundo wa makala moja:
+### Blog posts
+Edit `src/data/blog-posts.json`. Each post:
 
 ```json
 {
   "id": 7,
-  "slug": "jina-la-makala",
-  "title": "Kichwa cha Makala Yako",
-  "excerpt": "Muhtasari mfupi wa makala...",
-  "author": "Jina la Mwandishi",
-  "authorRole": "Cheo cha Mwandishi",
+  "slug": "your-post-slug",
+  "title": "Post Title",
+  "excerpt": "Short summary...",
+  "author": "Author Name",
+  "authorRole": "Role",
   "date": "2026-07-01",
   "readTime": "5 min read",
   "category": "Engineering",
@@ -185,89 +191,46 @@ Badilisha makala kwenye `data/blog-posts.json`. Muundo wa makala moja:
 }
 ```
 
-**Makategoria yanayokubaliwa:** `Engineering`, `Mobile`, `DevOps`, `Culture`
+Valid categories: `Engineering` · `Mobile` · `DevOps` · `Culture`
 
----
+### Theme colours
+All colours are CSS variables in `src/styles/main.css`:
 
-## Kuboresha Fomu ya Mawasiliano
-
-Kwa sasa fomu inafanya kazi ya uonyesho (demo) tu. Ili kuifanya ifanye kazi kweli:
-
-**Chaguo 1 — Formspree (bure):**
-```html
-<form id="contactForm" action="https://formspree.io/f/FORM-ID" method="POST">
+```css
+:root {
+  --blue:   #2563EB;
+  --cyan:   #0891B2;
+  --purple: #7C3AED;
+  --green:  #059669;
+}
 ```
 
-**Chaguo 2 — Backend yako mwenyewe:**
-Badilisha `setTimeout` kwenye `assets/js/main.js`:
-```javascript
-// Badilisha hii:
-setTimeout(() => { ... }, 1200);
+### Contact form
+The form is currently a demo. To wire it up:
 
-// Kuwa hivi:
-fetch('/api/contact', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(formData)
-}).then(res => { ... });
+**Formspree (free):**
+```jsx
+// src/components/Blog.jsx — ContactForm
+<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+```
+
+**Custom API:**
+```js
+// Replace the setTimeout in ContactForm with:
+fetch('/api/contact', { method: 'POST', body: JSON.stringify(data) })
 ```
 
 ---
 
-## Teknolojia Zilizotumika
+## Dark Mode
 
-| Teknolojia | Matumizi |
-|-----------|---------|
-| HTML5 Semantic | Muundo wa kurasa |
-| CSS Variables | Theming (light/dark) |
-| Vanilla JavaScript | Interactivity yote |
-| [Leaflet.js](https://leafletjs.com) | Ramani ya mawasiliano |
-| [DM Sans](https://fonts.google.com/specimen/DM+Sans) | Fonti kuu |
-| JSON | Data ya blog |
-| IntersectionObserver API | Scroll animations |
-
-**Hakuna:**
-- ❌ jQuery
-- ❌ Bootstrap
-- ❌ React / Vue / Angular
-- ❌ npm / node_modules
-- ❌ Build tools (Webpack, Vite, dll)
+- Defaults to OS preference (`prefers-color-scheme`)
+- Toggle in the navbar — persisted to `localStorage`
+- No flash on load (theme applied before paint via `useTheme` hook)
 
 ---
 
-## Mambo Yanayohitaji Kubadilishwa (TODOs)
+## License
 
-- [ ] Badilisha `hello@sealtech.co.tz` na barua pepe halisi
-- [ ] Badilisha `+255 700 000 000` na nambari halisi
-- [ ] Ongeza viungo vya kweli vya Twitter, LinkedIn, GitHub
-- [ ] Peleka fomu kwa backend au Formspree
-- [ ] Ongeza maudhui kamili ya makala za blog (`post.html`)
-- [ ] Badilisha picha za portfolio na screenshots halisi
-- [ ] Ongeza Google Analytics au Plausible analytics
-
----
-
-## Muundo wa Rangi (Color Palette)
-
-| Jina | Hex | Matumizi |
-|------|-----|---------|
-| Blue | `#2563EB` | Rangi kuu, vitufe, viungo |
-| Blue Dark | `#1D4ED8` | Hover states |
-| Cyan | `#0891B2` | Highlights za pili |
-| Purple | `#7C3AED` | Makategoria ya mobile |
-| Green | `#059669` | Mafanikio, DevOps |
-| Orange | `#EA580C` | Onyo, accent |
-
-**Light Mode:** Mandharinyuma `#F8FAFC`, Maandishi `#0F172A`  
-**Dark Mode:** Mandharinyuma `#0B0F1A`, Maandishi `#F0F6FF`
-
----
-
-## Leseni
-
-Haki zote zimehifadhiwa © 2026 SealTech Ltd.  
-Msimbo huu umetengezwa kwa matumizi ya SealTech pekee.
-
----
-
-*Iliyotengenezwa na SealTech Engineering Team — Dar es Salaam, Tanzania 🇹🇿*
+© 2026 SealTech Ltd. All rights reserved.  
+*Dar es Salaam, Tanzania 🇹🇿*

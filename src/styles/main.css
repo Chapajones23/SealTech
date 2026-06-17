@@ -1,0 +1,3212 @@
+/* ================================================================
+   SEALTECH — CSS KUU
+   Mwandishi: SealTech Team
+   Maelezo: Muundo wa kisasa wa wavuti kwa kampuni ya teknolojia
+================================================================ */
+
+/* ----------------------------------------------------------------
+   VIGEUZI VYA RANGI NA FONTI — Variables za msingi
+---------------------------------------------------------------- */
+:root {
+  /* Rangi kuu */
+  --primary: #2563EB;
+  --primary-light: #3B82F6;
+  --primary-dark: #1D4ED8;
+  --accent: #06B6D4;
+  --accent-light: #22D3EE;
+  --purple: #7C3AED;
+  --green: #10B981;
+
+  /* Rangi za maandishi */
+  --text-dark: #0F172A;
+  --text-mid: #334155;
+  --text-light: #64748B;
+  --text-muted: #94A3B8;
+
+  /* Rangi za mandharinyuma */
+  --bg: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --bg-dark: #0F172A;
+  --bg-dark-card: #1E293B;
+  --border: #E2E8F0;
+  --border-dark: #334155;
+
+  /* Kivuli */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.10), 0 8px 24px rgba(0,0,0,0.06);
+  --shadow-xl: 0 40px 100px rgba(0,0,0,0.12);
+  --shadow-blue: 0 8px 32px rgba(37,99,235,0.25);
+  --shadow-cyan: 0 8px 32px rgba(6,182,212,0.25);
+
+  /* Gradients ndogo */
+  --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  --gradient-hero: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(37,99,235,0.15) 0%, transparent 70%);
+  --surface-soft: #EFF6FF;
+  --surface-soft-alt: #E0F2FE;
+  --surface-accent: rgba(37,99,235,0.06);
+  --focus-ring: 0 0 0 3px rgba(37,99,235,0.1);
+  --nav-scrolled-bg: rgba(248, 250, 252, 0.85);
+  --nav-scrolled-border: rgba(226, 232, 240, 0.8);
+
+  /* Nafasi */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 5rem;
+  --space-3xl: 8rem;
+
+  /* Radi za pembe */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Muda wa uhuishaji */
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Upana wa layout ili kutumia skrini kubwa vizuri */
+  --layout-max: 1680px;
+  --layout-gutter: clamp(16px, 3vw, 52px);
+}
+
+:root[data-theme="dark"] {
+  --text-dark: #E2E8F0;
+  --text-mid: #CBD5E1;
+  --text-light: #94A3B8;
+  --text-muted: #64748B;
+
+  --bg: #020617;
+  --bg-card: #0B1220;
+  --border: #1E293B;
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow: 0 8px 24px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3);
+  --shadow-lg: 0 24px 60px rgba(0,0,0,0.55), 0 10px 28px rgba(0,0,0,0.35);
+  --shadow-xl: 0 40px 100px rgba(0,0,0,0.6);
+  --shadow-blue: 0 8px 32px rgba(37,99,235,0.35);
+
+  --gradient-hero: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(37,99,235,0.22) 0%, transparent 72%);
+  --surface-soft: #0F172A;
+  --surface-soft-alt: #0B2236;
+  --surface-accent: rgba(37,99,235,0.14);
+  --focus-ring: 0 0 0 3px rgba(59,130,246,0.25);
+  --nav-scrolled-bg: rgba(2, 6, 23, 0.82);
+  --nav-scrolled-border: rgba(51, 65, 85, 0.75);
+}
+
+/* ----------------------------------------------------------------
+   MSINGI WA UKURASA — Reset na msingi wa muundo
+---------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Space Grotesk', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* Kusimamisha kusogea kwa sekunde kidogo wakati wa kupakia */
+.page-loading * { animation-play-state: paused !important; }
+
+/* ----------------------------------------------------------------
+   SAIZI ZA KAWAIDA — Layout helpers
+---------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--layout-max);
+  margin: 0 auto;
+  padding: 0 var(--layout-gutter);
+}
+
+.section-eyebrow {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: var(--space-sm);
+
+  /* Shape */
+  padding: 6px 16px;
+  border-radius: 999px;
+
+  /* Liquid glass base. */
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  /* Glass blur */
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+
+  /* Glow + depth */
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+
+  /* Smooth transitions */
+  transition: all 0.3s ease;
+}
+
+.section-eyebrow:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+
+  box-shadow:
+    0 8px 30px rgba(37, 99, 235, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+
+  transform: translateY(-1px);
+}
+
+
+
+
+.section-title {
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  text-shadow: 0 8px 28px rgba(15, 23, 42, 0.12);
+  color: var(--text-dark);
+  margin-bottom: var(--space-md);
+}
+
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--text-light);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.section-header .section-desc { margin: 0 auto; }
+
+/* ----------------------------------------------------------------
+   VITUFE — Buttons (btn-*)
+---------------------------------------------------------------- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.75rem 1.5rem;
+  background: var(--gradient-primary);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  transition: var(--transition);
+  box-shadow: var(--shadow-blue);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(37,99,235,0.35);
+}
+
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary > * { position: relative; z-index: 1; }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--text-dark);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border);
+  transition: var(--transition);
+}
+
+.btn-outline:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--surface-accent);
+  transform: translateY(-2px);
+}
+
+.btn-lg {
+  padding: 0.9rem 1.8rem;
+  font-size: 0.95rem;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-mid);
+  border-radius: var(--radius-full);
+  transition: var(--transition);
+}
+
+.btn-ghost:hover { color: var(--primary); background: var(--surface-accent); }
+
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.9rem 2rem;
+  background: #fff;
+  color: var(--primary);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  transition: var(--transition);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+}
+
+.btn-white:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+
+.btn-outline-white {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.9rem 2rem;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  border: 1.5px solid rgba(255,255,255,0.3);
+  transition: var(--transition);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.btn-outline-white:hover {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.6);
+  transform: translateY(-2px);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+/* ----------------------------------------------------------------
+   NAVBAR — Urambazaji/navigasheni wa juu
+---------------------------------------------------------------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+  transition: var(--transition-slow);
+}
+
+/* Hali ya glasi baada ya kusogeza */
+.navbar.scrolled {
+  background: var(--nav-scrolled-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--nav-scrolled-border);
+  padding: 0.7rem 0;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+}
+
+.nav-container {
+  width: 100%;
+  max-width: var(--layout-max);
+  margin: 0 auto;
+  padding: 0 var(--layout-gutter);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-mid);
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 80%;
+  height: 2px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  transition: var(--transition);
+}
+
+.nav-links a:hover { color: var(--primary); }
+.nav-links a:hover::after { transform: translateX(-50%) scaleX(1); }
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-shrink: 0;
+}
+
+.nav-cta { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
+
+.theme-toggle {
+  min-width: 116px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--bg-card) 0%, rgba(148,163,184,0.08) 100%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 0 8px 0 7px;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,0.25);
+}
+
+.theme-toggle:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+.theme-toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.theme-toggle-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  background: rgba(37,99,235,0.12);
+  border: 1px solid rgba(37,99,235,0.22);
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.theme-toggle-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.theme-toggle-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-mid);
+}
+
+.theme-toggle[data-mode="system"] .theme-toggle-label { color: var(--text-mid); }
+.theme-toggle[data-mode="light"] .theme-toggle-label { color: var(--primary); }
+.theme-toggle[data-mode="dark"] .theme-toggle-label { color: var(--accent); }
+
+.theme-toggle[data-mode="dark"] .theme-toggle-icon {
+  color: var(--accent);
+  background: rgba(6,182,212,0.14);
+  border-color: rgba(6,182,212,0.28);
+}
+
+:root[data-theme="dark"] .theme-toggle {
+  background: linear-gradient(180deg, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.72) 100%);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.45), inset 0 1px 0 rgba(148,163,184,0.1);
+}
+
+
+/* ----------------------------------------------------------------
+   HERO SECTION — Sehemu kuu ya ukurasa
+---------------------------------------------------------------- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 100px;
+  padding-bottom: var(--space-3xl);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Mandharinyuma ya gradient inayobadilika */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(180deg, #EFF6FF 0%, var(--bg) 60%, var(--bg) 100%);
+}
+
+/* Mipira inayoelea nyuma */
+.blob {
+  position: absolute;
+  border-radius: var(--radius-full);
+  filter: blur(80px);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.blob-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 70%);
+  top: -150px;
+  right: -100px;
+  animation: blobFloat 8s ease-in-out infinite;
+}
+
+.blob-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%);
+  bottom: -100px;
+  left: -50px;
+  animation: blobFloat 10s ease-in-out infinite reverse;
+}
+
+.blob-3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%);
+  top: 40%;
+  left: 30%;
+  animation: blobFloat 12s ease-in-out infinite 2s;
+}
+
+/* Gridi ya mstari nyuma */
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0.3) 80%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0.3) 80%, transparent);
+}
+
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 15px) scale(0.95); }
+}
+
+.hero-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--layout-max);
+  margin: 0 auto;
+  padding: 0 var(--layout-gutter);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+
+/* Badge ndogo ya "inapatikana" */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #059669;
+  margin-bottom: var(--space-md);
+}
+
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-full);
+  background: #10B981;
+  box-shadow: 0 0 0 2px rgba(16,185,129,0.3);
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(16,185,129,0.3); }
+  50% { box-shadow: 0 0 0 5px rgba(16,185,129,0.1); }
+}
+
+.hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text-dark);
+  margin-bottom: var(--space-md);
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-bottom: var(--space-xl);
+  max-width: 440px;
+}
+
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+/* Takwimu za mafanikio chini ya hero */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.stat-num {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.03em;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--border);
+}
+
+/* ----------------------------------------------------------------
+   DASHBOARD CARD — Kadi ya dashibodi upande wa kulia wa hero
+---------------------------------------------------------------- */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-xl);
+  padding: var(--space-md);
+  width: 100%;
+  max-width: 440px;
+  animation: cardFloat 6s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.dash-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border);
+}
+
+.dash-dots { display: flex; gap: 5px; }
+.dot { width: 10px; height: 10px; border-radius: var(--radius-full); }
+.dot.red { background: #FF5F57; }
+.dot.yellow { background: #FFBD2E; }
+.dot.green { background: #28C840; }
+
+.dash-title {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  flex: 1;
+  text-align: center;
+}
+
+/* Grafu ya bar */
+.dash-chart { margin-bottom: var(--space-md); }
+
+.chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 100px;
+  margin-bottom: 8px;
+}
+
+.bar {
+  flex: 1;
+  height: var(--h);
+  background: rgba(37,99,235,0.12);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.bar span {
+  position: absolute;
+  bottom: -18px;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.bar.active { background: var(--gradient-primary); }
+.bar:hover { opacity: 0.8; }
+
+.chart-label {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 24px;
+}
+
+.chart-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--green);
+}
+
+.chart-sub { font-size: 0.8rem; color: var(--text-muted); }
+
+/* Kadi ndogo za takwimu */
+.dash-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.metric-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.metric-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.metric-icon.blue { background: rgba(37,99,235,0.1); color: var(--primary); }
+.metric-icon.cyan { background: rgba(6,182,212,0.1); color: var(--accent); }
+
+.metric-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.metric-name { font-size: 0.72rem; color: var(--text-muted); }
+
+/* Vitendo vya hivi karibuni */
+.dash-actions { display: flex; flex-direction: column; gap: 6px; }
+
+.action-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--text-mid);
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+}
+
+.action-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.green-dot { background: var(--green); }
+.blue-dot { background: var(--primary); }
+
+.action-time {
+  margin-left: auto;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* Beji inayoelea nje ya kadi */
+.floating-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--bg-card);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  white-space: nowrap;
+}
+
+.float-1 {
+  top: -20px;
+  right: -20px;
+  animation: floatBadge1 5s ease-in-out infinite;
+}
+
+.float-2 {
+  bottom: 40px;
+  left: -30px;
+  animation: floatBadge2 6s ease-in-out infinite 1s;
+}
+
+@keyframes floatBadge1 {
+  0%, 100% { transform: translate(0, 0) rotate(-3deg); }
+  50% { transform: translate(5px, -8px) rotate(2deg); }
+}
+
+@keyframes floatBadge2 {
+  0%, 100% { transform: translate(0, 0) rotate(2deg); }
+  50% { transform: translate(-5px, 5px) rotate(-2deg); }
+}
+
+/* ----------------------------------------------------------------
+   TECH STACK — Teknolojia zinazosogea
+---------------------------------------------------------------- */
+.techstack {
+  padding: var(--space-xl) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.techstack .section-eyebrow {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-md);
+}
+
+/* Njia inayosogea kwa teknolojia */
+.tech-track-wrapper {
+  overflow: hidden;
+  -webkit-mask: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  mask: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.tech-track {
+  display: flex;
+  gap: var(--space-sm);
+  width: max-content;
+  animation: techScroll 25s linear infinite;
+}
+
+.tech-track:hover { animation-play-state: paused; }
+
+@keyframes techScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  white-space: nowrap;
+  transition: var(--transition);
+  cursor: default;
+  box-shadow: var(--shadow-sm);
+}
+
+.tech-badge:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+/* ----------------------------------------------------------------
+   SERVICES — Kadi za huduma
+---------------------------------------------------------------- */
+.services {
+  padding: var(--space-3xl) 0;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+}
+
+/* Kadi ya huduma */
+.service-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl) var(--space-lg);
+  transition: var(--transition-slow);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.service-card:hover {
+  border-color: rgba(37,99,235,0.3);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.service-card:hover .service-card-glow { opacity: 1; }
+
+/* Nyeupe inayong'aa kwenye hover */
+.service-card-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.service-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(var(--icon-color-raw, 37,99,235), 0.08);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--icon-color, var(--primary));
+  margin-bottom: var(--space-md);
+  background: color-mix(in srgb, var(--icon-color) 10%, transparent);
+}
+
+.service-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.service-desc {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.65;
+  margin-bottom: var(--space-md);
+}
+
+.service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  transition: var(--transition);
+}
+
+.service-link:hover { gap: 10px; }
+
+
+/* ----------------------------------------------------------------
+   PORTFOLIO — Kadi za miradi
+---------------------------------------------------------------- */
+.portfolio {
+  padding: var(--space-3xl) 0;
+  background: linear-gradient(180deg, var(--bg) 0%, #EFF6FF 100%);
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.portfolio-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: var(--transition-slow);
+  box-shadow: var(--shadow-sm);
+}
+
+.portfolio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.portfolio-card.featured {
+  border-color: rgba(37,99,235,0.25);
+  box-shadow: var(--shadow);
+}
+
+.portfolio-img {
+  position: relative;
+  height: 220px;
+  background: linear-gradient(135deg, rgba(var(--accent-raw), 0.05) 0%, rgba(37,99,235,0.08) 100%);
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--accent) 8%, var(--bg)) 0%,
+    color-mix(in srgb, var(--primary) 10%, var(--bg)) 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+}
+
+/* Overlay inayoonekana wakati wa hover */
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15,23,42,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: var(--transition-slow);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.portfolio-card:hover .portfolio-overlay { opacity: 1; }
+
+.overlay-btn {
+  padding: 10px 24px;
+  background: #fff;
+  color: var(--primary);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  transition: var(--transition);
+  transform: translateY(8px);
+}
+
+.portfolio-card:hover .overlay-btn { transform: translateY(0); }
+.overlay-btn:hover { background: var(--primary); color: #fff; }
+
+.featured-label {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 4px 12px;
+  background: var(--gradient-primary);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.05em;
+}
+
+/* Mockups ndogo za picha za portfolio */
+.portfolio-mockup {
+  width: 100%;
+  max-width: 300px;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.mock-bar {
+  padding: 8px 10px;
+  background: #f1f5f9;
+  border-bottom: 1px solid var(--border);
+}
+
+.mock-dots { display: flex; gap: 4px; }
+.mock-dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--border); }
+.mock-dots span:nth-child(1) { background: #FF5F57; }
+.mock-dots span:nth-child(2) { background: #FFBD2E; }
+.mock-dots span:nth-child(3) { background: #28C840; }
+
+.mock-content { padding: 12px; display: flex; gap: 10px; }
+
+.mock-sidebar {
+  width: 48px;
+  background: linear-gradient(180deg, var(--border) 0%, transparent 100%);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.mock-main { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+
+.mock-card-row { display: flex; gap: 6px; }
+
+.mock-mini-card {
+  flex: 1;
+  height: 36px;
+  border-radius: 6px;
+}
+
+.mock-mini-card.blue { background: rgba(37,99,235,0.15); }
+.mock-mini-card.cyan { background: rgba(6,182,212,0.15); }
+.mock-mini-card.purple { background: rgba(124,58,237,0.15); }
+
+.mock-table-rows { display: flex; flex-direction: column; gap: 4px; }
+.mock-row { height: 8px; background: var(--border); border-radius: 3px; }
+.mock-row.short { width: 60%; }
+
+.mock-hero-strip { height: 50px; background: var(--gradient-primary); border-radius: 4px; margin-bottom: 8px; opacity: 0.4; }
+
+.mock-products { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.mock-product { height: 40px; background: var(--border); border-radius: 6px; }
+
+/* Flow ya automation */
+.mock-flow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  padding: 0 4px;
+}
+
+.flow-node {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+}
+
+.flow-node.start { background: rgba(37,99,235,0.3); }
+.flow-node.mid { background: rgba(6,182,212,0.3); }
+.flow-node.end { background: rgba(16,185,129,0.3); }
+
+.flow-arrow {
+  flex: 1;
+  height: 2px;
+  background: var(--border);
+  position: relative;
+}
+
+.mock-stats-mini { display: flex; flex-direction: column; gap: 4px; }
+.stat-bar { height: 6px; width: var(--w); background: var(--gradient-primary); border-radius: 3px; opacity: 0.5; }
+
+.portfolio-meta {
+  display: flex;
+  gap: 6px;
+  padding: var(--space-md) var(--space-md) 0;
+  flex-wrap: wrap;
+}
+
+.portfolio-tag {
+  padding: 3px 10px;
+  background: rgba(37,99,235,0.06);
+  border: 1px solid rgba(37,99,235,0.12);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.portfolio-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  padding: 10px var(--space-md) 6px;
+}
+
+.portfolio-desc {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  padding: 0 var(--space-md) var(--space-md);
+  line-height: 1.6;
+}
+
+/* ----------------------------------------------------------------
+   DEVELOPER SECTION — Sehemu ya msimbo
+---------------------------------------------------------------- */
+.developers {
+  padding: var(--space-3xl) 0;
+  background: var(--bg-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.developers::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.dev-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+
+/* Dirisha la msimbo wa kisasa */
+.code-window {
+  background: #0D1117;
+  border-radius: var(--radius-lg);
+  border: 1px solid #30363D;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #161B22;
+  border-bottom: 1px solid #30363D;
+}
+
+.code-dots { display: flex; gap: 5px; }
+.code-filename {
+  flex: 1;
+  text-align: center;
+  font-family: 'DM Mono', 'Fira Code', monospace;
+  font-size: 0.78rem;
+  color: #8B949E;
+}
+
+.code-actions span {
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  background: #21262D;
+  border: 1px solid #30363D;
+  border-radius: 4px;
+  color: #8B949E;
+}
+
+.code-body {
+  padding: var(--space-md);
+  font-family: 'DM Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #C9D1D9;
+  min-height: 280px;
+  position: relative;
+}
+
+pre#codeTyper {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Msimbo una rangi tofauti kwa kila aina ya neno */
+.tok-comment { color: #6A9955; }
+.tok-keyword { color: #569CD6; }
+.tok-string { color: #CE9178; }
+.tok-function { color: #DCDCAA; }
+.tok-variable { color: #9CDCFE; }
+.tok-operator { color: #D4D4D4; }
+.tok-number { color: #B5CEA8; }
+
+/* Mstari wa mwisho unaoblink */
+.cursor-blink {
+  display: inline-block;
+  color: var(--accent);
+  font-weight: 700;
+  animation: cursorBlink 1s step-end infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Maudhui ya maelezo upande wa kulia */
+.dev-content { color: #fff; }
+
+.dev-content .section-eyebrow {
+  color: var(--accent);
+}
+
+.dev-content .section-eyebrow::before {
+  background: linear-gradient(135deg, var(--accent), var(--primary));
+}
+
+.dev-content .section-title { color: #fff; }
+
+.dev-desc {
+  font-size: 1rem;
+  color: #94A3B8;
+  line-height: 1.75;
+  margin-bottom: var(--space-xl);
+}
+
+.dev-features { display: flex; flex-direction: column; gap: var(--space-md); }
+
+.dev-feature {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: flex-start;
+}
+
+.dev-feature-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(37,99,235,0.15);
+  border: 1px solid rgba(37,99,235,0.25);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.dev-feature strong { display: block; color: #E2E8F0; margin-bottom: 2px; font-size: 0.95rem; }
+.dev-feature p { color: #64748B; font-size: 0.88rem; margin: 0; }
+
+/* ----------------------------------------------------------------
+   WHY SEALTECH — Sababu za kuchagua
+---------------------------------------------------------------- */
+.why-section {
+  padding: var(--space-3xl) 0;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+.why-card {
+  padding: var(--space-xl) var(--space-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  position: relative;
+  transition: var(--transition-slow);
+}
+
+.why-card:hover {
+  border-color: rgba(37,99,235,0.2);
+  box-shadow: var(--shadow);
+  transform: translateY(-4px);
+}
+
+.why-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--primary);
+  opacity: 0.4;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.why-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.why-card p {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.65;
+}
+
+/* ----------------------------------------------------------------
+   TEAM — Timu yetu
+---------------------------------------------------------------- */
+.team {
+  padding: var(--space-3xl) 0;
+  background: linear-gradient(180deg, var(--bg) 0%, #EFF6FF 50%, var(--bg) 100%);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.team-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  text-align: center;
+  transition: var(--transition-slow);
+  position: relative;
+  overflow: hidden;
+}
+
+.team-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(37,99,235,0.2);
+}
+
+.team-photo {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  margin: 0 auto var(--space-md);
+}
+
+.team-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--av-color, var(--primary)), color-mix(in srgb, var(--av-color, var(--primary)) 50%, var(--accent)));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+  box-shadow: 0 8px 24px rgba(37,99,235,0.25);
+}
+
+.team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.team-socials {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  display: flex;
+  gap: 4px;
+}
+
+.team-socials a {
+  width: 28px;
+  height: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.team-socials a:hover { color: var(--primary); border-color: var(--primary); transform: scale(1.1); }
+
+.team-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.team-role {
+  font-size: 0.82rem;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.team-bio {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* ----------------------------------------------------------------
+   CTA SECTION — Wito wa hatua
+---------------------------------------------------------------- */
+.cta-section {
+  padding: var(--space-3xl) 0;
+  background: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 40%, #0E7490 100%);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.cta-bg { position: absolute; inset: 0; overflow: hidden; }
+
+.cta-blob {
+  position: absolute;
+  border-radius: var(--radius-full);
+  filter: blur(100px);
+  opacity: 0.4;
+}
+
+.cta-blob-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(6,182,212,0.5) 0%, transparent 70%);
+  top: -200px;
+  left: -100px;
+}
+
+.cta-blob-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(124,58,237,0.4) 0%, transparent 70%);
+  bottom: -150px;
+  right: -100px;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: var(--space-lg);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.cta-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: var(--space-md);
+  letter-spacing: -0.03em;
+}
+
+.cta-desc {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: var(--space-xl);
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-md);
+}
+
+.cta-note {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ----------------------------------------------------------------
+   START PROJECT MODAL — Kadi inayoelea yenye fomu
+---------------------------------------------------------------- */
+.project-modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  z-index: 1200;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.project-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.project-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.58);
+  backdrop-filter: blur(4px);
+}
+
+.project-modal-card {
+  position: relative;
+  width: min(640px, 100%);
+  max-height: min(90vh, 760px);
+  overflow: auto;
+  border-radius: 18px;
+  padding: 1.4rem;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(37, 99, 235, 0.1), transparent 35%),
+    radial-gradient(circle at 0% 100%, rgba(6, 182, 212, 0.09), transparent 40%),
+    var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-xl);
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-card);
+  color: var(--text);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.project-modal-eyebrow {
+  font-size: 0.74rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 6px;
+}
+
+.project-modal-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
+  margin-bottom: 6px;
+}
+
+.project-modal-copy {
+  color: var(--text-light);
+  font-size: 0.92rem;
+  margin-bottom: 1rem;
+}
+
+.project-modal-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.project-modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.project-modal-field label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.project-modal-field input,
+.project-modal-field select,
+.project-modal-field textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  background: var(--bg-card);
+  color: var(--text-dark);
+  font: inherit;
+}
+
+.project-modal-field-full {
+  grid-column: 1 / -1;
+}
+
+.project-modal-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.project-modal-message {
+  min-height: 1.3em;
+  font-size: 0.86rem;
+  color: #0f766e;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+/* ----------------------------------------------------------------
+   FOOTER — Sehemu ya chini
+---------------------------------------------------------------- */
+.footer {
+  background: var(--bg-dark);
+  padding: var(--space-2xl) 0 var(--space-lg);
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.footer-brand .nav-logo .logo-text { color: #fff; }
+
+.footer-tagline {
+  font-size: 0.88rem;
+  color: #94A3B8;
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  line-height: 1.6;
+}
+
+.footer-socials { display: flex; gap: 10px; }
+
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+  background: var(--bg-dark-card);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748B;
+  transition: var(--transition);
+}
+
+.footer-socials a:hover { color: #fff; border-color: var(--primary); background: rgba(37,99,235,0.15); }
+
+.footer-col h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-md);
+}
+
+.footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+
+.footer-col a {
+  font-size: 0.88rem;
+  color: #64748B;
+  transition: var(--transition);
+}
+
+.footer-col a:hover { color: #fff; padding-left: 4px; }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.footer-copy { font-size: 0.82rem; color: #475569; }
+
+.footer-bottom-links {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.footer-bottom-links a {
+  font-size: 0.82rem;
+  color: #475569;
+  transition: var(--transition);
+}
+
+.footer-bottom-links a:hover { color: #94A3B8; }
+
+/* ----------------------------------------------------------------
+   UHUISHAJI WA SCROLL — Vitu vinavyoonekana polepole
+---------------------------------------------------------------- */
+[data-animate] {
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-animate="fade-up"] { transform: translateY(32px); }
+[data-animate="fade-left"] { transform: translateX(32px); }
+[data-animate="fade-right"] { transform: translateX(-32px); }
+
+[data-animate].animated {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* ----------------------------------------------------------------
+   JIBU — Responsive design kwa vifaa vidogo
+---------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 900px) {
+  .hero-container { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .dev-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .nav-links, .nav-actions { display: none; }
+  .hamburger { display: flex; }
+
+  .theme-toggle {
+    margin-left: auto;
+    margin-right: 8px;
+  }
+
+  .hamburger {
+    margin-left: 0;
+  }
+
+  /* Menyu ya simu inayofunguka */
+  .nav-links.mobile-open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    padding: var(--space-lg);
+    gap: var(--space-sm);
+    box-shadow: var(--shadow-lg);
+    z-index: 999;
+    animation: slideDown 0.2s ease;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --space-2xl: 3rem;
+    --space-3xl: 5rem;
+  }
+
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr; }
+  .hero-stats { flex-wrap: wrap; }
+  .why-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+
+  .theme-toggle {
+    min-width: 44px;
+    width: 44px;
+    justify-content: center;
+    padding: 0;
+    gap: 0;
+  }
+
+  .theme-toggle-label {
+    display: none;
+  }
+
+  .project-modal-card {
+    padding: 1.1rem;
+    border-radius: 14px;
+  }
+
+  .project-modal-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* ================================================================
+   ABOUT.CSS — SealTech About Page Styles
+   Maelezo: Mitindo yote ya kurasa ya "About Us"
+================================================================ */
+
+
+/* ================================================================
+   ABOUT HERO — Sehemu ya juu ya ukurasa
+================================================================ */
+.about-hero {
+  padding-top: 120px;
+  padding-bottom: 5rem;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 0% 0%,   rgba(37,99,235,0.16), transparent 38%),
+    radial-gradient(circle at 100% 20%, rgba(6,182,212,0.14),  transparent 35%),
+    var(--bg);
+}
+
+.about-hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Gridi ya 2-kolamu: maandishi | kadi */
+.about-hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.about-hero-left {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Kichwa kikubwa */
+.about-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+  color: var(--text-dark);
+}
+
+/* Maelezo mafupi chini ya kichwa */
+.about-sub {
+  font-size: 1.05rem;
+  color: var(--text-light);
+  line-height: 1.75;
+  max-width: 52ch;
+  margin-bottom: 2rem;
+}
+
+/* ── Takwimu ndogo (120+ projects, 8+ years, 98%) ── */
+.about-stats {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.about-stat-num {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.about-stat-label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+.about-stat-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+/* ── Kadi za Mission & Vision (upande wa kulia) ── */
+.about-hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.about-mission-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  transition: var(--transition-slow);
+}
+
+.about-mission-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(37,99,235,0.15);
+}
+
+.about-mission-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(37,99,235,0.08);
+  color: var(--primary);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.about-mission-icon.cyan {
+  background: rgba(6,182,212,0.08);
+  color: var(--accent);
+}
+
+.about-mission-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.35rem;
+}
+
+.about-mission-card p {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── Alama ya imani (green badge) ── */
+.about-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(16,185,129,0.07);
+  border: 1px solid rgba(16,185,129,0.2);
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #059669;
+  align-self: flex-start;
+}
+
+.about-trust-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 0 3px rgba(16,185,129,0.2);
+  animation: badgePulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+
+/* ================================================================
+   BREADCRUMB — Navigation ya kurasa
+================================================================ */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.breadcrumb a {
+  color: var(--text-muted);
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.breadcrumb a:hover {
+  color: var(--primary);
+}
+
+.breadcrumb > span {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.breadcrumb svg {
+  color: var(--border);
+  flex-shrink: 0;
+}
+
+
+/* ================================================================
+   CORE VALUES SECTION
+================================================================ */
+.about-values {
+  padding: 5rem 0;
+  background: var(--bg);
+}
+
+/* Gridi ya 3-kolamu: thamani 6 */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.value-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-slow);
+}
+
+/* Mstari wa juu unaoonekana wakati wa hover */
+.value-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(37,99,235,0.15);
+}
+
+.value-card:hover::before {
+  opacity: 1;
+}
+
+/* Nambari ndogo juu kushoto (01, 02...) */
+.value-card-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--primary);
+  opacity: 0.35;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+/* Ikoni ya thamani */
+.value-card-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(37,99,235,0.08);
+  color: var(--primary);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.value-card h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.45rem;
+}
+
+.value-card p {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+
+/* ================================================================
+   TEAM SECTION — (inatumia .team-* kutoka styles.css)
+================================================================ */
+.about-leadership {
+  padding: 0 0 5rem;
+}
+
+
+/* ================================================================
+   CTA SECTION — Wito wa hatua
+================================================================ */
+.about-cta {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 40%, #0E7490 100%);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.about-cta-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.about-cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.about-cta-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.about-cta-desc {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.72);
+  max-width: 480px;
+  margin: 0 auto 2.25rem;
+  line-height: 1.7;
+}
+
+
+/* ================================================================
+   RESPONSIVE — Simu ndogo na tablet
+================================================================ */
+
+/* ── Tablet: ≤ 1024px ── */
+@media (max-width: 1024px) {
+  .about-hero {
+    padding-top: 100px;
+    padding-bottom: 4rem;
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Tablet mdogo / landscape simu: ≤ 900px ── */
+@media (max-width: 900px) {
+  .about-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* Kadi za Mission zinaenda chini ya maandishi */
+  .about-hero-right {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .about-mission-card {
+    flex: 1 1 280px;
+  }
+
+  .about-trust-badge {
+    width: 100%;
+  }
+
+  .about-title {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+  }
+
+  .about-sub {
+    max-width: 100%;
+  }
+
+  .about-values {
+    padding: 4rem 0;
+  }
+}
+
+/* ── Simu: ≤ 640px ── */
+@media (max-width: 640px) {
+  .about-hero {
+    padding-top: 90px;
+    padding-bottom: 3rem;
+  }
+
+  .about-hero-grid {
+    gap: 1.5rem;
+  }
+
+  .about-hero-right {
+    flex-direction: column;
+  }
+
+  .about-mission-card {
+    flex: unset;
+    width: 100%;
+  }
+
+  .about-stats {
+    gap: 1rem;
+  }
+
+  .about-stat-num {
+    font-size: 1.4rem;
+  }
+
+  .about-stat-divider {
+    height: 28px;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .value-card {
+    padding: 1.25rem 1.1rem;
+  }
+
+  .about-leadership {
+    padding-bottom: 3.5rem;
+  }
+
+  .about-cta {
+    padding: 4rem 0;
+  }
+
+  .about-cta-title {
+    font-size: clamp(1.5rem, 7vw, 2.2rem);
+  }
+
+  .breadcrumb {
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* ── Simu ndogo sana: ≤ 400px ── */
+@media (max-width: 400px) {
+  .about-title {
+    font-size: 1.65rem;
+  }
+
+  .about-sub {
+    font-size: 0.95rem;
+  }
+
+  .about-mission-card {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .about-mission-icon {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+
+
+/* ================================================================
+   CONTACT.CSS — SealTech Contact Page Styles
+   Maelezo: Mitindo yote ya kurasa ya "Contact Us"
+================================================================ */
+
+
+/* ================================================================
+   CONTACT HERO — Sehemu ya juu ya ukurasa
+================================================================ */
+.contact-hero {
+  padding-top: 120px;
+  padding-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #EFF6FF 0%, var(--bg) 100%);
+}
+
+.contact-hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.contact-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+}
+
+/* Kichwa kikubwa cha hero */
+.contact-hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text-dark);
+  margin-bottom: 1.25rem;
+}
+
+/* Maelezo ya hero */
+.contact-hero-desc {
+  font-size: 1.05rem;
+  color: var(--text-light);
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
+  max-width: 52ch;
+}
+
+/* ── Alama za imani (Free consultation, 24h, No commitment) ── */
+.contact-trust-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.contact-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+
+/* ================================================================
+   BREADCRUMB — Navigation ya kurasa
+================================================================ */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.breadcrumb a {
+  color: var(--text-muted);
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.breadcrumb a:hover {
+  color: var(--primary);
+}
+
+.breadcrumb > span {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.breadcrumb svg {
+  color: var(--border);
+  flex-shrink: 0;
+}
+
+
+/* ================================================================
+   MAIN CONTACT SECTION — Fomu + Taarifa
+================================================================ */
+.contact-main {
+  padding: 4rem 0 5rem;
+}
+
+/* Gridi ya 2-kolamu: fomu | info+ramani */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+
+/* ================================================================
+   CONTACT FORM CARD — Kadi ya fomu
+================================================================ */
+.contact-form-col {
+  /* Kolamu ya fomu — hakuna mitindo ya ziada */
+}
+
+.contact-form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  box-shadow: var(--shadow);
+}
+
+.contact-form-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.contact-form-header h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 0.4rem;
+}
+
+.contact-form-header p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+
+/* ================================================================
+   FORM ELEMENTS — Vipengele vya fomu
+================================================================ */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Safu mbili kwa kampuni + simu */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.form-required {
+  color: #EF4444;
+}
+
+/* Mashamba ya maandishi */
+.form-input,
+.form-select,
+.form-textarea {
+  padding: 11px 16px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--text-dark);
+  outline: none;
+  transition: var(--transition);
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* Hali ya kuzingatia */
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  background: var(--bg-card);
+}
+
+/* Hali ya kosa */
+.form-input.is-error,
+.form-select.is-error,
+.form-textarea.is-error {
+  border-color: #EF4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Ujumbe wa kosa */
+.form-error {
+  font-size: 0.78rem;
+  color: #EF4444;
+  font-weight: 500;
+  min-height: 1em;
+}
+
+/* Dropdown select */
+.form-select-wrapper {
+  position: relative;
+}
+
+.form-select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.form-select-arrow {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text-muted);
+}
+
+/* Textarea */
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+/* Kihesabu cha herufi chini ya textarea */
+.form-char-count {
+  text-align: right;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 3px;
+  transition: color var(--transition);
+}
+
+/* ── Vitufe vya bajeti (radio buttons kama chips) ── */
+.budget-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.budget-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.budget-option input[type="radio"] {
+  display: none; /* Ficha radio button ya chaguo-msingi */
+}
+
+.budget-option span {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  transition: var(--transition);
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.budget-option input:checked + span {
+  background: rgba(37,99,235,0.08);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.budget-option:hover span {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Kitufe cha kutuma */
+.form-submit {
+  width: 100%;
+  justify-content: center;
+  padding: 14px 24px;
+  font-size: 0.95rem;
+  border-radius: var(--radius);
+  margin-top: 0.5rem;
+  gap: 10px;
+}
+
+.form-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Ujumbe wa mafanikio ── */
+.form-success {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  background: rgba(16,185,129,0.05);
+  border: 1px solid rgba(16,185,129,0.2);
+  border-radius: var(--radius-lg);
+  margin-top: 0.5rem;
+}
+
+.form-success-icon {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.form-success h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.4rem;
+}
+
+.form-success p {
+  font-size: 0.88rem;
+  color: var(--text-light);
+}
+
+
+/* ================================================================
+   CONTACT INFO CARD — Taarifa za mawasiliano
+================================================================ */
+.contact-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact-info-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.contact-info-card > h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Orodha ya vipengele vya mawasiliano */
+.contact-info-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+/* Ikoni ya mawasiliano */
+.contact-info-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(37,99,235,0.08);
+  color: var(--primary);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Kichwa kidogo cha kila taarifa */
+.contact-info-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 3px;
+}
+
+/* Thamani ya taarifa */
+.contact-info-value {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  line-height: 1.55;
+}
+
+/* Viungo vya taarifa (barua pepe, simu) */
+.contact-info-link {
+  color: var(--primary);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.contact-info-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* ── Mitandao ya kijamii ── */
+.contact-socials {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-socials-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.contact-socials-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.contact-social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.contact-social-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(37,99,235,0.05);
+}
+
+
+/* ================================================================
+   MAP CARD — Kadi ya ramani
+================================================================ */
+.contact-map-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* Kichwa cha kadi ya ramani */
+.contact-map-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-mid);
+}
+
+.contact-map-header svg {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+/* Kontena ya ramani — Leaflet inajaza hapa */
+.contact-map {
+  width: 100%;
+  height: 320px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+/* Kijachini cha kadi ya ramani */
+.contact-map-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  border-top: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Kiungo cha "Get Directions" */
+.contact-map-directions {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--primary);
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.contact-map-directions:hover {
+  opacity: 0.8;
+}
+
+
+/* ================================================================
+   FAQ SECTION — Maswali yanayoulizwa mara kwa mara
+================================================================ */
+.contact-faq {
+  padding: 5rem 0;
+  background: linear-gradient(180deg, var(--bg) 0%, #EFF6FF 100%);
+}
+
+/* Gridi ya 2-kolamu kwa maswali */
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  transition: var(--transition-slow);
+}
+
+.faq-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+  border-color: rgba(37,99,235,0.12);
+}
+
+.faq-item h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.6rem;
+}
+
+.faq-item p {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+
+/* ================================================================
+   RESPONSIVE — Simu ndogo na tablet
+================================================================ */
+
+/* ── Tablet: ≤ 1100px ── */
+@media (max-width: 1100px) {
+  .contact-layout {
+    grid-template-columns: 1fr 0.85fr;
+    gap: 2rem;
+  }
+}
+
+/* ── Tablet: ≤ 960px ── */
+@media (max-width: 960px) {
+  /* Stack kolamu moja chini ya nyingine */
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* Info + ramani zinaenda juu ya fomu kwenye mobile */
+  .contact-info-col {
+    order: -1;
+  }
+
+  /* Ramani inakuwa fupi kidogo */
+  .contact-map {
+    height: 240px;
+  }
+
+  /* Info card: panga vipengele kwa safu mbili */
+  .contact-info-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .contact-hero {
+    padding-top: 100px;
+    padding-bottom: 3rem;
+  }
+}
+
+/* ── Simu ya kati: ≤ 768px ── */
+@media (max-width: 768px) {
+  .contact-info-items {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-info-card {
+    padding: 1.5rem;
+  }
+
+  .faq-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .contact-faq {
+    padding: 4rem 0;
+  }
+}
+
+/* ── Simu ndogo: ≤ 640px ── */
+@media (max-width: 640px) {
+  .contact-hero {
+    padding-top: 90px;
+    padding-bottom: 2.5rem;
+  }
+
+  .contact-hero-title {
+    font-size: clamp(1.8rem, 7vw, 2.4rem);
+  }
+
+  .contact-hero-desc {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .contact-trust-row {
+    gap: 0.85rem;
+  }
+
+  .contact-trust-item {
+    font-size: 0.8rem;
+  }
+
+  /* Safu mbili za fomu inakuwa moja */
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* Kadi ya fomu padding ndogo */
+  .contact-form-card {
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .contact-form-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+  }
+
+  .contact-map {
+    height: 200px;
+  }
+
+  .contact-map-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .budget-options {
+    gap: 6px;
+  }
+
+  .budget-option span {
+    padding: 7px 12px;
+    font-size: 0.78rem;
+  }
+
+  .contact-main {
+    padding: 2.5rem 0 3.5rem;
+  }
+
+  .breadcrumb {
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* ── Simu ndogo sana: ≤ 400px ── */
+@media (max-width: 400px) {
+  .contact-hero-title {
+    font-size: 1.7rem;
+  }
+
+  .contact-form-card {
+    padding: 1.25rem;
+  }
+
+  .contact-info-card {
+    padding: 1.25rem;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 0.875rem;
+    padding: 10px 14px;
+  }
+
+  .contact-social-btn {
+    padding: 7px 11px;
+    font-size: 0.78rem;
+  }
+
+  .contact-socials-links {
+    gap: 6px;
+  }
+}

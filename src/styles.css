@@ -1,0 +1,84 @@
+@import "./styles/main.css";
+@import "./styles/navbar.css";
+@import "./styles/components.css";
+@import "./styles/pages.css";
+
+button {
+  font-family: inherit;
+}
+
+.btn-primary,
+.btn-white,
+.btn-outline-white,
+.theme-toggle,
+.hamburger {
+  border: 0;
+  cursor: pointer;
+}
+
+.btn-outline,
+.btn-ghost,
+.service-link,
+.blog-card-title a,
+.blog-card-read-more,
+.nav-logo {
+  text-decoration: none;
+}
+
+.hero {
+  padding-top: 120px;
+}
+
+.blog-card-image-icon svg,
+.post-featured-image-icon svg {
+  display: block;
+}
+
+.post-breadcrumb,
+.breadcrumb {
+  gap: 10px;
+}
+
+.project-modal-field input,
+.project-modal-field select,
+.project-modal-field textarea {
+  width: 100%;
+}
+
+.sidebar-newsletter-button {
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.api-status {
+  margin-top: 12px;
+}
+
+.static-page {
+  min-height: 60vh;
+  padding: 150px 0 80px;
+}
+
+.portfolio-mockup {
+  width: min(82%, 360px);
+  height: 72%;
+  margin: 8% auto;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.mock-bar {
+  height: 34px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.mock-content {
+  height: calc(100% - 34px);
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.18) 0 24%, transparent 24%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.18) 0 12px, transparent 12px 28px);
+  margin: 18px;
+  border-radius: 10px;
+}
