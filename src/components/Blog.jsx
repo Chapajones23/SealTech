@@ -92,10 +92,11 @@ export function Newsletter({ compact = false }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const email = new FormData(event.currentTarget).get("email");
+    const form = event.currentTarget;
+    const email = new FormData(form).get("email");
     try {
       await subscribeNewsletter({ email });
-      event.currentTarget.reset();
+      form.reset();
       setStatus("Subscribed.");
     } catch (error) {
       setStatus(error.message);
@@ -152,12 +153,13 @@ export function ContactForm() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    const form = event.currentTarget;
     setPending(true);
     setStatus("");
-    const payload = Object.fromEntries(new FormData(event.currentTarget));
+    const payload = Object.fromEntries(new FormData(form));
     try {
       await submitContact(payload);
-      event.currentTarget.reset();
+      form.reset();
       setStatus("Message sent successfully.");
     } catch (error) {
       setStatus(error.message);

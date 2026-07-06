@@ -12,12 +12,13 @@ function ApiModal({ title, eyebrow, submit, onClose, fields }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    const form = event.currentTarget;
     setPending(true);
     setStatus("");
-    const payload = Object.fromEntries(new FormData(event.currentTarget));
+    const payload = Object.fromEntries(new FormData(form));
     try {
       await submit(payload);
-      event.currentTarget.reset();
+      form.reset();
       setStatus("Submitted successfully.");
     } catch (error) {
       setStatus(error.message);
