@@ -48,10 +48,10 @@ export const TEAM = [
     "/assets/images/team/chapa.webp",
   ],
   [
-    "Lusajo JOB",
+    "Lusajo Job",
     "CFO & Payment Integration Engineer",
     "3+ years of experience in payment processing, financial integration and API integration.",
-    null,
+    "/assets/images/team/job.webp",
   ],
   [
     "Alfred Kalinga",
