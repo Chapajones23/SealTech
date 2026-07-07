@@ -8,7 +8,7 @@ export function BlogCard({ post }) {
   return (
     <article className="blog-card">
       <Link
-        href={`/post.html?slug=${post.slug}`}
+        href={`/post?slug=${post.slug}`}
         className="blog-card-image-link"
       >
         <div
@@ -32,7 +32,7 @@ export function BlogCard({ post }) {
           <span className="blog-card-read-time">{post.readTime}</span>
         </div>
         <h3 className="blog-card-title">
-          <Link href={`/post.html?slug=${post.slug}`}>{post.title}</Link>
+          <Link href={`/post?slug=${post.slug}`}>{post.title}</Link>
         </h3>
         <p className="blog-card-excerpt">{post.excerpt}</p>
         <div className="blog-card-footer">
@@ -44,7 +44,7 @@ export function BlogCard({ post }) {
             ))}
           </div>
           <Link
-            href={`/post.html?slug=${post.slug}`}
+            href={`/post?slug=${post.slug}`}
             className="blog-card-read-more"
           >
             Read more
@@ -78,7 +78,7 @@ export function LatestInsights({ posts, loading }) {
           </div>
         )}
         <div className="blog-view-all">
-          <Link href="/blog.html" className="btn-outline btn-lg">
+          <Link href="/blog" className="btn-outline btn-lg">
             View All Articles
           </Link>
         </div>

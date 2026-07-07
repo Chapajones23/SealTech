@@ -129,7 +129,7 @@ export function PressPage() {
             <p className="cta-desc">We welcome interviews, guest articles, and speaking opportunities.</p>
             <div className="cta-buttons">
               <a href="mailto:press@sealtech.co.tz" className="btn-white">press@sealtech.co.tz</a>
-              <Link href="/about.html" className="btn-outline-white">About us</Link>
+              <Link href="/about" className="btn-outline-white">About us</Link>
             </div>
           </div>
         </div>

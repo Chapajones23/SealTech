@@ -166,7 +166,7 @@ export function CareersPage() {
             <p className="cta-desc">Send your CV and a short note about what you'd build at SealTech.</p>
             <div className="cta-buttons">
               <a href="mailto:careers@sealtech.co.tz" className="btn-white">careers@sealtech.co.tz</a>
-              <Link href="/about.html" className="btn-outline-white">Meet the team</Link>
+              <Link href="/about" className="btn-outline-white">Meet the team</Link>
             </div>
           </div>
         </div>

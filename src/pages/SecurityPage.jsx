@@ -177,7 +177,7 @@ export function SecurityPage() {
             <p className="cta-desc">Please report it responsibly. We acknowledge reports within 24 hours and keep you updated.</p>
             <div className="cta-buttons">
               <a href="mailto:security@sealtech.co.tz" className="btn-white">security@sealtech.co.tz</a>
-              <Link href="/privacy.html" className="btn-outline-white">Privacy Policy</Link>
+              <Link href="/privacy" className="btn-outline-white">Privacy Policy</Link>
             </div>
           </div>
         </div>

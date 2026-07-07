@@ -31,13 +31,13 @@ export function Footer() {
             <h4>Company</h4>
             <ul>
               <li>
-                <Link href="/about.html">About Us</Link>
+                <Link href="/about">About Us</Link>
               </li>
               <li>
-                <Link href="/blog.html">Blog</Link>
+                <Link href="/blog">Blog</Link>
               </li>
               <li>
-                <Link href="/contact.html">Contact</Link>
+                <Link href="/contact">Contact</Link>
               </li>
             </ul>
           </div>
@@ -45,13 +45,13 @@ export function Footer() {
             <h4>Resources</h4>
             <ul>
               <li>
-                <Link href="/privacy.html">Privacy Policy</Link>
+                <Link href="/privacy">Privacy Policy</Link>
               </li>
               <li>
-                <Link href="/terms.html">Terms of Service</Link>
+                <Link href="/terms">Terms of Service</Link>
               </li>
               <li>
-                <Link href="/security.html">Security</Link>
+                <Link href="/security">Security</Link>
               </li>
             </ul>
           </div>
@@ -59,8 +59,8 @@ export function Footer() {
         <div className="footer-bottom">
           <p className="footer-copy">© SealTech 2026. All rights reserved.</p>
           <div className="footer-bottom-links">
-            <Link href="/privacy.html">Privacy</Link>
-            <Link href="/terms.html">Terms</Link>
+            <Link href="/privacy">Privacy</Link>
+            <Link href="/terms">Terms</Link>
           </div>
         </div>
       </div>

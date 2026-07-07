@@ -75,14 +75,14 @@ export function Navbar({ onOpenProject, scrolled }) {
             <Link href="/#developers" className={isActive("/#developers") ? "active" : ""} onClick={(e) => handleSectionLink(e, "/#developers")}>Developers</Link>
           </li>
           <li>
-            <Link href="/blog.html" className={isActive("/blog.html") ? "active" : ""} onClick={() => setOpen(false)}>Blog</Link>
+            <Link href="/blog" className={isActive("/blog") ? "active" : ""} onClick={() => setOpen(false)}>Blog</Link>
           </li>
           <li>
-            <Link href="/about.html" className={isActive("/about.html") ? "active" : ""} onClick={() => setOpen(false)}>Company</Link>
+            <Link href="/about" className={isActive("/about") ? "active" : ""} onClick={() => setOpen(false)}>Company</Link>
           </li>
         </ul>
         <div className="nav-actions">
-          <Link href="/contact.html" className="btn-ghost">
+          <Link href="/contact" className="btn-ghost">
             Contact
           </Link>
           <button className="btn-primary nav-cta" onClick={onOpenProject}>

@@ -96,7 +96,7 @@ export function Services({ services = [], loading = false, error = "" }) {
               <div className="service-icon">{index + 1}</div>
               <h3 className="service-title">{title}</h3>
               <p className="service-desc">{description}</p>
-              <Link className="service-link" href="/blog.html">
+              <Link className="service-link" href="/blog">
                 Learn more
               </Link>
               <div className="service-card-glow"></div>

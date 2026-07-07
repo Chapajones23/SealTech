@@ -149,7 +149,7 @@ export function TermsPage() {
             <p className="cta-desc">Reach out and we'll clarify anything before you commit.</p>
             <div className="cta-buttons">
               <a href="mailto:legal@sealtech.co.tz" className="btn-white">legal@sealtech.co.tz</a>
-              <Link href="/privacy.html" className="btn-outline-white">Privacy Policy</Link>
+              <Link href="/privacy" className="btn-outline-white">Privacy Policy</Link>
             </div>
           </div>
         </div>

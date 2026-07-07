@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { formatDate, sortPosts } from "../utils/navigation.js";
 import { SectionHeader, AuthorAvatar, Loading, ErrorState } from "../components/Shared.jsx";
 import { BlogCard, Newsletter } from "../components/Blog.jsx";
@@ -9,12 +8,6 @@ export function PostPage({ postsState, slug }) {
   const related = sortPosts(postsState.posts)
     .filter((item) => item.slug !== slug)
     .slice(0, 3);
-
-  useEffect(() => {
-    document.title = post
-      ? `${post.title} - SealTech Insights`
-      : "SealTech Insights";
-  }, [post]);
 
   if (postsState.loading)
     return (
@@ -37,7 +30,7 @@ export function PostPage({ postsState, slug }) {
             <header className="post-header" data-animate="fade-up">
               <div className="post-breadcrumb">
                 <Link href="/">Home</Link>
-                <Link href="/blog.html">Blog</Link>
+                <Link href="/blog">Blog</Link>
                 <span>{post.category}</span>
               </div>
               <div className="post-category-badge">{post.category}</div>
@@ -77,7 +70,7 @@ export function PostPage({ postsState, slug }) {
           </article>
           <aside className="post-sidebar">
             <div className="sidebar-widget">
-              <Link href="/blog.html" className="sidebar-back-link">
+              <Link href="/blog" className="sidebar-back-link">
                 Back to Blog
               </Link>
             </div>

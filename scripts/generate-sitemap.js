@@ -12,15 +12,15 @@ const BASE_URL = "https://sealtech.co.tz";
 
 // Static pages
 const staticPages = [
-  { loc: "/", lastmod: "2026-06-17" },
-  { loc: "/about", lastmod: "2026-06-17" },
-  { loc: "/blog", lastmod: "2026-06-17" },
-  { loc: "/careers", lastmod: "2026-06-17" },
-  { loc: "/contact", lastmod: "2026-06-17" },
-  { loc: "/press", lastmod: "2026-06-17" },
-  { loc: "/security", lastmod: "2026-06-17" },
-  { loc: "/privacy", lastmod: "2026-06-17" },
-  { loc: "/terms", lastmod: "2026-06-17" }
+  { loc: "/", lastmod: "2026-06-17", changefreq: "weekly", priority: "1.0" },
+  { loc: "/about", lastmod: "2026-06-17", changefreq: "monthly", priority: "0.8" },
+  { loc: "/blog", lastmod: "2026-06-17", changefreq: "weekly", priority: "0.8" },
+  { loc: "/careers", lastmod: "2026-06-17", changefreq: "monthly", priority: "0.7" },
+  { loc: "/contact", lastmod: "2026-06-17", changefreq: "yearly", priority: "0.7" },
+  { loc: "/press", lastmod: "2026-06-17", changefreq: "monthly", priority: "0.6" },
+  { loc: "/security", lastmod: "2026-06-17", changefreq: "yearly", priority: "0.5" },
+  { loc: "/privacy", lastmod: "2026-06-17", changefreq: "yearly", priority: "0.4" },
+  { loc: "/terms", lastmod: "2026-06-17", changefreq: "yearly", priority: "0.4" }
 ];
 
 try {
@@ -34,6 +34,8 @@ try {
     xml += '  <url>\n';
     xml += `    <loc>${BASE_URL}${page.loc}</loc>\n`;
     xml += `    <lastmod>${page.lastmod}</lastmod>\n`;
+    xml += `    <changefreq>${page.changefreq}</changefreq>\n`;
+    xml += `    <priority>${page.priority}</priority>\n`;
     xml += '  </url>\n';
   });
 
@@ -43,6 +45,8 @@ try {
     // Match route format. Since our router supports both, we use clean URL structure.
     xml += `    <loc>${BASE_URL}/post?slug=${post.slug}</loc>\n`;
     xml += `    <lastmod>${post.publishDate}</lastmod>\n`;
+    xml += '    <changefreq>monthly</changefreq>\n';
+    xml += '    <priority>0.6</priority>\n';
     xml += '  </url>\n';
   });
 

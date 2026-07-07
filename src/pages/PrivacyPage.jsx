@@ -238,7 +238,7 @@ export function PrivacyPage() {
                 <a href="mailto:privacy@sealtech.co.tz" className="btn-primary btn-lg">
                   privacy@sealtech.co.tz
                 </a>
-                <Link href="/contact.html" className="btn-outline btn-lg">
+                <Link href="/contact" className="btn-outline btn-lg">
                   Contact form
                 </Link>
               </div>
