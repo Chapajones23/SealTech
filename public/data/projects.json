@@ -1,0 +1,20 @@
+[
+  {
+    "title": "School Management Platform",
+    "category": "Education",
+    "stack": "Laravel",
+    "description": "Admissions, grading, fees, and parent communication for 40+ schools."
+  },
+  {
+    "title": "Ecommerce Marketplace",
+    "category": "E-Commerce",
+    "stack": "React + Node",
+    "description": "Multi-vendor commerce with real-time inventory, payments, and analytics."
+  },
+  {
+    "title": "Business Automation System",
+    "category": "Enterprise",
+    "stack": "Django + AWS",
+    "description": "Workflow automation that reduced manual processing by 78%."
+  }
+]

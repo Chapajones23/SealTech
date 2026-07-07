@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Web Development",
+    "description": "High-performance web applications, portals, and dashboards built with modern frontend and backend architecture."
+  },
+  {
+    "title": "Custom Software Systems",
+    "description": "ERP, CRM, workflow automation, and internal tools shaped around the way your business actually operates."
+  },
+  {
+    "title": "Mobile Applications",
+    "description": "Reliable iOS and Android apps with clean product flows, API integration, and scalable release pipelines."
+  },
+  {
+    "title": "Cloud & DevOps",
+    "description": "Infrastructure, Docker, CI/CD, observability, and cloud architecture that keeps production predictable."
+  }
+]

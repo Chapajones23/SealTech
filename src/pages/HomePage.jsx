@@ -3,9 +3,13 @@ import { sortPosts } from "../utils/navigation.js";
 import { TechStack, Services, Portfolio, Developers, Why, Team } from "../components/HomeComponents.jsx";
 import { LatestInsights } from "../components/Blog.jsx";
 import { Link } from "../components/Link.jsx";
+import { useServices } from "../hooks/useServices.js";
+import { useProjects } from "../hooks/useProjects.js";
 
 export function HomePage({ postsState, onOpenProject, onOpenCall }) {
   const latest = sortPosts(postsState.posts).slice(0, 3);
+  const servicesState = useServices();
+  const projectsState = useProjects();
 
   return (
     <main>
@@ -101,8 +105,8 @@ export function HomePage({ postsState, onOpenProject, onOpenCall }) {
         </div>
       </section>
       <TechStack />
-      <Services />
-      <Portfolio />
+      <Services services={servicesState.services} loading={servicesState.loading} error={servicesState.error} />
+      <Portfolio projects={projectsState.projects} loading={projectsState.loading} error={projectsState.error} />
       <Developers />
       <Why />
       <Team />

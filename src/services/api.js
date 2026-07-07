@@ -2,6 +2,8 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000
 
 const endpoints = {
   posts: import.meta.env.VITE_BLOG_POSTS_API_URL || `${API_BASE_URL}/api/posts`,
+  services: import.meta.env.VITE_SERVICES_API_URL || `${API_BASE_URL}/api/services`,
+  projects: import.meta.env.VITE_PROJECTS_API_URL || `${API_BASE_URL}/api/projects`,
   contact: import.meta.env.VITE_CONTACT_API_URL || `${API_BASE_URL}/api/contact`,
   project: import.meta.env.VITE_PROJECT_API_URL || `${API_BASE_URL}/api/project-request`,
   call: import.meta.env.VITE_CALL_API_URL || `${API_BASE_URL}/api/calls`,
@@ -44,6 +46,28 @@ export async function fetchPosts() {
   } catch (_error) {
     const response = await fetch("/data/blog-posts.json");
     if (!response.ok) throw new Error("Unable to load blog posts");
+    return response.json();
+  }
+}
+
+export async function fetchServices() {
+  try {
+    const data = await requestJson(endpoints.services);
+    return data && data.data ? data.data : data;
+  } catch (_error) {
+    const response = await fetch("/data/services.json");
+    if (!response.ok) throw new Error("Unable to load services");
+    return response.json();
+  }
+}
+
+export async function fetchProjects() {
+  try {
+    const data = await requestJson(endpoints.projects);
+    return data && data.data ? data.data : data;
+  } catch (_error) {
+    const response = await fetch("/data/projects.json");
+    if (!response.ok) throw new Error("Unable to load projects");
     return response.json();
   }
 }

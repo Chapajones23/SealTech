@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SERVICES, PROJECTS, TEAM } from "../constants/index.js";
+import { TEAM } from "../constants/index.js";
 import { formatDate, sortPosts } from "../utils/navigation.js";
 import { SectionHeader, AuthorAvatar } from "./Shared.jsx";
 import { Link } from "./Link.jsx";
@@ -35,7 +35,42 @@ export function TechStack() {
   );
 }
 
-export function Services() {
+export function Services({ services = [], loading = false, error = "" }) {
+  if (loading) {
+    return (
+      <section className="services" id="services">
+        <div className="container">
+          <SectionHeader
+            eyebrow="What We Do"
+            title={
+              <>
+                End-to-end digital<br />
+                <span className="gradient-text">engineering</span>
+              </>
+            }
+            desc="From concept to production. We craft refined, scalable solutions that bring ideas to life."
+          />
+          <div className="services-grid">
+            {[1, 2, 3, 4].map((i) => (
+              <article className="service-card skeleton" key={i} style={{ height: "220px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+                <div className="skeleton-image" style={{ width: "30px", height: "30px", borderRadius: "50%", marginBottom: "15px" }}></div>
+                <div className="skeleton-title" style={{ width: "60%", height: "20px", marginBottom: "10px" }}></div>
+                <div className="skeleton-text" style={{ width: "80%", height: "15px" }}></div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const items = services.map((item) => {
+    if (Array.isArray(item)) {
+      return { title: item[0], description: item[1] };
+    }
+    return { title: item.title, description: item.description };
+  });
+
   return (
     <section className="services" id="services">
       <div className="container">
@@ -49,8 +84,9 @@ export function Services() {
           }
           desc="From concept to production. We craft refined, scalable solutions that bring ideas to life."
         />
+        {error && <p className="error-message" style={{ color: "var(--color-error, #ef4444)", textAlign: "center", marginBottom: "20px" }}>{error}</p>}
         <div className="services-grid">
-          {SERVICES.map(([title, desc], index) => (
+          {items.map(({ title, description }, index) => (
             <article
               className="service-card"
               data-animate="fade-up"
@@ -59,7 +95,7 @@ export function Services() {
             >
               <div className="service-icon">{index + 1}</div>
               <h3 className="service-title">{title}</h3>
-              <p className="service-desc">{desc}</p>
+              <p className="service-desc">{description}</p>
               <Link className="service-link" href="/blog.html">
                 Learn more
               </Link>
@@ -72,7 +108,47 @@ export function Services() {
   );
 }
 
-export function Portfolio() {
+export function Portfolio({ projects = [], loading = false, error = "" }) {
+  if (loading) {
+    return (
+      <section className="portfolio" id="portfolio">
+        <div className="container">
+          <SectionHeader
+            eyebrow="Our Work"
+            title={
+              <>
+                Project <span className="gradient-text">Portfolio</span>
+              </>
+            }
+            desc="Real-world solutions that have transformed how businesses operate."
+          />
+          <div className="portfolio-grid">
+            {[1, 2, 3].map((i) => (
+              <article className="portfolio-card skeleton" key={i} style={{ height: "350px", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "20px" }}>
+                <div className="skeleton-image" style={{ height: "180px", marginBottom: "15px", borderRadius: "var(--radius-xl)" }}></div>
+                <div className="skeleton-badge" style={{ height: "20px", width: "80px", marginBottom: "10px", borderRadius: "var(--radius-full)" }}></div>
+                <div className="skeleton-title" style={{ height: "30px", width: "60%", marginBottom: "10px" }}></div>
+                <div className="skeleton-text" style={{ height: "15px", width: "90%" }}></div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const items = projects.map((item) => {
+    if (Array.isArray(item)) {
+      return { title: item[0], tag: item[1], stack: item[2], description: item[3] };
+    }
+    return {
+      title: item.title,
+      tag: item.tag || item.category,
+      stack: item.stack,
+      description: item.description,
+    };
+  });
+
   return (
     <section className="portfolio" id="portfolio">
       <div className="container">
@@ -85,8 +161,9 @@ export function Portfolio() {
           }
           desc="Real-world solutions that have transformed how businesses operate."
         />
+        {error && <p className="error-message" style={{ color: "var(--color-error, #ef4444)", textAlign: "center", marginBottom: "20px" }}>{error}</p>}
         <div className="portfolio-grid">
-          {PROJECTS.map(([title, tag, stack, desc], index) => (
+          {items.map(({ title, tag, stack, description }, index) => (
             <article
               className={`portfolio-card ${index === 1 ? "featured" : ""}`}
               data-animate="fade-up"
@@ -96,8 +173,7 @@ export function Portfolio() {
               <div
                 className="portfolio-img"
                 style={{
-                  "--accent":
-                    index === 1 ? "#7C3AED" : "#2563EB",
+                  "--accent": index === 1 ? "#7C3AED" : "#2563EB",
                 }}
               >
                 <div className="portfolio-mockup">
@@ -110,7 +186,7 @@ export function Portfolio() {
                 <span className="portfolio-tag">{stack}</span>
               </div>
               <h3 className="portfolio-title">{title}</h3>
-              <p className="portfolio-desc">{desc}</p>
+              <p className="portfolio-desc">{description}</p>
             </article>
           ))}
         </div>
@@ -118,6 +194,7 @@ export function Portfolio() {
     </section>
   );
 }
+
 
 export function Developers() {
   return (
