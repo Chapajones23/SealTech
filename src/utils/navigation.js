@@ -24,3 +24,16 @@ export function labelFor(value) {
     .replace(/([A-Z])/g, " $1")
     .replace(/^./, (letter) => letter.toUpperCase());
 }
+
+export function getImageUrl(imagePath) {
+  if (!imagePath) return "";
+  if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) {
+    return imagePath;
+  }
+  if (imagePath.startsWith("assets/")) {
+    return `/${imagePath}`;
+  }
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+  const cleanPath = imagePath.startsWith("/") ? imagePath.slice(1) : imagePath;
+  return `${apiBaseUrl}/${cleanPath}`;
+}

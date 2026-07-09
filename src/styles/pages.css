@@ -73,6 +73,19 @@
   opacity: 0.9;
 }
 
+/* Athari ya picha yenyewe kuongezeka wakati wa hover */
+.blog-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blog-card:hover .blog-card-image img {
+  transform: scale(1.06);
+}
+
 /* Lebo ya jamii (category tag) juu ya picha */
 .blog-card-category-tag {
   position: absolute;

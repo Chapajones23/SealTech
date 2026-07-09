@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
-import { formatDate, sortPosts } from "../utils/navigation.js";
+import { formatDate, sortPosts, getImageUrl } from "../utils/navigation.js";
 import { SectionHeader, AuthorAvatar, Loading, ErrorState } from "./Shared.jsx";
 import { Link } from "./Link.jsx";
 import { submitContact, subscribeNewsletter } from "../services/api.js";
 
 export function BlogCard({ post }) {
+  const imageUrl = getImageUrl(post.image_path || post.image);
+  const imageAlt = post.image_alt || post.imageAlt || post.title;
+  const imageGradient = post.image_gradient || post.imageGradient;
+  const imageIcon = post.image_icon || post.imageIcon;
+
   return (
     <article className="blog-card">
       <Link
@@ -13,12 +18,21 @@ export function BlogCard({ post }) {
       >
         <div
           className="blog-card-image"
-          style={{ background: post.imageGradient }}
+          style={{ background: imageGradient }}
         >
-          <div
-            className="blog-card-image-icon"
-            dangerouslySetInnerHTML={{ __html: post.imageIcon }}
-          />
+          {imageUrl ? (
+            <img
+              src={imageUrl}
+              alt={imageAlt}
+              className="blog-card-img"
+              loading="lazy"
+            />
+          ) : (
+            <div
+              className="blog-card-image-icon"
+              dangerouslySetInnerHTML={{ __html: imageIcon }}
+            />
+          )}
           <div className="blog-card-category-tag">{post.category}</div>
         </div>
       </Link>

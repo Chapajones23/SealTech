@@ -1,4 +1,4 @@
-import { formatDate, sortPosts } from "../utils/navigation.js";
+import { formatDate, sortPosts, getImageUrl } from "../utils/navigation.js";
 import { SectionHeader, AuthorAvatar, Loading, ErrorState } from "../components/Shared.jsx";
 import { BlogCard, Newsletter } from "../components/Blog.jsx";
 import { Link } from "../components/Link.jsx";
@@ -54,12 +54,20 @@ export function PostPage({ postsState, slug }) {
             </header>
             <div
               className="post-featured-image"
-              style={{ background: post.imageGradient }}
+              style={{ background: post.image_gradient || post.imageGradient }}
             >
-              <div
-                className="post-featured-image-icon"
-                dangerouslySetInnerHTML={{ __html: post.imageIcon }}
-              />
+              {(post.image_path || post.image) ? (
+                <img
+                  src={getImageUrl(post.image_path || post.image)}
+                  alt={post.image_alt || post.imageAlt || post.title}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+              ) : (
+                <div
+                  className="post-featured-image-icon"
+                  dangerouslySetInnerHTML={{ __html: post.image_icon || post.imageIcon }}
+                />
+              )}
             </div>
             <div className="post-body">
               <div
