@@ -8,6 +8,7 @@ const endpoints = {
   project: import.meta.env.VITE_PROJECT_API_URL || `${API_BASE_URL}/api/project-request`,
   call: import.meta.env.VITE_CALL_API_URL || `${API_BASE_URL}/api/calls`,
   newsletter: import.meta.env.VITE_NEWSLETTER_API_URL || `${API_BASE_URL}/api/newsletter`,
+  jobs: import.meta.env.VITE_JOBS_API_URL || `${API_BASE_URL}/api/jobs`,
 };
 
 async function requestJson(url, options = {}) {
@@ -68,6 +69,17 @@ export async function fetchProjects() {
   } catch (_error) {
     const response = await fetch("/data/projects.json");
     if (!response.ok) throw new Error("Unable to load projects");
+    return response.json();
+  }
+}
+
+export async function fetchJobs() {
+  try {
+    const data = await requestJson(endpoints.jobs);
+    return data && data.data ? data.data : data;
+  } catch (_error) {
+    const response = await fetch("/data/jobs.json");
+    if (!response.ok) throw new Error("Unable to load open positions");
     return response.json();
   }
 }

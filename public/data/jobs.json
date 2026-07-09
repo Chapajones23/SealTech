@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Senior Full-Stack Developer",
+    "type": "Full-time",
+    "location": "Dar es Salaam / Remote",
+    "stack": "Laravel · React · AWS",
+    "desc": "Lead complex web application projects end-to-end. You'll own features from database design to UI polish."
+  },
+  {
+    "title": "Mobile Developer (Flutter)",
+    "type": "Full-time",
+    "location": "Dar es Salaam",
+    "stack": "Flutter · Dart · REST APIs",
+    "desc": "Build beautiful, high-performance mobile apps for iOS and Android for our growing client base."
+  },
+  {
+    "title": "DevOps / Cloud Engineer",
+    "type": "Full-time",
+    "location": "Remote",
+    "stack": "Docker · AWS · CI/CD",
+    "desc": "Design and maintain cloud infrastructure, deployment pipelines, and observability stacks."
+  },
+  {
+    "title": "UI/UX Designer",
+    "type": "Contract",
+    "location": "Remote",
+    "stack": "Figma · Prototyping",
+    "desc": "Create clean, accessible interfaces for web and mobile products. You care as much about function as form."
+  }
+]

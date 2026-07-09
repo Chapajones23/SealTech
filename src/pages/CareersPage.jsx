@@ -1,35 +1,6 @@
+import { useState, useEffect } from "react";
 import { Link } from "../components/Link.jsx";
-
-const OPENINGS = [
-  {
-    title: "Senior Full-Stack Developer",
-    type: "Full-time",
-    location: "Dar es Salaam / Remote",
-    stack: "Laravel · React · AWS",
-    desc: "Lead complex web application projects end-to-end. You'll own features from database design to UI polish.",
-  },
-  {
-    title: "Mobile Developer (Flutter)",
-    type: "Full-time",
-    location: "Dar es Salaam",
-    stack: "Flutter · Dart · REST APIs",
-    desc: "Build beautiful, high-performance mobile apps for iOS and Android for our growing client base.",
-  },
-  {
-    title: "DevOps / Cloud Engineer",
-    type: "Full-time",
-    location: "Remote",
-    stack: "Docker · AWS · CI/CD",
-    desc: "Design and maintain cloud infrastructure, deployment pipelines, and observability stacks.",
-  },
-  {
-    title: "UI/UX Designer",
-    type: "Contract",
-    location: "Remote",
-    stack: "Figma · Prototyping",
-    desc: "Create clean, accessible interfaces for web and mobile products. You care as much about function as form.",
-  },
-];
+import { fetchJobs } from "../services/api.js";
 
 const PERKS = [
   { icon: "💻", title: "Remote-friendly", desc: "Flexible work arrangements — we care about output, not location." },
@@ -39,6 +10,21 @@ const PERKS = [
 ];
 
 export function CareersPage() {
+  const [openings, setOpenings] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchJobs()
+      .then((data) => {
+        setOpenings(data || []);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to load jobs", err);
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <main data-page="careers">
       <header className="about-hero">
@@ -65,7 +51,7 @@ export function CareersPage() {
               </p>
               <div className="about-stats">
                 <div className="about-stat">
-                  <span className="about-stat-num">{OPENINGS.length}</span>
+                  <span className="about-stat-num">{loading ? "..." : openings.length}</span>
                   <span className="about-stat-label">Open roles</span>
                 </div>
                 <div className="about-stat-divider" />
@@ -122,16 +108,22 @@ export function CareersPage() {
             <p className="section-desc">Don't see your role? Send an open application to careers@sealtech.co.tz</p>
           </div>
           <div className="values-grid">
-            {OPENINGS.map(({ title, type, location, stack, desc }, i) => (
-              <article className="value-card" data-animate="fade-up" data-delay={i * 120} key={title}>
-                <div className="value-card-num">{String(i + 1).padStart(2, "0")}</div>
-                <h4>{title}</h4>
-                <p>{desc}</p>
-                <p style={{ marginTop: "0.75rem", fontSize: "0.8rem", opacity: 0.6 }}>
-                  {type} · {location} · {stack}
-                </p>
-              </article>
-            ))}
+            {loading ? (
+              <p style={{ gridColumn: "1 / -1", textAlign: "center", opacity: 0.6 }}>Loading open positions...</p>
+            ) : openings.length === 0 ? (
+              <p style={{ gridColumn: "1 / -1", textAlign: "center", opacity: 0.6 }}>No open positions at the moment. Check back later!</p>
+            ) : (
+              openings.map(({ title, type, location, stack, desc }, i) => (
+                <article className="value-card" data-animate="fade-up" data-delay={i * 120} key={title}>
+                  <div className="value-card-num">{String(i + 1).padStart(2, "0")}</div>
+                  <h4>{title}</h4>
+                  <p>{desc}</p>
+                  <p style={{ marginTop: "0.75rem", fontSize: "0.8rem", opacity: 0.6 }}>
+                    {type} · {location} {stack ? `· ${stack}` : ""}
+                  </p>
+                </article>
+              ))
+            )}
           </div>
         </div>
       </section>

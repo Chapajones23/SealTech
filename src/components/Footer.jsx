@@ -39,6 +39,9 @@ export function Footer() {
               <li>
                 <Link href="/contact">Contact</Link>
               </li>
+              <li>
+                <Link href="/careers">Careers</Link>
+              </li>
             </ul>
           </div>
           <div className="footer-col">
