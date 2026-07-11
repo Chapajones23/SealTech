@@ -1,4 +1,5 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+const rawBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+const API_BASE_URL = rawBaseUrl.endsWith("/api") ? rawBaseUrl.slice(0, -4) : rawBaseUrl;
 
 const endpoints = {
   posts: import.meta.env.VITE_BLOG_POSTS_API_URL || `${API_BASE_URL}/api/posts`,
@@ -43,7 +44,11 @@ async function requestJson(url, options = {}) {
 export async function fetchPosts() {
   try {
     const data = await requestJson(endpoints.posts);
-    return data && data.data ? data.data : data;
+    const result = data && data.data ? data.data : data;
+    if (!result || !Array.isArray(result) || result.length === 0) {
+      throw new Error("No posts returned from API");
+    }
+    return result;
   } catch (_error) {
     const response = await fetch("/data/blog-posts.json");
     if (!response.ok) throw new Error("Unable to load blog posts");
@@ -54,7 +59,11 @@ export async function fetchPosts() {
 export async function fetchServices() {
   try {
     const data = await requestJson(endpoints.services);
-    return data && data.data ? data.data : data;
+    const result = data && data.data ? data.data : data;
+    if (!result || !Array.isArray(result) || result.length === 0) {
+      throw new Error("No services returned from API");
+    }
+    return result;
   } catch (_error) {
     const response = await fetch("/data/services.json");
     if (!response.ok) throw new Error("Unable to load services");
@@ -65,7 +74,11 @@ export async function fetchServices() {
 export async function fetchProjects() {
   try {
     const data = await requestJson(endpoints.projects);
-    return data && data.data ? data.data : data;
+    const result = data && data.data ? data.data : data;
+    if (!result || !Array.isArray(result) || result.length === 0) {
+      throw new Error("No projects returned from API");
+    }
+    return result;
   } catch (_error) {
     const response = await fetch("/data/projects.json");
     if (!response.ok) throw new Error("Unable to load projects");
@@ -76,7 +89,11 @@ export async function fetchProjects() {
 export async function fetchJobs() {
   try {
     const data = await requestJson(endpoints.jobs);
-    return data && data.data ? data.data : data;
+    const result = data && data.data ? data.data : data;
+    if (!result || !Array.isArray(result) || result.length === 0) {
+      throw new Error("No jobs returned from API");
+    }
+    return result;
   } catch (_error) {
     const response = await fetch("/data/jobs.json");
     if (!response.ok) throw new Error("Unable to load open positions");
