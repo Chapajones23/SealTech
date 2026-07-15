@@ -1,15 +1,26 @@
 import { useMemo, useState } from "react";
+import { useRoute } from "../hooks/useRoute.js";
 import { sortPosts } from "../utils/navigation.js";
 import { SectionHeader, Loading, ErrorState } from "../components/Shared.jsx";
 import { BlogCard, Newsletter } from "../components/Blog.jsx";
 import { Link } from "../components/Link.jsx";
 
 export function BlogPage({ postsState }) {
+  const route = useRoute();
+  const category = route.query.get("category");
   const [sort, setSort] = useState("newest");
-  const posts = useMemo(
-    () => sortPosts(postsState.posts, sort),
-    [postsState.posts, sort]
-  );
+  const posts = useMemo(() => {
+      let filtered = postsState.posts;
+
+      if (category) {
+          filtered = filtered.filter(
+              (post) => post.category?.slug === category
+          );
+      }
+
+      return sortPosts(filtered, sort);
+  }, [postsState.posts, sort, category]);
+  
   const authors = new Set(posts.map((post) => post.author)).size;
 
   return (

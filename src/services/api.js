@@ -90,7 +90,7 @@ export async function fetchJobs() {
   try {
     const data = await requestJson(endpoints.jobs);
     const result = data && data.data ? data.data : data;
-    if (!result || !Array.isArray(result) || result.length === 0) {
+    if (!result || !Array.isArray(result)) {
       throw new Error("No jobs returned from API");
     }
     return result;

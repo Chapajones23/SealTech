@@ -65,10 +65,18 @@ export function Services({ services = [], loading = false, error = "" }) {
   }
 
   const items = services.map((item) => {
-    if (Array.isArray(item)) {
-      return { title: item[0], description: item[1] };
-    }
-    return { title: item.title, description: item.description };
+      if (Array.isArray(item)) {
+          return {
+              title: item[0],
+              description: item[1],
+          };
+      }
+
+      return {
+          title: item.title,
+          description: item.description,
+          category: item.category,
+      };
   });
 
   return (
@@ -86,7 +94,7 @@ export function Services({ services = [], loading = false, error = "" }) {
         />
         {error && <p className="error-message" style={{ color: "var(--color-error, #ef4444)", textAlign: "center", marginBottom: "20px" }}>{error}</p>}
         <div className="services-grid">
-          {items.map(({ title, description }, index) => (
+          {items.map(({ title, description, category }, index) => (
             <article
               className="service-card"
               data-animate="fade-up"
@@ -96,8 +104,11 @@ export function Services({ services = [], loading = false, error = "" }) {
               <div className="service-icon">{index + 1}</div>
               <h3 className="service-title">{title}</h3>
               <p className="service-desc">{description}</p>
-              <Link className="service-link" href="/blog">
-                Learn more
+              <Link
+                  className="service-link"
+                  href={`/blog?category=${category.slug}`}
+              >
+                  Learn more
               </Link>
               <div className="service-card-glow"></div>
             </article>

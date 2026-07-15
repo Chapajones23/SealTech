@@ -111,7 +111,7 @@ export function CareersPage() {
             {loading ? (
               <p style={{ gridColumn: "1 / -1", textAlign: "center", opacity: 0.6 }}>Loading open positions...</p>
             ) : openings.length === 0 ? (
-              <p style={{ gridColumn: "1 / -1", textAlign: "center", opacity: 0.6 }}>No open positions at the moment. Check back later!</p>
+              <p style={{ gridColumn: "1 / -1", textAlign: "center", opacity: 0.6 }}>No open position</p>
             ) : (
               openings.map(({ title, type, location, stack, desc }, i) => (
                 <article className="value-card" data-animate="fade-up" data-delay={i * 120} key={title}>
