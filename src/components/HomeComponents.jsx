@@ -106,7 +106,7 @@ export function Services({ services = [], loading = false, error = "" }) {
               <p className="service-desc">{description}</p>
               <Link
                   className="service-link"
-                  href={`/blog?category=${category.slug}`}
+                  href={category?.slug ? `/blog?category=${category.slug}` : `/blog`}
               >
                   Learn more
               </Link>
