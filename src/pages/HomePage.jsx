@@ -56,7 +56,7 @@ export function HomePage({ postsState, onOpenProject, onOpenCall }) {
               </div>
               <div className="stat-divider"></div>
               <div className="stat">
-                <span className="stat-num">4+</span>
+                <span className="stat-num">6+</span>
                 <span className="stat-label">Years Experience</span>
               </div>
             </div>
