@@ -44,19 +44,19 @@ export const TEAM = [
   [
     "Michael Chapa",
     "CEO & Full-Stack Developer",
-    "5+ years in software development. Former development lead at Better Life Academy.",
+    "6+ years in software development. Former development lead at Better Life Academy.",
     "/assets/images/team/chapa.webp",
   ],
   [
     "Lusajo Job",
     "CFO & Payment Integration Engineer",
-    "3+ years of experience in payment processing, financial integration and API integration.",
+    "5+ years of experience in payment processing, financial integration and API integration.",
     "/assets/images/team/job.webp",
   ],
   [
     "Alfred Kalinga",
     "COO & Cloud Engineer",
-    "4+ years of experience in cloud infrastructure and DevOps practices.",
+    "5+ years of experience in cloud infrastructure and DevOps practices.",
     "/assets/images/team/alfred.webp",
   ],
 ];
