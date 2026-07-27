@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { formatDate, sortPosts, getImageUrl } from "../utils/navigation.js";
+import { formatDate, sortPosts, getImageUrl, getCategoryLabel } from "../utils/navigation.js";
 import { SectionHeader, AuthorAvatar, Loading, ErrorState } from "./Shared.jsx";
 import { Link } from "./Link.jsx";
 import { submitContact, subscribeNewsletter } from "../services/api.js";
@@ -33,7 +33,7 @@ export function BlogCard({ post }) {
               dangerouslySetInnerHTML={{ __html: imageIcon }}
             />
           )}
-          <div className="blog-card-category-tag">{post.category}</div>
+          <div className="blog-card-category-tag">{getCategoryLabel(post.category)}</div>
         </div>
       </Link>
       <div className="blog-card-body">

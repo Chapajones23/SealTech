@@ -56,6 +56,9 @@ export function Footer() {
               <li>
                 <Link href="/security">Security</Link>
               </li>
+              <li>
+                <Link href="/unsubscribe">Unsubscribe</Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -64,6 +67,7 @@ export function Footer() {
           <div className="footer-bottom-links">
             <Link href="/privacy">Privacy</Link>
             <Link href="/terms">Terms</Link>
+            <Link href="/unsubscribe">Unsubscribe</Link>
           </div>
         </div>
       </div>

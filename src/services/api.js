@@ -9,6 +9,7 @@ const endpoints = {
   project: import.meta.env.VITE_PROJECT_API_URL || `${API_BASE_URL}/api/project-request`,
   call: import.meta.env.VITE_CALL_API_URL || `${API_BASE_URL}/api/calls`,
   newsletter: import.meta.env.VITE_NEWSLETTER_API_URL || `${API_BASE_URL}/api/newsletter`,
+  unsubscribe: import.meta.env.VITE_NEWSLETTER_UNSUBSCRIBE_API_URL || `${API_BASE_URL}/api/unsubscribe`,
   jobs: import.meta.env.VITE_JOBS_API_URL || `${API_BASE_URL}/api/jobs`,
 };
 
@@ -149,6 +150,21 @@ export function subscribeNewsletter(payload) {
     source: payload.source || "website",
   };
   return requestJson(endpoints.newsletter, {
+    method: "POST",
+    body: JSON.stringify(normalized),
+  });
+}
+
+export function unsubscribeNewsletter(payload) {
+  const normalized =
+    typeof payload === "string"
+      ? { email: payload }
+      : {
+          email: payload.email,
+          ...(payload.token ? { token: payload.token } : {}),
+          ...(payload.reason ? { reason: payload.reason } : {}),
+        };
+  return requestJson(endpoints.unsubscribe, {
     method: "POST",
     body: JSON.stringify(normalized),
   });

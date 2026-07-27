@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchPosts } from "../services/api.js";
+import { normalizePost } from "../utils/navigation.js";
 
 export function usePosts() {
   const [state, setState] = useState({ posts: [], loading: true, error: "" });
@@ -7,7 +8,11 @@ export function usePosts() {
   useEffect(() => {
     let active = true;
     fetchPosts()
-      .then((posts) => active && setState({ posts, loading: false, error: "" }))
+      .then((posts) => {
+        if (!active) return;
+        const normalizedPosts = Array.isArray(posts) ? posts.map(normalizePost) : [];
+        setState({ posts: normalizedPosts, loading: false, error: "" });
+      })
       .catch((error) =>
         active && setState({ posts: [], loading: false, error: error.message })
       );

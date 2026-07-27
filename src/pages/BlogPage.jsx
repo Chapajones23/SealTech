@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useRoute } from "../hooks/useRoute.js";
-import { sortPosts } from "../utils/navigation.js";
+import { getCategorySlug, sortPosts } from "../utils/navigation.js";
 import { SectionHeader, Loading, ErrorState } from "../components/Shared.jsx";
 import { BlogCard, Newsletter } from "../components/Blog.jsx";
 import { Link } from "../components/Link.jsx";
@@ -13,8 +13,9 @@ export function BlogPage({ postsState }) {
       let filtered = postsState.posts;
 
       if (category) {
+          const normalizedCategory = category.toLowerCase();
           filtered = filtered.filter(
-              (post) => post.category?.slug === category
+              (post) => getCategorySlug(post.category) === normalizedCategory
           );
       }
 

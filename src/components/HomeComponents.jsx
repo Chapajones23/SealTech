@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TEAM } from "../constants/index.js";
-import { formatDate, sortPosts } from "../utils/navigation.js";
+import { formatDate, sortPosts, getCategorySlug } from "../utils/navigation.js";
 import { SectionHeader, AuthorAvatar } from "./Shared.jsx";
 import { Link } from "./Link.jsx";
 import { BlogCard, LatestInsights, Newsletter } from "./Blog.jsx";
@@ -106,7 +106,7 @@ export function Services({ services = [], loading = false, error = "" }) {
               <p className="service-desc">{description}</p>
               <Link
                   className="service-link"
-                  href={category?.slug ? `/blog?category=${category.slug}` : `/blog`}
+                  href={getCategorySlug(category) ? `/blog?category=${getCategorySlug(category)}` : `/blog`}
               >
                   Learn more
               </Link>

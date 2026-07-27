@@ -14,6 +14,7 @@ import { CareersPage } from "./pages/CareersPage.jsx";
 import { PressPage } from "./pages/PressPage.jsx";
 import { SecurityPage } from "./pages/SecurityPage.jsx";
 import { TermsPage } from "./pages/TermsPage.jsx";
+import { UnsubscribePage } from "./pages/UnsubscribePage.jsx";
 import { ProjectModal, CallModal } from "./pages/Modals.jsx";
 import "./styles/main.css";
 
@@ -65,6 +66,9 @@ function App() {
     } else if (p("/terms", "/terms.html")) {
       title = "Terms of Service | SealTech";
       description = "Read our plain-language terms and conditions for development projects, licensing, and client partnership.";
+    } else if (p("/unsubscribe", "/unsubscribe.html")) {
+      title = "Unsubscribe | SealTech Insights";
+      description = "Update your newsletter communication preferences and unsubscribe from SealTech Insights.";
     }
 
     // Update document title
@@ -112,6 +116,8 @@ function App() {
         <SecurityPage />
       ) : p("/terms", "/terms.html") ? (
         <TermsPage />
+      ) : p("/unsubscribe", "/unsubscribe.html") ? (
+        <UnsubscribePage />
       ) : (
         <HomePage postsState={postsState} onOpenProject={() => setModal("project")} onOpenCall={() => setModal("call")} />
       )}

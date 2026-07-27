@@ -37,3 +37,29 @@ export function getImageUrl(imagePath) {
   const cleanPath = imagePath.startsWith("/") ? imagePath.slice(1) : imagePath;
   return `${apiBaseUrl}/${cleanPath}`;
 }
+
+export function getCategoryLabel(category) {
+  if (!category) return "";
+  if (typeof category === "string") return category;
+  if (typeof category === "object") {
+    return category.name || category.title || category.slug || "";
+  }
+  return String(category);
+}
+
+export function getCategorySlug(category) {
+  if (!category) return "";
+  if (typeof category === "string") return category.toLowerCase();
+  if (typeof category === "object") {
+    return (category.slug || category.name || category.title || "").toLowerCase();
+  }
+  return String(category).toLowerCase();
+}
+
+export function normalizePost(post) {
+  return {
+    ...post,
+    category: getCategoryLabel(post.category),
+    categorySlug: getCategorySlug(post.category),
+  };
+}

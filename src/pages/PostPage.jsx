@@ -1,4 +1,4 @@
-import { formatDate, sortPosts, getImageUrl } from "../utils/navigation.js";
+import { formatDate, sortPosts, getImageUrl, getCategoryLabel } from "../utils/navigation.js";
 import { SectionHeader, AuthorAvatar, Loading, ErrorState } from "../components/Shared.jsx";
 import { BlogCard, Newsletter } from "../components/Blog.jsx";
 import { Link } from "../components/Link.jsx";
@@ -31,9 +31,9 @@ export function PostPage({ postsState, slug }) {
               <div className="post-breadcrumb">
                 <Link href="/">Home</Link>
                 <Link href="/blog">Blog</Link>
-                <span>{post.category}</span>
+                <span>{getCategoryLabel(post.category)}</span>
               </div>
-              <div className="post-category-badge">{post.category}</div>
+              <div className="post-category-badge">{getCategoryLabel(post.category)}</div>
               <h1 className="post-title">{post.title}</h1>
               <p className="post-excerpt">{post.excerpt}</p>
               <div className="post-meta-row">
