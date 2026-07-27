@@ -56,6 +56,15 @@ export function getCategorySlug(category) {
   return String(category).toLowerCase();
 }
 
+export function getTagLabel(tag) {
+  if (!tag) return "";
+  if (typeof tag === "string") return tag;
+  if (typeof tag === "object") {
+    return tag.name || tag.title || tag.slug || "";
+  }
+  return String(tag);
+}
+
 export function normalizePost(post) {
   return {
     ...post,

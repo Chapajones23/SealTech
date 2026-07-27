@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { formatDate, sortPosts, getImageUrl, getCategoryLabel } from "../utils/navigation.js";
+import { formatDate, sortPosts, getImageUrl, getCategoryLabel, getTagLabel } from "../utils/navigation.js";
 import { SectionHeader, AuthorAvatar, Loading, ErrorState } from "./Shared.jsx";
 import { Link } from "./Link.jsx";
 import { submitContact, subscribeNewsletter } from "../services/api.js";
@@ -51,9 +51,9 @@ export function BlogCard({ post }) {
         <p className="blog-card-excerpt">{post.excerpt}</p>
         <div className="blog-card-footer">
           <div className="blog-card-tags">
-            {post.tags?.slice(0, 2).map((tag) => (
-              <span className="blog-tag" key={tag}>
-                {tag}
+            {post.tags?.slice(0, 2).map((tag, index) => (
+              <span className="blog-tag" key={`${getTagLabel(tag)}-${index}`}>
+                {getTagLabel(tag)}
               </span>
             ))}
           </div>
