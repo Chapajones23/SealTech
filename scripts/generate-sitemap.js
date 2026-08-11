@@ -14,6 +14,7 @@ const BASE_URL = "https://sealtech.co.tz";
 const staticPages = [
   { loc: "/", lastmod: "2026-06-17", changefreq: "weekly", priority: "1.0" },
   { loc: "/about", lastmod: "2026-06-17", changefreq: "monthly", priority: "0.8" },
+  { loc: "/pricing", lastmod: "2026-08-11", changefreq: "weekly", priority: "0.9" },
   { loc: "/blog", lastmod: "2026-06-17", changefreq: "weekly", priority: "0.8" },
   { loc: "/careers", lastmod: "2026-06-17", changefreq: "monthly", priority: "0.7" },
   { loc: "/contact", lastmod: "2026-06-17", changefreq: "yearly", priority: "0.7" },

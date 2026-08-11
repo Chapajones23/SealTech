@@ -75,6 +75,9 @@ export function Navbar({ onOpenProject, scrolled }) {
             <Link href="/#developers" className={isActive("/#developers") ? "active" : ""} onClick={(e) => handleSectionLink(e, "/#developers")}>Developers</Link>
           </li>
           <li>
+            <Link href="/pricing" className={isActive("/pricing") ? "active" : ""} onClick={() => setOpen(false)}>Pricing</Link>
+          </li>
+          <li>
             <Link href="/blog" className={isActive("/blog") ? "active" : ""} onClick={() => setOpen(false)}>Blog</Link>
           </li>
           <li>

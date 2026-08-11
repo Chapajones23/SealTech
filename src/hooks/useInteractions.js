@@ -1,6 +1,9 @@
 import { useEffect } from "react";
+import { useRoute } from "./useRoute.js";
 
 export function useInteractions() {
+  const route = useRoute();
+
   useEffect(() => {
     // Create a single IntersectionObserver instance for all animated elements
     const observer = new IntersectionObserver(
@@ -18,7 +21,7 @@ export function useInteractions() {
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.05, rootMargin: "50px 0px 50px 0px" }
     );
 
     const run = () => {
@@ -29,7 +32,7 @@ export function useInteractions() {
           if (!element.classList.contains("animated")) {
             element.classList.add("animated");
           }
-        } else if (!element.__isAnimated) {
+        } else {
           element.__isAnimated = true;
           observer.observe(element);
         }
@@ -53,7 +56,7 @@ export function useInteractions() {
       observer.disconnect();
       mutationObserver.disconnect();
     };
-  }, []);
+  }, [route.path]);
 }
 
 

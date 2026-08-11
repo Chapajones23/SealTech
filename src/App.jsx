@@ -15,6 +15,7 @@ import { PressPage } from "./pages/PressPage.jsx";
 import { SecurityPage } from "./pages/SecurityPage.jsx";
 import { TermsPage } from "./pages/TermsPage.jsx";
 import { UnsubscribePage } from "./pages/UnsubscribePage.jsx";
+import { PricingPage } from "./pages/PricingPage.jsx";
 import { ProjectModal, CallModal } from "./pages/Modals.jsx";
 import "./styles/main.css";
 
@@ -35,6 +36,9 @@ function App() {
     if (p("/about", "/about.html")) {
       title = "About SealTech | Software Engineering Tanzania";
       description = "SealTech is a leading software engineering company in Dar es Salaam, Tanzania. We build robust web, mobile, and enterprise systems.";
+    } else if (p("/pricing", "/pricing.html")) {
+      title = "Pricing & Engineering Plans | SealTech";
+      description = "Transparent software engineering pricing and dedicated development capacity plans for startups and enterprise platforms.";
     } else if (p("/blog", "/blog.html")) {
       title = "SealTech Insights | Software Engineering Blog";
       description = "Practical engineering advice, deep dives, tutorials, and insights on modern web development, Flutter, CI/CD, and database design.";
@@ -100,6 +104,8 @@ function App() {
       <Navbar onOpenProject={() => setModal("project")} scrolled={path !== "/"} />
       {p("/blog", "/blog.html") ? (
         <BlogPage postsState={postsState} />
+      ) : p("/pricing", "/pricing.html") ? (
+        <PricingPage onOpenProject={() => setModal("project")} />
       ) : p("/post", "/post.html") ? (
         <PostPage postsState={postsState} slug={route.query.get("slug")} />
       ) : p("/contact", "/contact.html") ? (
@@ -121,6 +127,7 @@ function App() {
       ) : (
         <HomePage postsState={postsState} onOpenProject={() => setModal("project")} onOpenCall={() => setModal("call")} />
       )}
+
       <Footer />
       {modal === "project" && <ProjectModal onClose={() => setModal(null)} />}
       {modal === "call" && <CallModal onClose={() => setModal(null)} />}
