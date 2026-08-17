@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TEAM } from "../constants/index.js";
 import { formatDate, sortPosts, getCategorySlug } from "../utils/navigation.js";
 import { SectionHeader, AuthorAvatar } from "./Shared.jsx";
@@ -208,6 +208,61 @@ export function Portfolio({ projects = [], loading = false, error = "" }) {
 
 
 export function Developers() {
+  const codeText = `const sealtech = {
+  websites: {
+    design: "Modern & Responsive",
+    performance: "Lightning Fast",
+    security: "SSL Protected",
+    seo: "Search Engine Optimized"
+  },
+
+  features: [
+    "Mobile First",
+    "CMS Ready",
+    "Business Integrations",
+    "Scalable Architecture"
+  ],
+
+  support: "Dedicated Support",
+  readyToGrow: true
+};`;
+
+  const [displayedCode, setDisplayedCode] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    let timer;
+
+    if (!isDeleting && displayedCode.length < codeText.length) {
+      // WRITE
+      timer = setTimeout(() => {
+        setDisplayedCode(
+          codeText.slice(0, displayedCode.length + 1)
+        );
+      }, 35);
+    } else if (!isDeleting && displayedCode.length === codeText.length) {
+      // COMPLETE → PAUSE
+      timer = setTimeout(() => {
+        setIsDeleting(true);
+      }, 2500);
+    } else if (isDeleting && displayedCode.length > 0) {
+      // DELETE
+      timer = setTimeout(() => {
+        setDisplayedCode(
+          codeText.slice(0, displayedCode.length - 1)
+        );
+      }, 18);
+    } else if (isDeleting && displayedCode.length === 0) {
+      // DELETE COMPLETE → PAUSE → WRITE AGAIN
+      timer = setTimeout(() => {
+        setIsDeleting(false);
+      }, 600);
+    }
+
+    return () => clearTimeout(timer);
+  }, [displayedCode, isDeleting]);
+
+
   return (
     <section className="developers" id="developers">
       <div className="container">
@@ -215,28 +270,80 @@ export function Developers() {
           <div className="dev-code" data-animate="fade-right">
             <div className="code-window">
               <div className="code-header">
-                <span className="code-filename">api/contact.js</span>
+                <span className="code-filename">
+                  sealtech/website.config
+                </span>
               </div>
+
               <div className="code-body">
-                <pre>{`await fetch('/api/contact', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(formData)
-});`}</pre>
+                <pre>
+                  {displayedCode}
+                  <span className="typing-cursor">|</span>
+                </pre>
               </div>
             </div>
           </div>
+
           <div className="dev-content" data-animate="fade-left">
-            <p className="section-eyebrow">Developer Experience</p>
+            <p className="section-eyebrow">How We Build</p>
+
             <h2 className="section-title">
-              Built by engineers,
+              From your idea
               <br />
-              <span className="gradient-text">for engineers</span>
+              <span className="gradient-text">to the web.</span>
             </h2>
+
             <p className="dev-desc">
-              The site is now a React app with configurable API endpoints for
-              reading blog content and submitting customer requests.
+              Every SealTech website starts with your goals. We turn your idea into
+              a polished digital experience that is designed to look professional,
+              perform fast, and convert visitors into customers.
             </p>
+
+            <div className="dev-process">
+              <div className="dev-process-item">
+                <span className="dev-process-number">01</span>
+                <div>
+                  <h3>Discover</h3>
+                  <p>
+                    We understand your business, audience, goals, and what you need
+                    your website to achieve.
+                  </p>
+                </div>
+              </div>
+
+              <div className="dev-process-item">
+                <span className="dev-process-number">02</span>
+                <div>
+                  <h3>Design</h3>
+                  <p>
+                    We create a clean, modern interface that reflects your brand
+                    and gives your customers a great first impression.
+                  </p>
+                </div>
+              </div>
+
+              <div className="dev-process-item">
+                <span className="dev-process-number">03</span>
+                <div>
+                  <h3>Build</h3>
+                  <p>
+                    Our developers turn the design into a fast, responsive and
+                    secure website ready for real customers.
+                  </p>
+                </div>
+              </div>
+
+              <div className="dev-process-item">
+                <span className="dev-process-number">04</span>
+                <div>
+                  <h3>Launch & Grow</h3>
+                  <p>
+                    We launch your website and remain available for support,
+                    improvements, and future growth.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
