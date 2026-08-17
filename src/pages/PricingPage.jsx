@@ -4,108 +4,129 @@ import { Link } from "../components/Link.jsx";
 const PRICING_TIERS = [
   {
     id: "starter",
-    name: "Starter MVP",
-    tagline: "Ideal for early-stage startups needing a fast, robust Minimum Viable Product.",
-    monthlyPrice: 1200,
-    annualPrice: 960,
-    projectBase: "$3,500+",
+    name: "Business Starter",
+    tagline: "A professional, fast and mobile-friendly website for businesses that need a strong online presence.",
+    monthlyPrice: null,
+    annualPrice: null,
+    projectBase: "TSh 550,000",
     featured: false,
     badge: null,
     features: [
-      "Custom Web or Mobile Application",
-      "Up to 5 core functional modules",
-      "Responsive, accessible modern UI",
-      "CI/CD setup & automated deployments",
-      "Full source code ownership",
-      "30 days post-launch bug support",
-      "Standard 1-week sprint iterations",
+      "Modern responsive website design",
+      "Up to 16 pages",
+      "Professional company profile layout",
+      "Contact form & WhatsApp integration",
+      "1.5 GB hosting space",
+      "Free .co.tz domain",
+      "Up to 15 business email accounts",
+      "SSL security & performance optimization",
+      "Full SEO setup",
+      "30 days post-launch support",
     ],
-    ctaText: "Start Starter Plan",
+    ctaText: "Choose Starter",
   },
   {
-    id: "growth",
-    name: "Growth & Scale",
-    tagline: "For expanding businesses ready to scale products with high performance and reliability.",
-    monthlyPrice: 2800,
-    annualPrice: 2240,
-    projectBase: "$8,500+",
+    id: "professional",
+    name: "Professional CMS",
+    tagline: "For businesses, institutions and growing brands that need to manage website content without a developer.",
+    monthlyPrice: null,
+    annualPrice: null,
+    projectBase: "TSh 1,500,000",
     featured: true,
     badge: "Most Popular",
     features: [
-      "Cross-platform Web & Mobile apps",
-      "Dedicated 3-engineer team + Project Manager",
-      "Payment gateway integration (M-Pesa, Stripe)",
-      "Custom API architecture & DB optimization",
-      "Automated unit & integration test suite",
-      "Direct Slack channel & weekly live demos",
-      "90 days priority support & 99.9% SLA",
-      "Cloud infra setup (AWS, GCP, DigitalOcean)",
+      "Everything in Business Starter",
+      "Custom frontend + full CMS dashboard",
+      "Create and manage posts & pages",
+      "Edit content and replace images",
+      "Up to 28 pages",
+      "3 GB hosting space",
+      "Free .co.tz domain",
+      "Unlimited business email accounts",
+      "Advanced SEO & performance setup",
+      "Blog, news & dynamic content",
+      "90 days priority support",
     ],
-    ctaText: "Launch Growth Plan",
+    ctaText: "Choose Professional",
   },
   {
     id: "enterprise",
-    name: "Enterprise Custom",
-    tagline: "Dedicated engineering squad for mission-critical software, enterprise systems & platforms.",
+    name: "Enterprise Web Solution",
+    tagline: "A complete custom web application for organizations that need accounts, dashboards, payments and advanced integrations.",
     monthlyPrice: null,
     annualPrice: null,
-    projectBase: "Custom Quote",
+    projectBase: "From TSh 4,500,000",
     featured: false,
-    badge: "Full Custom",
+    badge: "Custom",
     features: [
-      "Full Agile squad (Architect, Devs, QA, DevOps)",
-      "High-scale microservices & distributed systems",
-      "24/7 Proactive system monitoring & alerts",
-      "Security compliance audits & data encryption",
-      "Legacy system migration & API integration",
-      "Custom SLA with 1-hour emergency response",
-      "On-premise or sovereign cloud deployment",
-      "Dedicated Solutions Architect & Technical Account Mgr",
+      "Full custom web application",
+      "Admin & client dashboards",
+      "User accounts & role management",
+      "E-commerce & online payments",
+      "Payment gateway integrations",
+      "Booking, catalog or portal systems",
+      "SMS & system notifications",
+      "Unlimited pages & custom modules",
+      "10 GB+ hosting options",
+      "Free .co.tz domain",
+      "Unlimited business email accounts",
+      "Full SEO & performance optimization",
+      "Custom API & third-party integrations",
+      "Self-hosting / VPS deployment available",
+      "Ongoing maintenance & support options",
     ],
-    ctaText: "Request Enterprise Quote",
+    ctaText: "Request Custom Quote",
   },
 ];
 
 const COMPARISON_FEATURES = [
-  { name: "Dedicated Tech Lead & PM", starter: "Shared", growth: "Dedicated", enterprise: "Dedicated Architect" },
-  { name: "Web & Mobile Support", starter: "Web or Mobile", growth: "Web + Mobile", enterprise: "Multi-Platform Suite" },
-  { name: "Payment Gateway Integration", starter: "Basic", growth: "Advanced (M-Pesa, Selcom, Stripe)", enterprise: "Custom Financial Rail" },
-  { name: "Sprint Iteration Cycle", starter: "Bi-Weekly", growth: "Weekly", enterprise: "Continuous Delivery / Daily" },
-  { name: "Code Review & Quality Assurance", starter: "Automated", growth: "Peer + QA Lead", enterprise: "Full Security Audit & QA" },
-  { name: "Post-Launch Support Period", starter: "30 Days", growth: "90 Days Priority", enterprise: "Custom Ongoing SLA" },
-  { name: "Cloud & DevOps Automation", starter: "Basic CI/CD", growth: "Docker + Staging / Prod", enterprise: "Kubernetes & Multi-Cloud" },
-  { name: "Emergency Incident Response", starter: "48 Hours", growth: "12 Hours", enterprise: "< 1 Hour SLA" },
+  { name: "Website Type", starter: "Business Website", professional: "Website + CMS", enterprise: "Custom Web Application" },
+  { name: "Pages", starter: "Up to 16", professional: "Up to 28", enterprise: "Unlimited / Custom" },
+  { name: "Admin Dashboard", starter: "—", professional: "✓ Full CMS", enterprise: "✓ Advanced" },
+  { name: "Content Management", starter: "Developer managed", professional: "Self-managed", enterprise: "Self-managed + custom workflows" },
+  { name: "Business Emails", starter: "15 accounts", professional: "Unlimited", enterprise: "Unlimited" },
+  { name: "Hosting", starter: "1.5 GB", professional: "3 GB", enterprise: "10 GB+ / Custom" },
+  { name: "Domain", starter: "Free .co.tz", professional: "Free .co.tz", enterprise: "Free .co.tz" },
+  { name: "SEO", starter: "Full SEO setup", professional: "Advanced SEO", enterprise: "Advanced / Custom SEO" },
+  { name: "Payments", starter: "—", professional: "Catalog only", enterprise: "M-Pesa, cards & gateways" },
+  { name: "User Accounts", starter: "—", professional: "—", enterprise: "✓ Roles & permissions" },
+  { name: "API Integrations", starter: "Basic", professional: "Selected integrations", enterprise: "Custom integrations" },
+  { name: "Post-Launch Support", starter: "30 Days", professional: "90 Days Priority", enterprise: "Custom maintenance plan" },
+  { name: "Deployment", starter: "Managed hosting", professional: "Managed hosting", enterprise: "Hosting / VPS / Self-hosting" },
 ];
 
 const FAQS = [
   {
-    q: "Can I choose project-based pricing instead of a monthly subscription?",
-    a: "Yes! While our monthly retainers provide dedicated engineering capacity and continuous product iterations, we also offer fixed-scope project milestones. Contact us to receive a detailed breakdown tailored to your project timeline.",
+    q: "What is included in the website price?",
+    a: "The package price covers website design and development based on the listed scope. Domain and hosting are included where stated. Custom features outside the package may require an additional quote.",
   },
   {
-    q: "How does the 20% annual discount work?",
-    a: "When you select annual billing, your monthly equivalent rate is discounted by 20%. Billing is processed upfront annually, guaranteeing fixed engineering rates and priority developer allocation for 12 months.",
+    q: "Do I need to know how to code to manage my website?",
+    a: "No. The Professional CMS package includes an admin dashboard where you can manage pages, posts, images and other supported content without editing code.",
   },
   {
-    q: "Which payment options do you accept in East Africa & globally?",
-    a: "We accept bank transfers (USD & TZS), mobile money payments (M-Pesa, Tigo Pesa, Airtel Money), Selcom, wire transfers, and credit card payments via Stripe.",
+    q: "What is the difference between the Starter and Professional packages?",
+    a: "Starter is best for a company profile or service website with mostly evergreen content. Professional adds a full CMS dashboard so your team can regularly update content, publish posts and manage images.",
   },
   {
-    q: "Can we adjust our team size or switch plans mid-project?",
-    a: "Absolutely. Software needs evolve as your user base grows. You can scale your dedicated engineering team up or down with a 14-day notice period.",
+    q: "Can you build an online store or payment system?",
+    a: "Yes. E-commerce, online payments, user accounts, booking systems and custom integrations are available under the Enterprise Web Solution package and are priced according to scope.",
   },
   {
-    q: "Who owns the intellectual property and code written by SealTech?",
-    a: "You retain 100% ownership of all source code, documentation, credentials, and digital assets produced during our collaboration. We transfer code repositories directly to your organization.",
+    q: "Do you provide hosting and a domain?",
+    a: "Yes. The Starter and Professional packages include a free .co.tz domain and hosting space as listed. Enterprise hosting can be provided on suitable infrastructure or deployed to your own VPS/self-hosting environment.",
   },
   {
-    q: "What happens after our product goes live in production?",
-    a: "All plans include post-launch support and bug fixes. You can transition to a long-term maintenance & optimization retainer or handover to your internal team with full technical documentation.",
+    q: "What happens after the website goes live?",
+    a: "We provide the support period included in your package. After that, you can continue with an annual hosting and maintenance plan for updates, monitoring, backups, security and technical support.",
+  },
+  {
+    q: "Can I request features that are not listed?",
+    a: "Absolutely. Tell us what your business needs and we can prepare a custom proposal for additional pages, integrations, dashboards, APIs, automation or other functionality.",
   },
 ];
 
 export function PricingPage({ onOpenProject }) {
-  const [billingCycle, setBillingCycle] = useState("monthly");
   const [openFaq, setOpenFaq] = useState(null);
 
   const toggleFaq = (index) => {
@@ -131,31 +152,18 @@ export function PricingPage({ onOpenProject }) {
           </nav>
 
           <div className="pricing-hero-header" data-animate="fade-up">
-            <p className="section-eyebrow">Transparent & Predictable</p>
+            <p className="section-eyebrow">Simple & Transparent</p>
             <h1 className="pricing-title">
-              Engineering solutions priced for <span className="gradient-text">scale & impact</span>
+              Website solutions built for <span className="gradient-text">business growth</span>
             </h1>
             <p className="pricing-sub">
-              Choose a dedicated engineering capacity plan or custom project milestone. Zero hidden fees, clear deliverables, and world-class Tanzanian engineering.
+              Choose the right website package for your business. Clear deliverables, professional design, secure hosting, SEO, and reliable support — with no confusing pricing.
             </p>
 
-            {/* Billing Toggle Switch */}
-            <div className="billing-toggle-container">
-              <span className={`toggle-label ${billingCycle === "monthly" ? "active" : ""}`}>
-                Monthly Billing
-              </span>
-              <button
-                className={`billing-switch ${billingCycle === "annual" ? "annual" : ""}`}
-                type="button"
-                onClick={() => setBillingCycle(billingCycle === "monthly" ? "annual" : "monthly")}
-                aria-label="Toggle annual or monthly billing"
-              >
-                <span className="switch-handle" />
-              </button>
-              <span className={`toggle-label ${billingCycle === "annual" ? "active" : ""}`}>
-                Annual Billing
-                <span className="discount-badge">Save 20%</span>
-              </span>
+            <div className="pricing-note">
+              <span>One-time website development</span>
+              <span>•</span>
+              <span>Hosting & maintenance renew annually</span>
             </div>
           </div>
         </div>
@@ -166,7 +174,6 @@ export function PricingPage({ onOpenProject }) {
         <div className="container">
           <div className="pricing-grid">
             {PRICING_TIERS.map((tier) => {
-              const price = billingCycle === "annual" ? tier.annualPrice : tier.monthlyPrice;
               return (
                 <article
                   key={tier.id}
@@ -181,21 +188,13 @@ export function PricingPage({ onOpenProject }) {
                   </div>
 
                   <div className="card-price-box">
-                    {price ? (
-                      <div className="price-display">
-                        <span className="price-currency">$</span>
-                        <span className="price-amount">{price.toLocaleString()}</span>
-                        <span className="price-period">/ month</span>
-                      </div>
-                    ) : (
-                      <div className="price-display custom">
-                        <span className="price-amount">Custom</span>
-                      </div>
-                    )}
+                    <div className="price-display custom">
+                      <span className="price-amount">{tier.projectBase}</span>
+                    </div>
                     <p className="price-subtext">
-                      {billingCycle === "annual" && price
-                        ? "Billed annually • Starting project base " + tier.projectBase
-                        : "Billed monthly • Starting project base " + tier.projectBase}
+                      {tier.id === "enterprise"
+                        ? "Final price depends on system scope, integrations and infrastructure."
+                        : "One-time development fee. Hosting & maintenance renew separately."}
                     </p>
                   </div>
 
@@ -235,7 +234,7 @@ export function PricingPage({ onOpenProject }) {
               Compare <span className="gradient-text">plan capabilities</span>
             </h2>
             <p className="section-desc">
-              Every project comes with clear milestones, clean architecture, and dedicated client updates.
+              Compare the packages at a glance and choose the level of website functionality your business needs.
             </p>
           </div>
 
@@ -244,8 +243,8 @@ export function PricingPage({ onOpenProject }) {
               <thead>
                 <tr>
                   <th>Capability</th>
-                  <th>Starter MVP</th>
-                  <th className="highlight-col">Growth & Scale</th>
+                  <th>Business Starter</th>
+                  <th className="highlight-col">Professional CMS</th>
                   <th>Enterprise</th>
                 </tr>
               </thead>
@@ -254,7 +253,7 @@ export function PricingPage({ onOpenProject }) {
                   <tr key={i}>
                     <td className="feature-name">{item.name}</td>
                     <td>{item.starter}</td>
-                    <td className="highlight-col">{item.growth}</td>
+                    <td className="highlight-col">{item.professional}</td>
                     <td>{item.enterprise}</td>
                   </tr>
                 ))}
@@ -310,17 +309,17 @@ export function PricingPage({ onOpenProject }) {
         </div>
         <div className="container">
           <div className="cta-content" data-animate="fade-up">
-            <div className="cta-badge">Custom Engineering</div>
-            <h2 className="cta-title">Need a custom technical proposal?</h2>
+            <div className="cta-badge">Custom Website</div>
+            <h2 className="cta-title">Need something more than a standard website?</h2>
             <p className="cta-desc">
-              Share your project specifications, tech stack preferences, or enterprise compliance requirements with our engineering leaders.
+              Tell us about your business, required features and goals. We’ll recommend the right package or prepare a custom proposal.
             </p>
             <div className="cta-buttons">
               <button className="btn-white" onClick={onOpenProject}>
-                Start Project Scope
+                Request a Custom Quote
               </button>
               <Link href="/contact" className="btn-outline-white">
-                Contact Sales Team
+                Contact SealTech
               </Link>
             </div>
           </div>
